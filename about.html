@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About Us | SarkariAlert.in</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Teko:wght@500;600;700&family=Hind:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#0B1D3A;--navy2:#162d55;--orange:#E8460A;--gold:#F5A623;--bg:#F2F4F8;--card:#fff;--border:#DDE1EC;--text:#0B1D3A;--muted:#6B7A99;--green:#097A47;--green-bg:#E5F5ED;--radius:10px}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Hind',sans-serif;background:var(--bg);color:var(--text);font-size:15px;line-height:1.7}
+a{text-decoration:none;color:inherit}
+.topbar{background:var(--navy);color:#9DAEC8;font-size:12px;padding:6px 20px;text-align:center}
+header{background:var(--navy);position:sticky;top:0;z-index:100;box-shadow:0 2px 20px rgba(0,0,0,.25)}
+.header-inner{max-width:1100px;margin:0 auto;padding:0 20px;display:flex;align-items:center;gap:20px;height:64px}
+.logo{display:flex;align-items:center;gap:10px}
+.logo-icon{width:38px;height:38px;background:var(--orange);border-radius:8px;display:flex;align-items:center;justify-content:center;font-family:'Teko',sans-serif;font-size:20px;color:#fff;font-weight:700}
+.logo-text{font-family:'Teko',sans-serif;font-size:26px;font-weight:700;color:#fff;line-height:1}
+.logo-text span{color:var(--gold)}
+.logo-tag{font-size:10px;color:#aab4cc;display:block}
+nav{display:flex;align-items:center;gap:2px;margin-left:auto}
+.nav-link{color:#ccd3e0;font-size:13.5px;font-weight:500;padding:8px 14px;border-radius:6px;transition:all .15s;white-space:nowrap}
+.nav-link:hover,.nav-link.active{background:rgba(255,255,255,.1);color:#fff}
+.nav-link.active{color:var(--gold)}
+.nav-cta{background:var(--orange);color:#fff;padding:8px 18px;border-radius:7px;font-size:13.5px;font-weight:600;margin-left:8px}
+.page-hero{background:linear-gradient(135deg,var(--navy),var(--navy2));padding:36px 20px}
+.ph-inner{max-width:1100px;margin:0 auto}
+.breadcrumb{font-size:12.5px;color:#7E90AE;margin-bottom:10px}
+.breadcrumb a{color:#9DAEC8}
+.page-hero h1{font-family:'Teko',sans-serif;font-size:2.4rem;font-weight:700;color:#fff;margin-bottom:6px}
+.page-hero h1 span{color:var(--gold)}
+.page-hero p{color:#9DAEC8;font-size:14.5px}
+.content{max-width:1100px;margin:0 auto;padding:32px 20px 60px;display:grid;grid-template-columns:1fr 320px;gap:28px;align-items:start}
+.card{background:var(--card);border:1.5px solid var(--border);border-radius:var(--radius);padding:28px 32px;margin-bottom:24px}
+.card h2{font-family:'Teko',sans-serif;font-size:24px;font-weight:600;color:var(--navy);margin-bottom:16px;padding-bottom:10px;border-bottom:2px solid var(--orange);display:inline-block}
+.card p{font-size:14.5px;color:#3D4A66;margin-bottom:12px;line-height:1.75}
+.card p:last-child{margin-bottom:0}
+.card ul{padding-left:18px;margin-bottom:12px}
+.card ul li{font-size:14.5px;color:#3D4A66;margin-bottom:6px;line-height:1.65}
+.card ul li::marker{color:var(--orange)}
+.mission-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:16px}
+.mission-item{background:var(--bg);border-radius:8px;padding:16px;text-align:center}
+.mission-icon{font-size:26px;margin-bottom:8px}
+.mission-title{font-family:'Teko',sans-serif;font-size:17px;font-weight:600;color:var(--navy);margin-bottom:4px}
+.mission-desc{font-size:12.5px;color:var(--muted);line-height:1.5}
+.contact-form label{display:block;font-size:13px;font-weight:600;color:var(--navy);margin-bottom:5px;margin-top:14px}
+.contact-form label:first-of-type{margin-top:0}
+.contact-form input,.contact-form textarea,.contact-form select{width:100%;padding:10px 14px;border:1.5px solid var(--border);border-radius:8px;font-size:14px;font-family:'Hind',sans-serif;color:var(--text);outline:none;transition:border-color .2s;background:#fff}
+.contact-form input:focus,.contact-form textarea:focus{border-color:var(--orange)}
+.contact-form textarea{min-height:110px;resize:vertical}
+.form-btn{margin-top:16px;width:100%;padding:12px;background:var(--orange);color:#fff;border:none;border-radius:8px;font-size:15px;font-weight:600;font-family:'Hind',sans-serif;cursor:pointer;transition:background .15s}
+.form-btn:hover{background:#c93c08}
+.sidebar-widget{background:var(--card);border:1.5px solid var(--border);border-radius:var(--radius);overflow:hidden;margin-bottom:20px}
+.sw-head{background:var(--navy);padding:12px 18px}
+.sw-head h3{font-family:'Teko',sans-serif;font-size:18px;font-weight:600;color:#fff}
+.sw-body{padding:16px 18px}
+.info-row{display:flex;gap:10px;align-items:flex-start;padding:8px 0;border-bottom:1px dashed var(--border)}
+.info-row:last-child{border-bottom:none}
+.info-icon{font-size:18px;flex-shrink:0;margin-top:2px}
+.info-text{font-size:13px;color:#3D4A66;line-height:1.5}
+.info-text strong{display:block;font-size:12px;text-transform:uppercase;letter-spacing:.5px;color:var(--muted);margin-bottom:2px}
+footer{background:var(--navy);color:#7E90AE;padding:20px;text-align:center;font-size:13px}
+footer a{color:var(--gold)}
+@media(max-width:800px){.content{grid-template-columns:1fr}.mission-grid{grid-template-columns:1fr 1fr}nav .nav-link{display:none}}
+@media(max-width:500px){.mission-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<div class="topbar">🇮🇳 SarkariAlert.in — India's Fastest Government Job Alert Portal — Updated Daily</div>
+
+<header>
+  <div class="header-inner">
+    <a href="index.html" class="logo">
+      <div class="logo-icon">SA</div>
+      <div>
+        <div class="logo-text">Sarkari<span>Alert</span>.in</div>
+        <span class="logo-tag">INDIA'S FASTEST GOVT JOB PORTAL</span>
+      </div>
+    </a>
+    <nav>
+      <a href="index.html" class="nav-link">Home</a>
+      <a href="jobs.html" class="nav-link">All Jobs</a>
+      <a href="results.html" class="nav-link">Results</a>
+      <a href="admit.html" class="nav-link">Admit Cards</a>
+      <a href="syllabus.html" class="nav-link">Syllabus</a>
+      <a href="about.html" class="nav-link active">About</a>
+      <a href="index.html#subscribe" class="nav-cta">🔔 Get Alerts</a>
+    </nav>
+  </div>
+</header>
+
+<div class="page-hero">
+  <div class="ph-inner">
+    <div class="breadcrumb"><a href="index.html">Home</a> › About Us</div>
+    <h1>About <span>SarkariAlert.in</span></h1>
+    <p>India's fastest and most trusted government job notification portal</p>
+  </div>
+</div>
+
+<div class="content">
+  <div>
+
+    <!-- About -->
+    <div class="card">
+      <h2>About Us</h2>
+      <p>SarkariAlert.in is India's dedicated government job notification portal. We collect, verify, and publish all central and state government job notifications from official sources — so that every job seeker in India has the right information at the right time.</p>
+      <p>Our mission is simple: <strong>no deserving candidate should miss a government job opportunity</strong> because they didn't get the notification in time. We work every day to ensure the latest alerts reach you before anyone else.</p>
+
+      <div class="mission-grid">
+        <div class="mission-item">
+          <div class="mission-icon">⚡</div>
+          <div class="mission-title">Fastest Alerts</div>
+          <div class="mission-desc">Notifications posted within minutes of official release</div>
+        </div>
+        <div class="mission-item">
+          <div class="mission-icon">✅</div>
+          <div class="mission-title">100% Verified</div>
+          <div class="mission-desc">All info sourced from official government portals only</div>
+        </div>
+        <div class="mission-item">
+          <div class="mission-icon">🆓</div>
+          <div class="mission-title">Always Free</div>
+          <div class="mission-desc">No charges ever. Free alerts for every job seeker</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- What We Cover -->
+    <div class="card">
+      <h2>What We Cover</h2>
+      <p>We cover all types of government job notifications across India:</p>
+      <ul>
+        <li>🚂 <strong>Railway Jobs</strong> — RRB, Group D, ALP, NTPC, Apprentice and all zonal railways</li>
+        <li>🏛️ <strong>UPSC Jobs</strong> — Civil Services (IAS/IPS), IFS, CDS, NDA, CAPF and all UPSC exams</li>
+        <li>📝 <strong>SSC Jobs</strong> — CGL, CHSL, MTS, CPO, GD Constable and all SSC exams</li>
+        <li>🏦 <strong>Banking Jobs</strong> — RBI, SBI, IBPS PO, IBPS Clerk, RRB and all bank jobs</li>
+        <li>🛡️ <strong>Defence & Police</strong> — Army, Navy, Air Force, CRPF, BSF, CISF, SSB, State Police</li>
+        <li>🗺️ <strong>State Government Jobs</strong> — All state PSCs, state police, teacher recruitment</li>
+        <li>📮 <strong>Postal & PSU</strong> — India Post, Coal India, ONGC, BHEL and all PSU jobs</li>
+        <li>🎓 <strong>Teaching Jobs</strong> — CTET, KVS, NVS, DSSSB and state teacher recruitment</li>
+      </ul>
+    </div>
+
+    <!-- Contact -->
+    <div class="card" id="contact">
+      <h2>Contact Us</h2>
+      <p>Have a question, found an error, or want to submit a job notification? We'd love to hear from you!</p>
+      <div class="contact-form">
+        <label>Your Name</label>
+        <input type="text" placeholder="Enter your full name">
+        <label>Email Address</label>
+        <input type="email" placeholder="Enter your email">
+        <label>Subject</label>
+        <select>
+          <option>Report an Error in Job Post</option>
+          <option>Submit a New Job Notification</option>
+          <option>Advertising / Partnership</option>
+          <option>General Query</option>
+          <option>Technical Issue</option>
+        </select>
+        <label>Your Message</label>
+        <textarea placeholder="Describe your query..."></textarea>
+        <button class="form-btn" onclick="submitForm()">📩 Send Message</button>
+      </div>
+    </div>
+
+    <!-- Disclaimer -->
+    <div class="card" id="disclaimer">
+      <h2>Disclaimer</h2>
+      <p>SarkariAlert.in is an <strong>independent information portal</strong> and is NOT affiliated with any government department, ministry, or official recruitment body.</p>
+      <p>All information published on this website is collected from publicly available official government websites and notifications. We make every effort to ensure accuracy, but we cannot guarantee that all information is current, complete, or error-free.</p>
+      <ul>
+        <li>Always verify all details (vacancies, eligibility, fee, last date) on the <strong>official recruitment website</strong> before applying.</li>
+        <li>We are not responsible for any loss or inconvenience caused by reliance on information published on this site.</li>
+        <li>This website does not charge any fee for providing information. Beware of fraud.</li>
+        <li>For any discrepancy, the official government notification shall be considered final and binding.</li>
+      </ul>
+    </div>
+
+  </div>
+
+  <!-- SIDEBAR -->
+  <div>
+    <div class="sidebar-widget">
+      <div class="sw-head"><h3>📞 Contact Info</h3></div>
+      <div class="sw-body">
+        <div class="info-row">
+          <div class="info-icon">📧</div>
+          <div class="info-text"><strong>Email</strong>contact@sarkarialert.in</div>
+        </div>
+        <div class="info-row">
+          <div class="info-icon">✈️</div>
+          <div class="info-text"><strong>Telegram Channel</strong>t.me/sarkarialert</div>
+        </div>
+        <div class="info-row">
+          <div class="info-icon">💬</div>
+          <div class="info-text"><strong>WhatsApp Group</strong>Available on request</div>
+        </div>
+        <div class="info-row">
+          <div class="info-icon">🕐</div>
+          <div class="info-text"><strong>Response Time</strong>Within 24–48 hours</div>
+        </div>
+        <div class="info-row">
+          <div class="info-icon">📍</div>
+          <div class="info-text"><strong>Based in</strong>India</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sidebar-widget">
+      <div class="sw-head"><h3>🔗 Official Portals</h3></div>
+      <div class="sw-body">
+        <div class="info-row"><div class="info-icon">🏛️</div><div class="info-text"><a href="https://upsc.gov.in" target="_blank" style="color:#1A56C4;font-weight:600">UPSC Official</a><br><span style="font-size:12px;color:var(--muted)">upsc.gov.in</span></div></div>
+        <div class="info-row"><div class="info-icon">📝</div><div class="info-text"><a href="https://ssc.gov.in" target="_blank" style="color:#1A56C4;font-weight:600">SSC Official</a><br><span style="font-size:12px;color:var(--muted)">ssc.gov.in</span></div></div>
+        <div class="info-row"><div class="info-icon">🚂</div><div class="info-text"><a href="https://www.rrbapply.gov.in" target="_blank" style="color:#1A56C4;font-weight:600">RRB Apply Portal</a><br><span style="font-size:12px;color:var(--muted)">rrbapply.gov.in</span></div></div>
+        <div class="info-row"><div class="info-icon">🏦</div><div class="info-text"><a href="https://ibps.in" target="_blank" style="color:#1A56C4;font-weight:600">IBPS Official</a><br><span style="font-size:12px;color:var(--muted)">ibps.in</span></div></div>
+        <div class="info-row"><div class="info-icon">📰</div><div class="info-text"><a href="https://employmentnews.gov.in" target="_blank" style="color:#1A56C4;font-weight:600">Employment News</a><br><span style="font-size:12px;color:var(--muted)">employmentnews.gov.in</span></div></div>
+      </div>
+    </div>
+
+    <div class="sidebar-widget">
+      <div class="sw-head"><h3>📋 Quick Navigate</h3></div>
+      <div class="sw-body">
+        <div style="display:flex;flex-direction:column;gap:6px">
+          <a href="index.html" style="font-size:13.5px;color:#1A56C4;font-weight:600">🏠 Homepage</a>
+          <a href="jobs.html" style="font-size:13.5px;color:#1A56C4;font-weight:600">💼 All Job Notifications</a>
+          <a href="all_govt_job_posts.html" style="font-size:13.5px;color:#1A56C4;font-weight:600">📋 Detailed Job Posts</a>
+          <a href="index.html#subscribe" style="font-size:13.5px;color:#1A56C4;font-weight:600">🔔 Subscribe for Alerts</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <p>© 2026 SarkariAlert.in · <a href="index.html">Home</a> · <a href="jobs.html">All Jobs</a> · <a href="about.html">About</a> · <a href="about.html#disclaimer">Disclaimer</a><br>
+  Not affiliated with any government department. Always verify on official websites before applying.</p>
+</footer>
+
+<script>
+function submitForm() {
+  alert('✅ Thank you for your message!\n\nWe will get back to you within 24–48 hours.\n\n(To make this form actually send emails, connect it to a free service like Formspree.io or EmailJS.)');
+}
+</script>
+</body>
+</html>

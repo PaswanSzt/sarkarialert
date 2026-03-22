@@ -1,0 +1,1330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Government Job Alert Posts – March 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;600;700;800&family=Noto+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --railway:  #1565C0;
+    --railway-bg: #E8F0FE;
+    --upsc:     #6A0DAD;
+    --upsc-bg:  #F3E8FF;
+    --banking:  #0A6B43;
+    --banking-bg:#E6F5EF;
+    --defence:  #B71C1C;
+    --defence-bg:#FDECEA;
+    --state:    #E65100;
+    --state-bg: #FFF3E0;
+    --orange:   #FF6B00;
+    --navy:     #0D1B3E;
+    --gold:     #F5A623;
+    --green-ok: #1B8A4E;
+    --red-alert:#C0392B;
+    --border:   #DEE2E6;
+    --bg-page:  #F1F3F8;
+    --card-bg:  #FFFFFF;
+    --text:     #1A1A2E;
+    --muted:    #6C757D;
+    --radius:   14px;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Noto Sans', sans-serif;
+    background: var(--bg-page);
+    color: var(--text);
+    padding: 20px 12px 60px;
+  }
+
+  /* ── PAGE HEADER ── */
+  .page-header {
+    background: linear-gradient(135deg, #0D1B3E 0%, #1A2F5E 60%, #FF6B00 140%);
+    border-radius: 18px;
+    padding: 36px 32px;
+    margin-bottom: 36px;
+    text-align: center;
+    color: #fff;
+    position: relative;
+    overflow: hidden;
+  }
+  .page-header::after {
+    content: '🇮🇳';
+    position: absolute;
+    right: 24px; top: 20px;
+    font-size: 3rem;
+    opacity: .18;
+  }
+  .page-header h1 {
+    font-family: 'Baloo 2', sans-serif;
+    font-size: 2rem;
+    font-weight: 800;
+    letter-spacing: .5px;
+    margin-bottom: 6px;
+  }
+  .page-header h1 span { color: #FFD166; }
+  .page-header p { font-size: .9rem; opacity: .85; }
+
+  /* ── TOC ── */
+  .toc {
+    background: #fff;
+    border-radius: var(--radius);
+    border: 1.5px solid var(--border);
+    padding: 22px 24px;
+    margin-bottom: 36px;
+    max-width: 860px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .toc h2 {
+    font-family: 'Baloo 2', sans-serif;
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--navy);
+    margin-bottom: 14px;
+  }
+  .toc ol {
+    columns: 2;
+    column-gap: 24px;
+    padding-left: 18px;
+  }
+  .toc li { margin-bottom: 6px; }
+  .toc a {
+    font-size: .84rem;
+    color: var(--orange);
+    text-decoration: none;
+    font-weight: 500;
+  }
+  .toc a:hover { text-decoration: underline; }
+
+  /* ── JOB POST CARD ── */
+  .job-post {
+    background: var(--card-bg);
+    border-radius: var(--radius);
+    border: 1.5px solid var(--border);
+    max-width: 860px;
+    margin: 0 auto 40px;
+    overflow: hidden;
+    box-shadow: 0 2px 12px rgba(0,0,0,.06);
+  }
+
+  /* Coloured top bar */
+  .job-post__bar {
+    height: 6px;
+    width: 100%;
+  }
+
+  /* Header */
+  .job-post__head {
+    padding: 22px 26px 16px;
+    border-bottom: 1px solid var(--border);
+  }
+  .job-post__badge {
+    display: inline-block;
+    font-size: .7rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 3px 10px;
+    border-radius: 5px;
+    margin-bottom: 8px;
+  }
+  .job-post__title {
+    font-family: 'Baloo 2', sans-serif;
+    font-size: 1.25rem;
+    font-weight: 800;
+    line-height: 1.3;
+    margin-bottom: 6px;
+  }
+  .job-post__meta {
+    font-size: .82rem;
+    color: var(--muted);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+  }
+  .job-post__meta span { display: flex; align-items: center; gap: 4px; }
+
+  /* Quick stats row */
+  .job-post__stats {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .stat-box {
+    flex: 1 1 160px;
+    padding: 14px 20px;
+    border-right: 1px solid var(--border);
+  }
+  .stat-box:last-child { border-right: none; }
+  .stat-box__label {
+    font-size: .7rem;
+    font-weight: 700;
+    letter-spacing: .8px;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 4px;
+  }
+  .stat-box__value {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--text);
+  }
+
+  /* Table */
+  .job-post__body { padding: 22px 26px; }
+  .section-title {
+    font-family: 'Baloo 2', sans-serif;
+    font-size: .95rem;
+    font-weight: 700;
+    color: var(--navy);
+    margin: 18px 0 10px;
+    padding-left: 10px;
+    border-left: 3px solid var(--orange);
+  }
+  .section-title:first-child { margin-top: 0; }
+
+  table.info-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: .85rem;
+  }
+  table.info-table th,
+  table.info-table td {
+    padding: 10px 14px;
+    border: 1px solid var(--border);
+    text-align: left;
+    vertical-align: top;
+    line-height: 1.5;
+  }
+  table.info-table thead th {
+    background: var(--navy);
+    color: #fff;
+    font-weight: 600;
+    font-size: .78rem;
+    letter-spacing: .5px;
+    text-transform: uppercase;
+  }
+  table.info-table tbody tr:nth-child(even) { background: #F8F9FC; }
+  table.info-table tbody tr:hover { background: #FFFBF5; }
+  .td-highlight { font-weight: 600; }
+  .td-green { color: var(--green-ok); font-weight: 600; }
+  .td-red   { color: var(--red-alert); font-weight: 600; }
+  .td-blue  { color: var(--railway); font-weight: 600; }
+
+  /* Fee table special colours */
+  .fee-gen  { background: #FFF8E7; }
+  .fee-obc  { background: #E8F5E9; }
+  .fee-sc   { background: #FFF3E0; }
+  .fee-pwd  { background: #F3E5F5; }
+  .fee-women{ background: #FCE4EC; }
+
+  /* Important dates */
+  .dates-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 10px;
+    margin-top: 10px;
+  }
+  .date-chip {
+    background: var(--bg-page);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 10px 14px;
+  }
+  .date-chip__label {
+    font-size: .68rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: .6px;
+    color: var(--muted);
+    margin-bottom: 3px;
+  }
+  .date-chip__date {
+    font-size: .9rem;
+    font-weight: 700;
+    color: var(--navy);
+  }
+  .date-chip--alert .date-chip__date { color: var(--red-alert); }
+  .date-chip--ok .date-chip__date    { color: var(--green-ok); }
+
+  /* CTA */
+  .job-post__footer {
+    border-top: 1px solid var(--border);
+    padding: 18px 26px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+    background: #FAFBFF;
+  }
+  .job-post__disclaimer {
+    font-size: .75rem;
+    color: var(--muted);
+    flex: 1;
+    min-width: 180px;
+  }
+  .btn-apply {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--orange);
+    color: #fff;
+    font-family: 'Baloo 2', sans-serif;
+    font-size: .95rem;
+    font-weight: 700;
+    padding: 11px 26px;
+    border-radius: 9px;
+    text-decoration: none;
+    letter-spacing: .3px;
+    transition: background .18s, transform .15s;
+    flex-shrink: 0;
+  }
+  .btn-apply:hover { background: #e05d00; transform: translateY(-1px); }
+  .btn-apply--closed {
+    background: var(--muted);
+    cursor: not-allowed;
+    pointer-events: none;
+  }
+  .btn-apply--soon { background: var(--railway); }
+
+  /* Category colour helpers */
+  .c-railway { color: var(--railway); }
+  .c-upsc    { color: var(--upsc);    }
+  .c-banking { color: var(--banking); }
+  .c-defence { color: var(--defence); }
+  .c-state   { color: var(--state);   }
+
+  .bar-railway { background: var(--railway); }
+  .bar-upsc    { background: var(--upsc);    }
+  .bar-banking { background: var(--banking); }
+  .bar-defence { background: var(--defence); }
+  .bar-state   { background: var(--state);   }
+
+  .badge-railway { background: var(--railway-bg); color: var(--railway); }
+  .badge-upsc    { background: var(--upsc-bg);    color: var(--upsc);    }
+  .badge-banking { background: var(--banking-bg); color: var(--banking); }
+  .badge-defence { background: var(--defence-bg); color: var(--defence); }
+  .badge-state   { background: var(--state-bg);   color: var(--state);   }
+
+  /* Status pills */
+  .pill {
+    display: inline-block;
+    padding: 2px 9px;
+    border-radius: 999px;
+    font-size: .7rem;
+    font-weight: 700;
+  }
+  .pill-closed { background: #FDECEA; color: #B71C1C; }
+  .pill-open   { background: #E6F5EF; color: #0A6B43; }
+  .pill-soon   { background: #E8F0FE; color: #1565C0; }
+  .pill-hot    { background: #FFF3E0; color: #E65100; }
+
+  @media (max-width: 600px) {
+    .toc ol { columns: 1; }
+    .stat-box { flex: 1 1 100%; border-right: none; border-bottom: 1px solid var(--border); }
+    .job-post__meta { gap: 8px; }
+    .page-header h1 { font-size: 1.4rem; }
+    table.info-table { font-size: .78rem; }
+    table.info-table th, table.info-table td { padding: 8px 10px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ═══ PAGE HEADER ═══ -->
+<div class="page-header">
+  <h1>🔔 Sarkari Job <span>Alert Posts</span></h1>
+  <p>15 Individual Govt Job Posts | Updated: March 22, 2026 | Source: Official Portals</p>
+</div>
+
+<!-- ═══ TABLE OF CONTENTS ═══ -->
+<div class="toc">
+  <h2>📋 All Job Posts (Click to Jump)</h2>
+  <ol>
+    <li><a href="#post-1">🚂 RRB Group D 2026</a></li>
+    <li><a href="#post-2">🚂 RRB ALP 2026 (CEN 01/2026)</a></li>
+    <li><a href="#post-3">🚂 SCR Apprentice 2026</a></li>
+    <li><a href="#post-4">🚂 RCF Apprentice 2026</a></li>
+    <li><a href="#post-5">🏛️ UPSC Civil Services 2026</a></li>
+    <li><a href="#post-6">🌳 UPSC Indian Forest Service 2026</a></li>
+    <li><a href="#post-7">📝 SSC CGL 2025</a></li>
+    <li><a href="#post-8">🛡️ UPSC CDS I 2026</a></li>
+    <li><a href="#post-9">🚔 SSB Constable 2026</a></li>
+    <li><a href="#post-10">🏦 RBI Assistant 2026</a></li>
+    <li><a href="#post-11">📮 India Post GDS 2026</a></li>
+    <li><a href="#post-12">🗺️ APPSC Job Calendar 2026</a></li>
+    <li><a href="#post-13">🚔 Punjab Police Constable 2026</a></li>
+    <li><a href="#post-14">🚔 Odisha Police SPO 2026</a></li>
+    <li><a href="#post-15">⛏️ SECL Apprentice 2026</a></li>
+  </ol>
+</div>
+
+
+<!-- ════════════════════════════════════════════════════
+  POST 1 — RRB GROUP D 2026
+════════════════════════════════════════════════════ -->
+<div class="job-post" id="post-1">
+  <div class="job-post__bar bar-railway"></div>
+  <div class="job-post__head">
+    <span class="job-post__badge badge-railway">🚂 Railway</span>
+    <h2 class="job-post__title c-railway">RRB Group D Recruitment 2026 — Level-1 Posts (CEN 09/2025)</h2>
+    <div class="job-post__meta">
+      <span>📌 Railway Recruitment Board (RRB)</span>
+      <span>🔗 rrbapply.gov.in</span>
+      <span><span class="pill pill-closed">Application Closed</span></span>
+      <span><span class="pill pill-hot">🔥 Exam Upcoming</span></span>
+    </div>
+  </div>
+
+  <div class="job-post__stats">
+    <div class="stat-box"><div class="stat-box__label">Total Vacancies</div><div class="stat-box__value c-railway">22,195</div></div>
+    <div class="stat-box"><div class="stat-box__label">Age Limit</div><div class="stat-box__value">18 – 33 Years</div></div>
+    <div class="stat-box"><div class="stat-box__label">Min. Qualification</div><div class="stat-box__value">10th Pass / ITI</div></div>
+    <div class="stat-box"><div class="stat-box__label">Pay Scale</div><div class="stat-box__value">₹18,000/mo (Level 1)</div></div>
+  </div>
+
+  <div class="job-post__body">
+
+    <p class="section-title">📋 Post-wise Vacancy Details</p>
+    <table class="info-table">
+      <thead><tr><th>Post Name</th><th>No. of Posts</th><th>Pay Level</th><th>Category</th></tr></thead>
+      <tbody>
+        <tr><td class="td-highlight">Pointsman-B</td><td>3,145</td><td>Level-1 (₹18,000)</td><td>Level 1 Posts</td></tr>
+        <tr><td class="td-highlight">Track Maintainer Grade-IV</td><td>8,912</td><td>Level-1 (₹18,000)</td><td>Level 1 Posts</td></tr>
+        <tr><td class="td-highlight">Assistant (Bridge / P-Way / TRD / Track Machine)</td><td>4,628</td><td>Level-1 (₹18,000)</td><td>Level 1 Posts</td></tr>
+        <tr><td class="td-highlight">Assistant (Loco Shed / Operations)</td><td>2,310</td><td>Level-1 (₹18,000)</td><td>Level 1 Posts</td></tr>
+        <tr><td class="td-highlight">Assistant (TL & AC / S&T / C&W)</td><td>3,200</td><td>Level-1 (₹18,000)</td><td>Level 1 Posts</td></tr>
+        <tr><td colspan="4" style="text-align:center;font-style:italic;color:var(--muted);font-size:.78rem;">Detailed zone-wise & post-wise breakup in Annexure-B of the official notification</td></tr>
+      </tbody>
+    </table>
+
+    <p class="section-title">🎓 Eligibility Criteria</p>
+    <table class="info-table">
+      <thead><tr><th>Criteria</th><th>Details</th></tr></thead>
+      <tbody>
+        <tr><td class="td-highlight">Educational Qualification</td><td>10th Standard (Matriculation) from a recognized Board OR ITI from a recognized institute (NCVT/SCVT). Final year students NOT eligible.</td></tr>
+        <tr><td class="td-highlight">Nationality</td><td>Indian Citizen (or eligible nationality per Govt. norms — Nepal, Bhutan, Tibetan refugees, etc.)</td></tr>
+        <tr><td class="td-highlight">Age Limit (General/UR)</td><td>18 to 33 years as on <strong>01-01-2026</strong></td></tr>
+        <tr><td class="td-highlight">Age Relaxation</td><td>OBC (NCL): +3 yrs | SC/ST: +5 yrs | PwBD: +10 yrs | Ex-Servicemen: as per rules</td></tr>
+        <tr><td class="td-highlight">Medical Standard</td><td>Must meet Railway medical fitness standards; vision, physical fitness tested</td></tr>
+      </tbody>
+    </table>
+
+    <p class="section-title">💰 Application Fee (Category-wise)</p>
+    <table class="info-table">
+      <thead><tr><th>Category</th><th>Fee Payable</th><th>Refund on Appearing in CBT</th><th>Net Fee Paid</th></tr></thead>
+      <tbody>
+        <tr class="fee-gen"><td class="td-highlight">General / OBC / EWS</td><td>₹500</td><td class="td-green">₹400 refunded (after bank charges)</td><td class="td-highlight">Effective: ~₹100</td></tr>
+        <tr class="fee-sc"><td class="td-highlight">SC / ST</td><td>₹250</td><td class="td-green">₹250 fully refunded (after bank charges)</td><td class="td-highlight">Effective: ~₹0</td></tr>
+        <tr class="fee-women"><td class="td-highlight">Female (All Categories)</td><td>₹250</td><td class="td-green">₹250 fully refunded (after bank charges)</td><td class="td-highlight">Effective: ~₹0</td></tr>
+        <tr class="fee-pwd"><td class="td-highlight">PwBD / Ex-Servicemen / Transgender / Minorities / EBC</td><td>₹250</td><td class="td-green">₹250 fully refunded (after bank charges)</td><td class="td-highlight">Effective: ~₹0</td></tr>
+      </tbody>
+    </table>
+
+    <p class="section-title">📅 Important Dates</p>
+    <div class="dates-grid">
+      <div class="date-chip"><div class="date-chip__label">Notification Released</div><div class="date-chip__date">30 January 2026</div></div>
+      <div class="date-chip date-chip--ok"><div class="date-chip__label">Application Start</div><div class="date-chip__date">31 January 2026</div></div>
+      <div class="date-chip date-chip--alert"><div class="date-chip__label">Last Date to Apply</div><div class="date-chip__date">09 March 2026 ✓ Closed</div></div>
+      <div class="date-chip date-chip--alert"><div class="date-chip__label">Fee Payment Last Date</div><div class="date-chip__date">11 March 2026 ✓ Closed</div></div>
+      <div class="date-chip"><div class="date-chip__label">Correction Window</div><div class="date-chip__date">12–21 March 2026</div></div>
+      <div class="date-chip date-chip--ok"><div class="date-chip__label">CBT Exam Date</div><div class="date-chip__date">Expected May 2026</div></div>
+    </div>
+
+    <p class="section-title">⚙️ Selection Process</p>
+    <table class="info-table">
+      <thead><tr><th>Stage</th><th>Details</th><th>Nature</th></tr></thead>
+      <tbody>
+        <tr><td>1. CBT (Computer Based Test)</td><td>100 MCQs – General Science, Maths, G.I. & Reasoning, G.A. (90 min) | Negative marking: 1/3</td><td>Qualifying + Merit</td></tr>
+        <tr><td>2. PET (Physical Efficiency Test)</td><td>Male: Run 1000m in 4m 15s, lift 35kg 100m; Female: Run 1000m in 5m 40s, lift 20kg 100m</td><td>Qualifying</td></tr>
+        <tr><td>3. Document Verification</td><td>Original documents checked</td><td>Mandatory</td></tr>
+        <tr><td>4. Medical Examination</td><td>Railway Medical Standards</td><td>Mandatory</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="job-post__footer">
+    <p class="job-post__disclaimer">⚠️ Application closed (09 Mar 2026). Exam expected May 2026. All details subject to official notification.</p>
+    <a href="https://www.rrbapply.gov.in/" target="_blank" rel="noopener" class="btn-apply btn-apply--closed">✓ Application Closed</a>
+  </div>
+</div>
+
+
+<!-- ════════════════════════════════════════════════════
+  POST 2 — RRB ALP 2026
+════════════════════════════════════════════════════ -->
+<div class="job-post" id="post-2">
+  <div class="job-post__bar bar-railway"></div>
+  <div class="job-post__head">
+    <span class="job-post__badge badge-railway">🚂 Railway</span>
+    <h2 class="job-post__title c-railway">RRB ALP Recruitment 2026 — Assistant Loco Pilot (CEN 01/2026)</h2>
+    <div class="job-post__meta">
+      <span>📌 Railway Recruitment Boards (All Zones)</span>
+      <span>🔗 rrbapply.gov.in</span>
+      <span><span class="pill pill-soon">🕒 Opens May 15, 2026</span></span>
+    </div>
+  </div>
+  <div class="job-post__stats">
+    <div class="stat-box"><div class="stat-box__label">Total Vacancies</div><div class="stat-box__value c-railway">11,127</div></div>
+    <div class="stat-box"><div class="stat-box__label">Age Limit</div><div class="stat-box__value">18 – 30 Years</div></div>
+    <div class="stat-box"><div class="stat-box__label">Min. Qualification</div><div class="stat-box__value">10th + ITI / Diploma</div></div>
+    <div class="stat-box"><div class="stat-box__label">Pay Scale</div><div class="stat-box__value">₹19,900/mo (Level 2)</div></div>
+  </div>
+  <div class="job-post__body">
+
+    <p class="section-title">📋 Post Details</p>
+    <table class="info-table">
+      <thead><tr><th>Post Name</th><th>No. of Posts</th><th>Pay Level</th><th>Note</th></tr></thead>
+      <tbody>
+        <tr><td class="td-highlight">Assistant Loco Pilot (ALP)</td><td class="td-blue">11,127</td><td>Level-2 | ₹19,900/mo</td><td>Zone-wise breakup in detailed CEN (releasing 14 May 2026)</td></tr>
+      </tbody>
+    </table>
+
+    <p class="section-title">🎓 Eligibility Criteria</p>
+    <table class="info-table">
+      <thead><tr><th>Criteria</th><th>Details</th></tr></thead>
+      <tbody>
+        <tr><td class="td-highlight">Educational Qualification</td><td>Matriculation / SSLC from recognized board <strong>+</strong> ITI (NCVT/SCVT) in relevant trades (Fitter, Electrician, Instrument Mechanic, Mechanic Diesel, Wireman, Machinist, Turner etc.) <br><em>OR</em> Diploma / Degree in Engineering in relevant trade</td></tr>
+        <tr><td class="td-highlight">Age Limit (General)</td><td>18 to 30 years as on <strong>01-07-2026</strong></td></tr>
+        <tr><td class="td-highlight">Age Relaxation</td><td>OBC (NCL): +3 yrs | SC/ST: +5 yrs | PwBD: +10 yrs | Ex-SM: as per rules</td></tr>
+        <tr><td class="td-highlight">Medical Standard</td><td>A-1 vision required (6/6 natural; LASIK surgery candidates <span class="td-red">NOT eligible</span>)</td></tr>
+      </tbody>
+    </table>
+
+    <p class="section-title">💰 Application Fee (Category-wise)</p>
+    <table class="info-table">
+      <thead><tr><th>Category</th><th>Fee</th><th>Refund Policy</th></tr></thead>
+      <tbody>
+        <tr class="fee-gen"><td class="td-highlight">General / OBC / EWS</td><td>₹500 (expected)</td><td class="td-green">~₹400 refunded after appearing in CBT-1</td></tr>
+        <tr class="fee-sc"><td class="td-highlight">SC / ST / Female / PwBD / Ex-SM / Transgender / Minorities / EBC</td><td>₹250 (expected)</td><td class="td-green">Full amount refunded after appearing in CBT-1</td></tr>
+        <tr><td colspan="3" style="font-size:.75rem;color:var(--muted);font-style:italic;">⚠️ Fee details to be confirmed in detailed CEN releasing 14 May 2026.</td></tr>
+      </tbody>
+    </table>
+
+    <p class="section-title">📅 Important Dates</p>
+    <div class="dates-grid">
+      <div class="date-chip"><div class="date-chip__label">Short Notification</div><div class="date-chip__date">16 March 2026</div></div>
+      <div class="date-chip date-chip--ok"><div class="date-chip__label">Detailed CEN Releasing</div><div class="date-chip__date">14 May 2026</div></div>
+      <div class="date-chip date-chip--ok"><div class="date-chip__label">Application Opens</div><div class="date-chip__date">15 May 2026</div></div>
+      <div class="date-chip date-chip--alert"><div class="date-chip__label">Last Date to Apply</div><div class="date-chip__date">14 June 2026</div></div>
+    </div>
+
+    <p class="section-title">⚙️ Selection Process</p>
+    <table class="info-table">
+      <thead><tr><th>Stage</th><th>Details</th></tr></thead>
+      <tbody>
+        <tr><td>1. CBT-1</td><td>75 MCQs – Maths, G.I.&Reasoning, General Science, G.A. (60 min) | Negative marking: 1/3</td></tr>
+        <tr><td>2. CBT-2</td><td>Part A (General) + Part B (Trade-specific) | 2.5 hrs</td></tr>
+        <tr><td>3. CBAT (Aptitude Test)</td><td>Computer-Based Aptitude Test | No negative marking</td></tr>
+        <tr><td>4. Document Verification + Medical</td><td>Original docs + Railway medical standard A-1</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="job-post__footer">
+    <p class="job-post__disclaimer">⚠️ Indicative notification released. Detailed CEN & fee to be released 14 May 2026. Verify at rrbapply.gov.in.</p>
+    <a href="https://www.rrbapply.gov.in/" target="_blank" rel="noopener" class="btn-apply btn-apply--soon">🔔 Notify Me (Opens 15 May)</a>
+  </div>
+</div>
+
+
+<!-- ════════════════════════════════════════════════════
+  POST 3 — SCR APPRENTICE 2026
+════════════════════════════════════════════════════ -->
+<div class="job-post" id="post-3">
+  <div class="job-post__bar bar-railway"></div>
+  <div class="job-post__head">
+    <span class="job-post__badge badge-railway">🚂 Railway Apprentice</span>
+    <h2 class="job-post__title c-railway">South Central Railway (SCR) Apprentice Recruitment 2026</h2>
+    <div class="job-post__meta">
+      <span>📌 South Central Railway (SCR)</span>
+      <span>🔗 scr.indianrailways.gov.in</span>
+      <span><span class="pill pill-open">🟢 Apply Now</span></span>
+    </div>
+  </div>
+  <div class="job-post__stats">
+    <div class="stat-box"><div class="stat-box__label">Total Vacancies</div><div class="stat-box__value c-railway">2,801</div></div>
+    <div class="stat-box"><div class="stat-box__label">Age Limit</div><div class="stat-box__value">15 – 24 Years</div></div>
+    <div class="stat-box"><div class="stat-box__label">Min. Qualification</div><div class="stat-box__value">10th Pass + ITI</div></div>
+    <div class="stat-box"><div class="stat-box__label">Stipend</div><div class="stat-box__value">₹7,000–8,050/mo</div></div>
+  </div>
+  <div class="job-post__body">
+    <p class="section-title">📋 Post Details</p>
+    <table class="info-table">
+      <thead><tr><th>Post Name</th><th>No. of Posts</th><th>Trade</th></tr></thead>
+      <tbody>
+        <tr><td class="td-highlight">Act Apprentice (Trade Apprentice)</td><td class="td-blue">2,801</td><td>Fitter, Electrician, Welder, Carpenter, Painter, Machinist, Turner, etc.</td></tr>
+      </tbody>
+    </table>
+    <p class="section-title">🎓 Eligibility & 💰 Fee</p>
+    <table class="info-table">
+      <thead><tr><th>Criteria</th><th>Details</th></tr></thead>
+      <tbody>
+        <tr><td class="td-highlight">Qualification</td><td>10th Pass from recognized board + ITI (NCVT/SCVT) in relevant trade</td></tr>
+        <tr><td class="td-highlight">Age</td><td>15–24 years | SC/ST: +5 yrs | OBC: +3 yrs | PwBD: +10 yrs</td></tr>
+        <tr><td class="td-highlight">Application Fee</td><td class="td-green">No application fee (Apprentice Act)</td></tr>
+        <tr><td class="td-highlight">Selection</td><td>Merit list based on 10th marks + ITI marks (weighted average)</td></tr>
+      </tbody>
+    </table>
+    <p class="section-title">📅 Important Dates</p>
+    <div class="dates-grid">
+      <div class="date-chip date-chip--ok"><div class="date-chip__label">Application Opens</div><div class="date-chip__date">March 2026</div></div>
+      <div class="date-chip date-chip--alert"><div class="date-chip__label">Last Date to Apply</div><div class="date-chip__date">11 April 2026</div></div>
+    </div>
+  </div>
+  <div class="job-post__footer">
+    <p class="job-post__disclaimer">⚠️ Apply on official SCR portal only. Verify all details before submission.</p>
+    <a href="https://scr.indianrailways.gov.in/" target="_blank" rel="noopener" class="btn-apply">📩 Apply Now →</a>
+  </div>
+</div>
+
+
+<!-- ════════════════════════════════════════════════════
+  POST 4 — RCF APPRENTICE 2026
+════════════════════════════════════════════════════ -->
+<div class="job-post" id="post-4">
+  <div class="job-post__bar bar-railway"></div>
+  <div class="job-post__head">
+    <span class="job-post__badge badge-railway">🚂 Railway Apprentice</span>
+    <h2 class="job-post__title c-railway">Rail Coach Factory (RCF) Kapurthala Apprentice Recruitment 2026</h2>
+    <div class="job-post__meta">
+      <span>📌 Rail Coach Factory, Kapurthala, Punjab</span>
+      <span>🔗 rcf.indianrailways.gov.in</span>
+      <span><span class="pill pill-open">🟢 Apply Now</span></span>
+    </div>
+  </div>
+  <div class="job-post__stats">
+    <div class="stat-box"><div class="stat-box__label">Total Vacancies</div><div class="stat-box__value c-railway">550</div></div>
+    <div class="stat-box"><div class="stat-box__label">Age Limit</div><div class="stat-box__value">15 – 24 Years</div></div>
+    <div class="stat-box"><div class="stat-box__label">Min. Qualification</div><div class="stat-box__value">10th Pass + ITI</div></div>
+    <div class="stat-box"><div class="stat-box__label">Stipend</div><div class="stat-box__value">As per Apprentice Act</div></div>
+  </div>
+  <div class="job-post__body">
+    <p class="section-title">📋 Post & Fee Details</p>
+    <table class="info-table">
+      <thead><tr><th>Criteria</th><th>Details</th></tr></thead>
+      <tbody>
+        <tr><td class="td-highlight">Post</td><td>Trade Apprentice — Various trades (Fitter, Electrician, Welder, Painter, Carpenter, etc.)</td></tr>
+        <tr><td class="td-highlight">Vacancies</td><td class="td-blue">550 Posts</td></tr>
+        <tr><td class="td-highlight">Qualification</td><td>10th Pass + ITI from NCVT/SCVT recognized institute</td></tr>
+        <tr><td class="td-highlight">Age</td><td>15 to 24 years | SC/ST: +5 | OBC: +3 | PwBD: +10</td></tr>
+        <tr><td class="td-highlight">Application Fee</td><td class="td-green">NIL (No fee for Apprentice Act positions)</td></tr>
+        <tr><td class="td-highlight">Selection</td><td>Merit-based on 10th + ITI marks</td></tr>
+        <tr><td class="td-highlight">Apply Link</td><td>rcf.indianrailways.gov.in / apprenticeshipindia.org</td></tr>
+      </tbody>
+    </table>
+    <p class="section-title">📅 Important Dates</p>
+    <div class="dates-grid">
+      <div class="date-chip date-chip--ok"><div class="date-chip__label">Application Open</div><div class="date-chip__date">March 2026</div></div>
+      <div class="date-chip date-chip--alert"><div class="date-chip__label">Last Date</div><div class="date-chip__date">Check Official Website</div></div>
+    </div>
+  </div>
+  <div class="job-post__footer">
+    <p class="job-post__disclaimer">⚠️ Verify exact last date on the official RCF portal.</p>
+    <a href="https://rcf.indianrailways.gov.in/" target="_blank" rel="noopener" class="btn-apply">📩 Apply Now →</a>
+  </div>
+</div>
+
+
+<!-- ════════════════════════════════════════════════════
+  POST 5 — UPSC CIVIL SERVICES 2026
+════════════════════════════════════════════════════ -->
+<div class="job-post" id="post-5">
+  <div class="job-post__bar bar-upsc"></div>
+  <div class="job-post__head">
+    <span class="job-post__badge badge-upsc">🏛️ UPSC / Civil Services</span>
+    <h2 class="job-post__title c-upsc">UPSC Civil Services Examination 2026 (IAS / IPS / IFS / IRS)</h2>
+    <div class="job-post__meta">
+      <span>📌 Union Public Service Commission</span>
+      <span>🔗 upsc.gov.in | upsconline.nic.in</span>
+      <span><span class="pill pill-closed">Application Closed</span></span>
+      <span><span class="pill pill-hot">🔥 Prelims: 24 May 2026</span></span>
+    </div>
+  </div>
+  <div class="job-post__stats">
+    <div class="stat-box"><div class="stat-box__label">Total Vacancies</div><div class="stat-box__value c-upsc">933</div></div>
+    <div class="stat-box"><div class="stat-box__label">Age Limit</div><div class="stat-box__value">21 – 32 Years (UR)</div></div>
+    <div class="stat-box"><div class="stat-box__label">Min. Qualification</div><div class="stat-box__value">Any Graduate Degree</div></div>
+    <div class="stat-box"><div class="stat-box__label">Pay Scale</div><div class="stat-box__value">₹56,100+ (Level 10+)</div></div>
+  </div>
+  <div class="job-post__body">
+    <p class="section-title">📋 Services / Posts Covered</p>
+    <table class="info-table">
+      <thead><tr><th>Service</th><th>Group</th><th>Min Age</th><th>Max Attempts (UR)</th></tr></thead>
+      <tbody>
+        <tr><td class="td-highlight">Indian Administrative Service (IAS)</td><td>All India</td><td>21</td><td>6</td></tr>
+        <tr><td class="td-highlight">Indian Police Service (IPS)</td><td>All India</td><td>21</td><td>6</td></tr>
+        <tr><td class="td-highlight">Indian Foreign Service (IFS)</td><td>Central Svc A</td><td>21</td><td>6</td></tr>
+        <tr><td class="td-highlight">Indian Revenue Service (IRS)</td><td>Central Svc A</td><td>21</td><td>6</td></tr>
+        <tr><td class="td-highlight">Indian Railway Management Service (IRMS)</td><td>Central Svc A</td><td>21</td><td>6</td></tr>
+        <tr><td class="td-highlight">Indian Audit & Accounts Service (IAAS)</td><td>Central Svc A</td><td>21</td><td>6</td></tr>
+        <tr><td class="td-highlight">DANICS / DANIPS / PONDICS / Group B Services</td><td>Group B</td><td>21</td><td>6</td></tr>
+        <tr><td colspan="4" style="font-size:.75rem;color:var(--muted);font-style:italic;">Total 933 vacancies across all services (category-wise breakup in official notification)</td></tr>
+      </tbody>
+    </table>
+
+    <p class="section-title">🎓 Eligibility Criteria</p>
+    <table class="info-table">
+      <thead><tr><th>Criteria</th><th>Details</th></tr></thead>
+      <tbody>
+        <tr><td class="td-highlight">Qualification</td><td>Bachelor's Degree (any stream) from a UGC-recognized university. MBBS/B.Tech/BE also valid. Final-year students may apply provisionally.</td></tr>
+        <tr><td class="td-highlight">Age – General/EWS</td><td>21 to 32 years (born Aug 2, 1994 – Aug 1, 2005)</td></tr>
+        <tr><td class="td-highlight">Age – OBC (NCL)</td><td>21 to 35 years (+3 yrs relaxation)</td></tr>
+        <tr><td class="td-highlight">Age – SC / ST</td><td>21 to 37 years (+5 yrs relaxation)</td></tr>
+        <tr><td class="td-highlight">Age – PwBD</td><td>21 to 42 years (+10 yrs relaxation)</td></tr>
+        <tr><td class="td-highlight">Number of Attempts</td><td>General: 6 | OBC: 9 | SC/ST: Unlimited (till age limit)</td></tr>
+      </tbody>
+    </table>
+
+    <p class="section-title">💰 Application Fee (Category-wise)</p>
+    <table class="info-table">
+      <thead><tr><th>Category</th><th>Fee</th><th>Payment Mode</th></tr></thead>
+      <tbody>
+        <tr class="fee-gen"><td class="td-highlight">General / EWS / OBC (Male)</td><td>₹100</td><td>Online (Debit/Credit/Net Banking) or SBI Challan</td></tr>
+        <tr class="fee-women"><td class="td-highlight">Female (All Categories)</td><td class="td-green">NIL (Exempted)</td><td>—</td></tr>
+        <tr class="fee-sc"><td class="td-highlight">SC / ST</td><td class="td-green">NIL (Exempted)</td><td>—</td></tr>
+        <tr class="fee-pwd"><td class="td-highlight">PwBD (All Categories)</td><td class="td-green">NIL (Exempted)</td><td>—</td></tr>
+      </tbody>
+    </table>
+
+    <p class="section-title">📅 Important Dates</p>
+    <div class="dates-grid">
+      <div class="date-chip"><div class="date-chip__label">Notification Released</div><div class="date-chip__date">04 Feb 2026</div></div>
+      <div class="date-chip date-chip--alert"><div class="date-chip__label">Last Date to Apply</div><div class="date-chip__date">27 Feb 2026 ✓ Closed</div></div>
+      <div class="date-chip date-chip--ok"><div class="date-chip__label">Prelims Exam Date</div><div class="date-chip__date">24 May 2026</div></div>
+      <div class="date-chip date-chip--ok"><div class="date-chip__label">Mains Exam Date</div><div class="date-chip__date">21 August 2026</div></div>
+    </div>
+
+    <p class="section-title">⚙️ Selection Process</p>
+    <table class="info-table">
+      <thead><tr><th>Stage</th><th>Details</th><th>Nature</th></tr></thead>
+      <tbody>
+        <tr><td>1. Prelims (Objective)</td><td>GS Paper-I (200 marks) + CSAT Paper-II (200 marks, qualifying)</td><td>Screening (marks not counted)</td></tr>
+        <tr><td>2. Mains (Descriptive)</td><td>9 papers – Essay, GS I–IV, Optional (2 papers), Language papers (qualifying)</td><td>Counted for final merit</td></tr>
+        <tr><td>3. Personality Test / Interview</td><td>275 marks – personality, leadership, decision-making</td><td>Counted for final merit</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="job-post__footer">
+    <p class="job-post__disclaimer">⚠️ Application closed (27 Feb 2026). Prelims on 24 May 2026. Verify at upsc.gov.in.</p>
+    <a href="https://upsc.gov.in/" target="_blank" rel="noopener" class="btn-apply btn-apply--closed">✓ Application Closed</a>
+  </div>
+</div>
+
+
+<!-- ════════════════════════════════════════════════════
+  POST 6 — UPSC INDIAN FOREST SERVICE 2026
+════════════════════════════════════════════════════ -->
+<div class="job-post" id="post-6">
+  <div class="job-post__bar bar-upsc"></div>
+  <div class="job-post__head">
+    <span class="job-post__badge badge-upsc">🌳 UPSC / Forest Service</span>
+    <h2 class="job-post__title c-upsc">UPSC Indian Forest Service (IFS) Examination 2026</h2>
+    <div class="job-post__meta">
+      <span>📌 Union Public Service Commission</span>
+      <span>🔗 upsc.gov.in</span>
+      <span><span class="pill pill-closed">Application Closed</span></span>
+    </div>
+  </div>
+  <div class="job-post__stats">
+    <div class="stat-box"><div class="stat-box__label">Total Vacancies</div><div class="stat-box__value c-upsc">80 (approx.)</div></div>
+    <div class="stat-box"><div class="stat-box__label">Age Limit</div><div class="stat-box__value">21 – 32 Years (UR)</div></div>
+    <div class="stat-box"><div class="stat-box__label">Min. Qualification</div><div class="stat-box__value">B.Sc (Forestry / Agri / Bio)</div></div>
+    <div class="stat-box"><div class="stat-box__label">Prelims</div><div class="stat-box__value">Common with UPSC CSE</div></div>
+  </div>
+  <div class="job-post__body">
+    <p class="section-title">📋 Post & Eligibility Details</p>
+    <table class="info-table">
+      <thead><tr><th>Criteria</th><th>Details</th></tr></thead>
+      <tbody>
+        <tr><td class="td-highlight">Post</td><td>Indian Forest Service (IFoS) Officer</td></tr>
+        <tr><td class="td-highlight">Vacancies</td><td>~80 (released along with UPSC CSE notification)</td></tr>
+        <tr><td class="td-highlight">Educational Qualification</td><td>Bachelor's degree in Animal Husbandry & Veterinary Science / Botany / Chemistry / Geology / Mathematics / Physics / Statistics / Zoology / Agriculture / Forestry / Horticulture</td></tr>
+        <tr><td class="td-highlight">Age (General)</td><td>21–32 years | OBC: +3 | SC/ST: +5 | PwBD: +10</td></tr>
+        <tr><td class="td-highlight">Application Fee</td><td>General/OBC Male: ₹100 | Female/SC/ST/PwBD: NIL</td></tr>
+        <tr><td class="td-highlight">Prelims</td><td>Common with UPSC Civil Services Prelims (24 May 2026)</td></tr>
+        <tr><td class="td-highlight">Mains</td><td>Separate IFS Mains (General English, General Knowledge + 2 Optional papers)</td></tr>
+        <tr><td class="td-highlight">Apply</td><td>upsconline.nic.in (same portal as UPSC CSE)</td></tr>
+        <tr><td class="td-highlight">Last Date</td><td class="td-red">27 February 2026 (Closed)</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="job-post__footer">
+    <p class="job-post__disclaimer">⚠️ Application closed. Prelims shared with CSE on 24 May 2026.</p>
+    <a href="https://upsc.gov.in/" target="_blank" rel="noopener" class="btn-apply btn-apply--closed">✓ Application Closed</a>
+  </div>
+</div>
+
+
+<!-- ════════════════════════════════════════════════════
+  POST 7 — SSC CGL 2025
+════════════════════════════════════════════════════ -->
+<div class="job-post" id="post-7">
+  <div class="job-post__bar bar-upsc"></div>
+  <div class="job-post__head">
+    <span class="job-post__badge badge-upsc">📝 SSC / CGL</span>
+    <h2 class="job-post__title c-upsc">SSC CGL 2025 — Combined Graduate Level Examination (Group B & C Posts)</h2>
+    <div class="job-post__meta">
+      <span>📌 Staff Selection Commission (SSC)</span>
+      <span>🔗 ssc.gov.in</span>
+      <span><span class="pill pill-closed">Application Closed</span></span>
+      <span><span class="pill pill-hot">🔥 Tier-II Completed | Result Awaited</span></span>
+    </div>
+  </div>
+  <div class="job-post__stats">
+    <div class="stat-box"><div class="stat-box__label">Total Vacancies</div><div class="stat-box__value c-upsc">14,582</div></div>
+    <div class="stat-box"><div class="stat-box__label">Age Limit</div><div class="stat-box__value">18–32 Years (Post-wise)</div></div>
+    <div class="stat-box"><div class="stat-box__label">Min. Qualification</div><div class="stat-box__value">Any Graduate Degree</div></div>
+    <div class="stat-box"><div class="stat-box__label">Pay Scale</div><div class="stat-box__value">₹25,500–₹1,42,400</div></div>
+  </div>
+  <div class="job-post__body">
+    <p class="section-title">📋 Key Posts & Pay Level</p>
+    <table class="info-table">
+      <thead><tr><th>Post Name</th><th>Group</th><th>Pay Level</th><th>Age Limit</th></tr></thead>
+      <tbody>
+        <tr><td class="td-highlight">Assistant Section Officer (CSS, MEA, AFHQ)</td><td>B (Non-Gazetted)</td><td>Level 7 (₹44,900)</td><td>20–30 yrs</td></tr>
+        <tr><td class="td-highlight">Income Tax Inspector</td><td>C</td><td>Level 7 (₹44,900)</td><td>18–30 yrs</td></tr>
+        <tr><td class="td-highlight">Inspector (Central Excise / Preventive Officer)</td><td>C</td><td>Level 7 (₹44,900)</td><td>18–30 yrs</td></tr>
+        <tr><td class="td-highlight">Sub-Inspector (CBI)</td><td>C</td><td>Level 6 (₹35,400)</td><td>20–30 yrs</td></tr>
+        <tr><td class="td-highlight">Assistant Audit Officer / Assistant Accounts Officer</td><td>B (Non-Gazetted)</td><td>Level 8 (₹47,600)</td><td>18–30 yrs</td></tr>
+        <tr><td class="td-highlight">Junior Statistical Officer (JSO)</td><td>B (Non-Gazetted)</td><td>Level 6 (₹35,400)</td><td>18–32 yrs</td></tr>
+        <tr><td class="td-highlight">Tax Assistant (CBDT / CBIC)</td><td>C</td><td>Level 4 (₹25,500)</td><td>18–27 yrs</td></tr>
+        <tr><td class="td-highlight">Auditor (C&AG, CGDA, CGA)</td><td>C</td><td>Level 5 (₹29,200)</td><td>18–27 yrs</td></tr>
+        <tr><td colspan="4" style="font-size:.75rem;color:var(--muted);font-style:italic;">Total 37 different posts across central govt departments. Post Preference Form released Mar 12, 2026.</td></tr>
+      </tbody>
+    </table>
+
+    <p class="section-title">🎓 Eligibility Criteria</p>
+    <table class="info-table">
+      <thead><tr><th>Criteria</th><th>Details</th></tr></thead>
+      <tbody>
+        <tr><td class="td-highlight">Qualification</td><td>Bachelor's Degree (any stream) from a recognized university for most posts. For JSO: 60% in 12th Maths or Statistics at graduation.</td></tr>
+        <tr><td class="td-highlight">Age</td><td>Varies by post: 18–27 / 18–30 / 20–30 / 18–32 years | Relaxation: OBC +3, SC/ST +5, PwBD +10, Ex-SM as per rules</td></tr>
+      </tbody>
+    </table>
+
+    <p class="section-title">💰 Application Fee</p>
+    <table class="info-table">
+      <thead><tr><th>Category</th><th>Fee</th></tr></thead>
+      <tbody>
+        <tr class="fee-gen"><td class="td-highlight">General / OBC / EWS</td><td>₹100</td></tr>
+        <tr class="fee-women"><td class="td-highlight">Female (All Categories)</td><td class="td-green">NIL (Exempted)</td></tr>
+        <tr class="fee-sc"><td class="td-highlight">SC / ST / Ex-Servicemen / PwBD</td><td class="td-green">NIL (Exempted)</td></tr>
+      </tbody>
+    </table>
+
+    <p class="section-title">📅 Important Dates (SSC CGL 2025)</p>
+    <div class="dates-grid">
+      <div class="date-chip"><div class="date-chip__label">Notification</div><div class="date-chip__date">09 June 2025</div></div>
+      <div class="date-chip date-chip--alert"><div class="date-chip__label">Last Date to Apply</div><div class="date-chip__date">04 July 2025 ✓ Closed</div></div>
+      <div class="date-chip"><div class="date-chip__label">Tier-I Exam</div><div class="date-chip__date">13–30 Sep 2025 ✓ Done</div></div>
+      <div class="date-chip"><div class="date-chip__label">Tier-II Exam</div><div class="date-chip__date">18–19 Jan 2026 ✓ Done</div></div>
+      <div class="date-chip date-chip--ok"><div class="date-chip__label">Post Preference Form</div><div class="date-chip__date">Opened 12 Mar 2026</div></div>
+      <div class="date-chip date-chip--ok"><div class="date-chip__label">SSC CGL 2026 Notif.</div><div class="date-chip__date">Expected 31 Mar 2026</div></div>
+    </div>
+  </div>
+  <div class="job-post__footer">
+    <p class="job-post__disclaimer">SSC CGL 2026 expected notification: 31 March 2026. Last date to apply: 30 April 2026.</p>
+    <a href="https://ssc.gov.in/" target="_blank" rel="noopener" class="btn-apply">🔗 Visit ssc.gov.in</a>
+  </div>
+</div>
+
+
+<!-- ════════════════════════════════════════════════════
+  POST 8 — UPSC CDS I 2026
+════════════════════════════════════════════════════ -->
+<div class="job-post" id="post-8">
+  <div class="job-post__bar bar-defence"></div>
+  <div class="job-post__head">
+    <span class="job-post__badge badge-defence">🛡️ UPSC / Defence</span>
+    <h2 class="job-post__title c-defence">UPSC CDS-I 2026 — Combined Defence Services Examination</h2>
+    <div class="job-post__meta">
+      <span>📌 Union Public Service Commission</span>
+      <span>🔗 upsc.gov.in</span>
+      <span><span class="pill pill-closed">Application Closed</span></span>
+    </div>
+  </div>
+  <div class="job-post__stats">
+    <div class="stat-box"><div class="stat-box__label">Notification</div><div class="stat-box__value">19 January 2026</div></div>
+    <div class="stat-box"><div class="stat-box__label">Age Limit</div><div class="stat-box__value">19–25 Years (varies)</div></div>
+    <div class="stat-box"><div class="stat-box__label">Qualification</div><div class="stat-box__value">Graduation (varies by academy)</div></div>
+    <div class="stat-box"><div class="stat-box__label">Exam</div><div class="stat-box__value">Written + SSB</div></div>
+  </div>
+  <div class="job-post__body">
+    <p class="section-title">📋 Post Details</p>
+    <table class="info-table">
+      <thead><tr><th>Academy</th><th>Qualification Required</th><th>Age Limit</th></tr></thead>
+      <tbody>
+        <tr><td class="td-highlight">Indian Military Academy (IMA)</td><td>Degree in any stream</td><td>19–24 years</td></tr>
+        <tr><td class="td-highlight">Officers' Training Academy (OTA) – Men</td><td>Degree in any stream</td><td>19–25 years</td></tr>
+        <tr><td class="td-highlight">Officers' Training Academy (OTA) – Women (SSC W)</td><td>Degree in any stream</td><td>19–25 years</td></tr>
+        <tr><td class="td-highlight">Indian Naval Academy (INA) – Executive/Technical</td><td>B.Sc (Physics/Maths) / Engineering Degree</td><td>19–24 years</td></tr>
+        <tr><td class="td-highlight">Air Force Academy (AFA)</td><td>Degree in Physics & Maths at 10+2 + Degree</td><td>19–24 years</td></tr>
+      </tbody>
+    </table>
+    <p class="section-title">💰 Application Fee</p>
+    <table class="info-table">
+      <thead><tr><th>Category</th><th>Fee</th></tr></thead>
+      <tbody>
+        <tr class="fee-gen"><td class="td-highlight">General / OBC / EWS (Male)</td><td>₹200</td></tr>
+        <tr class="fee-women"><td class="td-highlight">Female (All Categories)</td><td class="td-green">NIL (Exempted)</td></tr>
+        <tr class="fee-sc"><td class="td-highlight">SC / ST</td><td class="td-green">NIL (Exempted)</td></tr>
+      </tbody>
+    </table>
+    <p class="section-title">📅 Important Dates</p>
+    <div class="dates-grid">
+      <div class="date-chip"><div class="date-chip__label">Notification</div><div class="date-chip__date">19 January 2026</div></div>
+      <div class="date-chip date-chip--alert"><div class="date-chip__label">Last Date to Apply</div><div class="date-chip__date">February 2026 ✓ Closed</div></div>
+      <div class="date-chip date-chip--ok"><div class="date-chip__label">Exam Date</div><div class="date-chip__date">Check upsc.gov.in</div></div>
+    </div>
+  </div>
+  <div class="job-post__footer">
+    <p class="job-post__disclaimer">⚠️ Application closed. Check upsc.gov.in for exam date and admit card.</p>
+    <a href="https://upsc.gov.in/" target="_blank" rel="noopener" class="btn-apply btn-apply--closed">✓ Application Closed</a>
+  </div>
+</div>
+
+
+<!-- ════════════════════════════════════════════════════
+  POST 9 — SSB CONSTABLE 2026
+════════════════════════════════════════════════════ -->
+<div class="job-post" id="post-9">
+  <div class="job-post__bar bar-defence"></div>
+  <div class="job-post__head">
+    <span class="job-post__badge badge-defence">🛡️ Paramilitary / Defence</span>
+    <h2 class="job-post__title c-defence">SSB Constable Recruitment 2026 — Tradesman & Driver Posts</h2>
+    <div class="job-post__meta">
+      <span>📌 Sashastra Seema Bal (SSB)</span>
+      <span>🔗 ssb.nic.in | ssbrectt.gov.in</span>
+      <span><span class="pill pill-open">🟢 Registration Open</span></span>
+    </div>
+  </div>
+  <div class="job-post__stats">
+    <div class="stat-box"><div class="stat-box__label">Total Vacancies</div><div class="stat-box__value c-defence">827</div></div>
+    <div class="stat-box"><div class="stat-box__label">Age Limit</div><div class="stat-box__value">18 – 25 Years</div></div>
+    <div class="stat-box"><div class="stat-box__label">Qualification</div><div class="stat-box__value">10th / 12th Pass + Trade</div></div>
+    <div class="stat-box"><div class="stat-box__label">Pay Scale</div><div class="stat-box__value">₹21,700/mo (Level 3)</div></div>
+  </div>
+  <div class="job-post__body">
+    <p class="section-title">📋 Post Details</p>
+    <table class="info-table">
+      <thead><tr><th>Post Name</th><th>No. of Posts</th><th>Qualification</th><th>Age</th></tr></thead>
+      <tbody>
+        <tr><td class="td-highlight">Constable (Tradesman) – Various Trades</td><td>750+</td><td>10th Pass + ITI/Trade Certificate in relevant trade</td><td>18–25 yrs</td></tr>
+        <tr><td class="td-highlight">Constable (Driver)</td><td>77</td><td>10th Pass + Valid Driving License (HMV/LMV)</td><td>21–27 yrs</td></tr>
+      </tbody>
+    </table>
+    <p class="section-title">💰 Application Fee</p>
+    <table class="info-table">
+      <thead><tr><th>Category</th><th>Fee</th></tr></thead>
+      <tbody>
+        <tr class="fee-gen"><td class="td-highlight">General / OBC / EWS</td><td>₹100</td></tr>
+        <tr class="fee-sc"><td class="td-highlight">SC / ST / Ex-SM / Female</td><td class="td-green">NIL (Exempted)</td></tr>
+      </tbody>
+    </table>
+    <p class="section-title">📅 Important Dates & Selection</p>
+    <div class="dates-grid">
+      <div class="date-chip date-chip--ok"><div class="date-chip__label">Application Open</div><div class="date-chip__date">March 2026</div></div>
+      <div class="date-chip date-chip--alert"><div class="date-chip__label">Last Date</div><div class="date-chip__date">Check ssb.nic.in</div></div>
+    </div>
+    <br>
+    <table class="info-table">
+      <thead><tr><th>Selection Stage</th><th>Details</th></tr></thead>
+      <tbody>
+        <tr><td>1. Physical Standard Test (PST)</td><td>Height, chest measurements</td></tr>
+        <tr><td>2. Physical Efficiency Test (PET)</td><td>Running, long jump, high jump</td></tr>
+        <tr><td>3. Written Test (OMR)</td><td>General Knowledge, Reasoning, Mathematics, English/Hindi</td></tr>
+        <tr><td>4. Trade Test + Medical + Document Verification</td><td>Trade-specific test + Medical fitness</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="job-post__footer">
+    <p class="job-post__disclaimer">⚠️ Verify current last date on official SSB website.</p>
+    <a href="https://ssbrectt.gov.in/" target="_blank" rel="noopener" class="btn-apply">📩 Apply Now →</a>
+  </div>
+</div>
+
+
+<!-- ════════════════════════════════════════════════════
+  POST 10 — RBI ASSISTANT 2026
+════════════════════════════════════════════════════ -->
+<div class="job-post" id="post-10">
+  <div class="job-post__bar bar-banking"></div>
+  <div class="job-post__head">
+    <span class="job-post__badge badge-banking">🏦 Banking / RBI</span>
+    <h2 class="job-post__title c-banking">RBI Assistant Recruitment 2026</h2>
+    <div class="job-post__meta">
+      <span>📌 Reserve Bank of India (RBI)</span>
+      <span>🔗 rbi.org.in | opportunities.rbi.org.in</span>
+      <span><span class="pill pill-open">🟢 Registration Open</span></span>
+      <span><span class="pill pill-hot">🔥 Hot</span></span>
+    </div>
+  </div>
+  <div class="job-post__stats">
+    <div class="stat-box"><div class="stat-box__label">Total Vacancies</div><div class="stat-box__value c-banking">650</div></div>
+    <div class="stat-box"><div class="stat-box__label">Age Limit</div><div class="stat-box__value">20 – 28 Years</div></div>
+    <div class="stat-box"><div class="stat-box__label">Qualification</div><div class="stat-box__value">Any Graduate Degree</div></div>
+    <div class="stat-box"><div class="stat-box__label">Pay Scale</div><div class="stat-box__value">₹20,700/mo + DA & HRA</div></div>
+  </div>
+  <div class="job-post__body">
+    <p class="section-title">📋 Post Details</p>
+    <table class="info-table">
+      <thead><tr><th>Post</th><th>Vacancies</th><th>Pay</th><th>Location</th></tr></thead>
+      <tbody>
+        <tr><td class="td-highlight">Assistant</td><td class="td-blue">650</td><td>₹20,700 + allowances (7th CPC)</td><td>Various RBI offices across India</td></tr>
+      </tbody>
+    </table>
+    <p class="section-title">🎓 Eligibility Criteria</p>
+    <table class="info-table">
+      <thead><tr><th>Criteria</th><th>Details</th></tr></thead>
+      <tbody>
+        <tr><td class="td-highlight">Qualification</td><td>Bachelor's Degree (minimum 50% marks) in any discipline from a recognized university</td></tr>
+        <tr><td class="td-highlight">Age (General)</td><td>20 to 28 years</td></tr>
+        <tr><td class="td-highlight">Age Relaxation</td><td>OBC: +3 | SC/ST: +5 | PwBD: +10 | Ex-SM: as per rules</td></tr>
+        <tr><td class="td-highlight">Computer Knowledge</td><td>Must possess basic computer knowledge</td></tr>
+        <tr><td class="td-highlight">Local Language</td><td>Must know the local language of the state they're applying for</td></tr>
+      </tbody>
+    </table>
+    <p class="section-title">💰 Application Fee</p>
+    <table class="info-table">
+      <thead><tr><th>Category</th><th>Fee</th></tr></thead>
+      <tbody>
+        <tr class="fee-gen"><td class="td-highlight">General / OBC / EWS</td><td>₹450 (application fee + GST)</td></tr>
+        <tr class="fee-sc"><td class="td-highlight">SC / ST / PwBD / Ex-SM</td><td>₹50 (intimation charges only)</td></tr>
+        <tr><td class="td-highlight">Payment Mode</td><td>Online – Debit Card / Credit Card / Net Banking / UPI</td></tr>
+      </tbody>
+    </table>
+    <p class="section-title">📅 Important Dates & Selection</p>
+    <div class="dates-grid">
+      <div class="date-chip date-chip--ok"><div class="date-chip__label">Application Open</div><div class="date-chip__date">March 2026</div></div>
+      <div class="date-chip date-chip--alert"><div class="date-chip__label">Last Date to Apply</div><div class="date-chip__date">Check rbi.org.in</div></div>
+      <div class="date-chip date-chip--ok"><div class="date-chip__label">Prelims Exam</div><div class="date-chip__date">To be Announced</div></div>
+      <div class="date-chip date-chip--ok"><div class="date-chip__label">Mains Exam</div><div class="date-chip__date">To be Announced</div></div>
+    </div>
+    <br>
+    <table class="info-table">
+      <thead><tr><th>Selection Stage</th><th>Details</th></tr></thead>
+      <tbody>
+        <tr><td>1. Prelims (Online)</td><td>English Language (30), Numerical Ability (35), Reasoning (35) — 100 marks, 1 hr</td></tr>
+        <tr><td>2. Mains (Online)</td><td>Reasoning (40), English Language (40), Numerical Ability (40), G.A./Finance/Mgmt (40), Computer Knowledge (40) — 200 marks</td></tr>
+        <tr><td>3. Language Proficiency Test (LPT)</td><td>Qualifying — must know local language</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="job-post__footer">
+    <p class="job-post__disclaimer">⚠️ Verify current dates on opportunities.rbi.org.in before applying.</p>
+    <a href="https://opportunities.rbi.org.in/" target="_blank" rel="noopener" class="btn-apply">📩 Apply Now →</a>
+  </div>
+</div>
+
+
+<!-- ════════════════════════════════════════════════════
+  POST 11 — INDIA POST GDS 2026
+════════════════════════════════════════════════════ -->
+<div class="job-post" id="post-11">
+  <div class="job-post__bar bar-state"></div>
+  <div class="job-post__head">
+    <span class="job-post__badge badge-state">📮 Postal / Central Govt</span>
+    <h2 class="job-post__title c-state">India Post GDS Recruitment 2026 — Gramin Dak Sevak (GDS / BPM / ABPM)</h2>
+    <div class="job-post__meta">
+      <span>📌 Department of Posts, Govt of India</span>
+      <span>🔗 indiapostgdsonline.gov.in</span>
+      <span><span class="pill pill-closed">Application Closed</span></span>
+      <span><span class="pill pill-hot">🔥 Merit List Out</span></span>
+    </div>
+  </div>
+  <div class="job-post__stats">
+    <div class="stat-box"><div class="stat-box__label">Total Vacancies</div><div class="stat-box__value c-state">28,636</div></div>
+    <div class="stat-box"><div class="stat-box__label">Age Limit</div><div class="stat-box__value">18 – 40 Years</div></div>
+    <div class="stat-box"><div class="stat-box__label">Qualification</div><div class="stat-box__value">10th Pass</div></div>
+    <div class="stat-box"><div class="stat-box__label">Selection</div><div class="stat-box__value">No Exam (Merit-based)</div></div>
+  </div>
+  <div class="job-post__body">
+    <p class="section-title">📋 Post Details</p>
+    <table class="info-table">
+      <thead><tr><th>Post Name</th><th>Vacancies</th><th>TRCA (Monthly)</th><th>Duty Hours</th></tr></thead>
+      <tbody>
+        <tr><td class="td-highlight">Branch Postmaster (BPM)</td><td>~14,000+</td><td>₹12,000 – ₹29,380</td><td>5 hrs/day</td></tr>
+        <tr><td class="td-highlight">Assistant Branch Postmaster (ABPM)</td><td>~10,000+</td><td>₹10,000 – ₹24,470</td><td>4 hrs/day</td></tr>
+        <tr><td class="td-highlight">Dak Sevak</td><td>~4,600+</td><td>₹10,000 – ₹24,470</td><td>4 hrs/day</td></tr>
+        <tr><td colspan="4" style="font-size:.75rem;color:var(--muted);font-style:italic;">Total 28,636 posts across 23 postal circles in India. Circle-wise breakup in notification.</td></tr>
+      </tbody>
+    </table>
+
+    <p class="section-title">🎓 Eligibility Criteria</p>
+    <table class="info-table">
+      <thead><tr><th>Criteria</th><th>Details</th></tr></thead>
+      <tbody>
+        <tr><td class="td-highlight">Educational Qualification</td><td>10th Standard (Matriculation) Pass from a recognized Board. Must have studied local language as one of the subjects in 10th.</td></tr>
+        <tr><td class="td-highlight">Age</td><td>18 to 40 years | SC/ST: +5 | OBC: +3 | PwBD: +10</td></tr>
+        <tr><td class="td-highlight">Computer Knowledge</td><td>Basic computer skills required (for BPM post)</td></tr>
+        <tr><td class="td-highlight">Selection Process</td><td>Merit list based on Class 10 marks only. <strong>No written exam / interview.</strong></td></tr>
+        <tr><td class="td-highlight">Local Language</td><td>Knowledge of local language of the region is compulsory</td></tr>
+      </tbody>
+    </table>
+
+    <p class="section-title">💰 Application Fee</p>
+    <table class="info-table">
+      <thead><tr><th>Category</th><th>Fee</th></tr></thead>
+      <tbody>
+        <tr class="fee-gen"><td class="td-highlight">General / OBC / EWS (Male)</td><td>₹100</td></tr>
+        <tr class="fee-women"><td class="td-highlight">Female (All Categories)</td><td class="td-green">NIL (Exempted)</td></tr>
+        <tr class="fee-sc"><td class="td-highlight">SC / ST</td><td class="td-green">NIL (Exempted)</td></tr>
+        <tr class="fee-pwd"><td class="td-highlight">PwBD / Transwomen</td><td class="td-green">NIL (Exempted)</td></tr>
+        <tr><td class="td-highlight">Payment Mode</td><td>Online – Credit/Debit Card, Net Banking, UPI</td></tr>
+      </tbody>
+    </table>
+
+    <p class="section-title">📅 Important Dates</p>
+    <div class="dates-grid">
+      <div class="date-chip"><div class="date-chip__label">Application Start</div><div class="date-chip__date">02 Feb 2026</div></div>
+      <div class="date-chip date-chip--alert"><div class="date-chip__label">Last Date to Apply</div><div class="date-chip__date">16 Feb 2026 ✓ Closed</div></div>
+      <div class="date-chip"><div class="date-chip__label">Correction Window</div><div class="date-chip__date">18–19 Feb 2026 ✓ Over</div></div>
+      <div class="date-chip date-chip--ok"><div class="date-chip__label">Merit List (List-1)</div><div class="date-chip__date">31 Jan 2026 (Out)</div></div>
+    </div>
+  </div>
+  <div class="job-post__footer">
+    <p class="job-post__disclaimer">⚠️ Application closed. Check merit list at indiapostgdsonline.gov.in. Next cycle expected soon.</p>
+    <a href="https://indiapostgdsonline.gov.in/" target="_blank" rel="noopener" class="btn-apply btn-apply--closed">🔗 Check Merit List</a>
+  </div>
+</div>
+
+
+<!-- ════════════════════════════════════════════════════
+  POST 12 — APPSC JOB CALENDAR 2026
+════════════════════════════════════════════════════ -->
+<div class="job-post" id="post-12">
+  <div class="job-post__bar bar-state"></div>
+  <div class="job-post__head">
+    <span class="job-post__badge badge-state">🗺️ State Govt / APPSC</span>
+    <h2 class="job-post__title c-state">APPSC Job Calendar 2026 — Andhra Pradesh Public Service Commission</h2>
+    <div class="job-post__meta">
+      <span>📌 AP Public Service Commission</span>
+      <span>🔗 psc.ap.gov.in</span>
+      <span><span class="pill pill-hot">🔥 Annual Calendar Released</span></span>
+    </div>
+  </div>
+  <div class="job-post__stats">
+    <div class="stat-box"><div class="stat-box__label">Total Vacancies</div><div class="stat-box__value c-state">10,060</div></div>
+    <div class="stat-box"><div class="stat-box__label">State</div><div class="stat-box__value">Andhra Pradesh</div></div>
+    <div class="stat-box"><div class="stat-box__label">Qualification</div><div class="stat-box__value">Varies (10th to Degree)</div></div>
+    <div class="stat-box"><div class="stat-box__label">Exams</div><div class="stat-box__value">Multiple (Year-round)</div></div>
+  </div>
+  <div class="job-post__body">
+    <p class="section-title">📋 Major Recruitments in APPSC Calendar 2026</p>
+    <table class="info-table">
+      <thead><tr><th>Exam / Post</th><th>Approx. Vacancies</th><th>Qualification</th><th>Status</th></tr></thead>
+      <tbody>
+        <tr><td class="td-highlight">Group-I (Gazetted Officers)</td><td>850+</td><td>Graduation</td><td>Upcoming</td></tr>
+        <tr><td class="td-highlight">Group-II (Non-Gazetted Officers)</td><td>1,500+</td><td>Graduation</td><td>Upcoming</td></tr>
+        <tr><td class="td-highlight">Group-III (Junior Assistant / DEO)</td><td>2,000+</td><td>Graduation / Inter</td><td>Upcoming</td></tr>
+        <tr><td class="td-highlight">Group-IV (10th Level Posts)</td><td>2,500+</td><td>10th Pass</td><td>Upcoming</td></tr>
+        <tr><td class="td-highlight">Panchayat Secretary / VRO</td><td>1,500+</td><td>Graduation / Degree</td><td>Upcoming</td></tr>
+        <tr><td class="td-highlight">Teacher Recruitment (TRT / DSC)</td><td>1,000+</td><td>B.Ed / D.Ed</td><td>Upcoming</td></tr>
+        <tr><td colspan="4" style="font-size:.75rem;color:var(--muted);font-style:italic;">Calendar released March 2026. Individual notifications will be released separately throughout 2026.</td></tr>
+      </tbody>
+    </table>
+    <p class="section-title">💰 General Fee Structure (APPSC)</p>
+    <table class="info-table">
+      <thead><tr><th>Category</th><th>Application Fee</th><th>Exam Fee (Approx.)</th></tr></thead>
+      <tbody>
+        <tr class="fee-gen"><td class="td-highlight">General / OBC / EWS</td><td>₹250</td><td>₹120</td></tr>
+        <tr class="fee-sc"><td class="td-highlight">SC / ST</td><td>₹0</td><td>₹0</td></tr>
+        <tr class="fee-pwd"><td class="td-highlight">PwBD</td><td>₹0</td><td>₹0</td></tr>
+        <tr><td colspan="3" style="font-size:.75rem;color:var(--muted);font-style:italic;">Fee may vary per recruitment. Verify in individual notification.</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="job-post__footer">
+    <p class="job-post__disclaimer">⚠️ Visit psc.ap.gov.in for individual recruitment notifications as they release through 2026.</p>
+    <a href="https://psc.ap.gov.in/" target="_blank" rel="noopener" class="btn-apply">🔗 Visit psc.ap.gov.in →</a>
+  </div>
+</div>
+
+
+<!-- ════════════════════════════════════════════════════
+  POST 13 — PUNJAB POLICE CONSTABLE 2026
+════════════════════════════════════════════════════ -->
+<div class="job-post" id="post-13">
+  <div class="job-post__bar bar-defence"></div>
+  <div class="job-post__head">
+    <span class="job-post__badge badge-defence">🚔 State Police</span>
+    <h2 class="job-post__title c-defence">Punjab Police Constable Recruitment 2026</h2>
+    <div class="job-post__meta">
+      <span>📌 Punjab Police Department</span>
+      <span>🔗 punjabpolice.gov.in</span>
+      <span><span class="pill pill-open">🟢 Apply Online</span></span>
+    </div>
+  </div>
+  <div class="job-post__stats">
+    <div class="stat-box"><div class="stat-box__label">Total Vacancies</div><div class="stat-box__value c-defence">3,298</div></div>
+    <div class="stat-box"><div class="stat-box__label">Age Limit</div><div class="stat-box__value">18 – 28 Years</div></div>
+    <div class="stat-box"><div class="stat-box__label">Qualification</div><div class="stat-box__value">12th Pass (10+2)</div></div>
+    <div class="stat-box"><div class="stat-box__label">Pay Scale</div><div class="stat-box__value">₹19,900/mo (Level 3)</div></div>
+  </div>
+  <div class="job-post__body">
+    <p class="section-title">📋 Post Details</p>
+    <table class="info-table">
+      <thead><tr><th>Post</th><th>Vacancies</th><th>Qualification</th><th>Age</th></tr></thead>
+      <tbody>
+        <tr><td class="td-highlight">Constable (Male)</td><td>~2,600</td><td>12th Pass (10+2) from recognized board</td><td>18–28 yrs</td></tr>
+        <tr><td class="td-highlight">Constable (Female)</td><td>~698</td><td>12th Pass (10+2) from recognized board</td><td>18–28 yrs</td></tr>
+      </tbody>
+    </table>
+    <p class="section-title">🎓 Eligibility & 💰 Fee</p>
+    <table class="info-table">
+      <thead><tr><th>Criteria</th><th>Details</th></tr></thead>
+      <tbody>
+        <tr><td class="td-highlight">Qualification</td><td>10+2 (Senior Secondary) from Punjab School Education Board or equivalent recognized board</td></tr>
+        <tr><td class="td-highlight">Age</td><td>18–28 years | SC/ST: +5 | BC: +5 | Ex-SM: as per rules</td></tr>
+        <tr><td class="td-highlight">Physical Standard (Male)</td><td>Height: 167.5 cm | Chest: 81–86 cm | Weight: 50 kg</td></tr>
+        <tr><td class="td-highlight">Physical Standard (Female)</td><td>Height: 157.5 cm | Weight: 45 kg</td></tr>
+        <tr><td class="td-highlight">Application Fee (Gen/OBC/EWS)</td><td>₹250 – ₹500</td></tr>
+        <tr><td class="td-highlight">Fee (SC/ST/Female)</td><td class="td-green">NIL or Reduced</td></tr>
+        <tr><td class="td-highlight">Payment Mode</td><td>Online (Punjab Govt e-portal)</td></tr>
+      </tbody>
+    </table>
+    <p class="section-title">📅 Important Dates & Selection</p>
+    <div class="dates-grid">
+      <div class="date-chip date-chip--ok"><div class="date-chip__label">Application Open</div><div class="date-chip__date">2026 (Active)</div></div>
+      <div class="date-chip date-chip--alert"><div class="date-chip__label">Last Date</div><div class="date-chip__date">Check punjabpolice.gov.in</div></div>
+    </div>
+    <br>
+    <table class="info-table">
+      <thead><tr><th>Stage</th><th>Details</th></tr></thead>
+      <tbody>
+        <tr><td>1. Physical Measurement Test (PMT)</td><td>Height, chest, weight</td></tr>
+        <tr><td>2. Physical Efficiency Test (PET)</td><td>800m run, long jump, high jump, shot put</td></tr>
+        <tr><td>3. Written Test</td><td>General Knowledge, Reasoning, Punjabi, English/Hindi</td></tr>
+        <tr><td>4. Medical Examination</td><td>Standard police medical fitness</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="job-post__footer">
+    <p class="job-post__disclaimer">⚠️ Verify current last date on punjabpolice.gov.in before applying.</p>
+    <a href="https://punjabpolice.gov.in/" target="_blank" rel="noopener" class="btn-apply">📩 Apply Now →</a>
+  </div>
+</div>
+
+
+<!-- ════════════════════════════════════════════════════
+  POST 14 — ODISHA POLICE SPO 2026
+════════════════════════════════════════════════════ -->
+<div class="job-post" id="post-14">
+  <div class="job-post__bar bar-defence"></div>
+  <div class="job-post__head">
+    <span class="job-post__badge badge-defence">🚔 State Police / Odisha</span>
+    <h2 class="job-post__title c-defence">Odisha Police SPO Recruitment 2026 — Special Police Officer</h2>
+    <div class="job-post__meta">
+      <span>📌 Odisha Police</span>
+      <span>🔗 odishapolice.gov.in</span>
+      <span><span class="pill pill-open">🟢 Apply Now</span></span>
+    </div>
+  </div>
+  <div class="job-post__stats">
+    <div class="stat-box"><div class="stat-box__label">Total Vacancies</div><div class="stat-box__value c-defence">800</div></div>
+    <div class="stat-box"><div class="stat-box__label">Age Limit</div><div class="stat-box__value">18 – 25 Years</div></div>
+    <div class="stat-box"><div class="stat-box__label">Qualification</div><div class="stat-box__value">8th / 10th Pass</div></div>
+    <div class="stat-box"><div class="stat-box__label">Mode</div><div class="stat-box__value">Offline Application</div></div>
+  </div>
+  <div class="job-post__body">
+    <p class="section-title">📋 Post & Eligibility Details</p>
+    <table class="info-table">
+      <thead><tr><th>Criteria</th><th>Details</th></tr></thead>
+      <tbody>
+        <tr><td class="td-highlight">Post</td><td>Special Police Officer (SPO)</td></tr>
+        <tr><td class="td-highlight">Vacancies</td><td class="td-blue">800 Posts (District-wise)</td></tr>
+        <tr><td class="td-highlight">Educational Qualification</td><td>8th Pass / 10th Pass from recognized board</td></tr>
+        <tr><td class="td-highlight">Age</td><td>18 to 25 years | Age relaxation as per Odisha Govt rules</td></tr>
+        <tr><td class="td-highlight">Domicile</td><td>Must be an Odisha resident (local domicile preferred)</td></tr>
+        <tr><td class="td-highlight">Application Fee</td><td class="td-green">NIL (No application fee)</td></tr>
+        <tr><td class="td-highlight">Application Mode</td><td>Offline (Apply through District SP office)</td></tr>
+        <tr><td class="td-highlight">Selection</td><td>Physical Test + Document Verification</td></tr>
+      </tbody>
+    </table>
+    <p class="section-title">📅 Important Dates</p>
+    <div class="dates-grid">
+      <div class="date-chip date-chip--ok"><div class="date-chip__label">Application Open</div><div class="date-chip__date">2026 (Active)</div></div>
+      <div class="date-chip date-chip--alert"><div class="date-chip__label">Last Date</div><div class="date-chip__date">Check odishapolice.gov.in</div></div>
+    </div>
+  </div>
+  <div class="job-post__footer">
+    <p class="job-post__disclaimer">⚠️ Verify latest dates and apply through district SP office or official website.</p>
+    <a href="https://odishapolice.gov.in/" target="_blank" rel="noopener" class="btn-apply">🔗 Official Website →</a>
+  </div>
+</div>
+
+
+<!-- ════════════════════════════════════════════════════
+  POST 15 — SECL APPRENTICE 2026
+════════════════════════════════════════════════════ -->
+<div class="job-post" id="post-15">
+  <div class="job-post__bar bar-state"></div>
+  <div class="job-post__head">
+    <span class="job-post__badge badge-state">⛏️ PSU / Coal India</span>
+    <h2 class="job-post__title c-state">SECL Apprentice Recruitment 2026 — South Eastern Coalfields Ltd.</h2>
+    <div class="job-post__meta">
+      <span>📌 SECL (Coal India Subsidiary) — Bilaspur, CG</span>
+      <span>🔗 secl-cil.in</span>
+      <span><span class="pill pill-open">🟢 Notification Out</span></span>
+    </div>
+  </div>
+  <div class="job-post__stats">
+    <div class="stat-box"><div class="stat-box__label">Total Vacancies</div><div class="stat-box__value c-state">1,600</div></div>
+    <div class="stat-box"><div class="stat-box__label">Age Limit</div><div class="stat-box__value">18 – 28 Years</div></div>
+    <div class="stat-box"><div class="stat-box__label">Qualification</div><div class="stat-box__value">10th + ITI</div></div>
+    <div class="stat-box"><div class="stat-box__label">Stipend</div><div class="stat-box__value">₹7,000–8,050/mo</div></div>
+  </div>
+  <div class="job-post__body">
+    <p class="section-title">📋 Trade-wise Vacancies</p>
+    <table class="info-table">
+      <thead><tr><th>Trade</th><th>Approx. Posts</th><th>Qualification</th></tr></thead>
+      <tbody>
+        <tr><td class="td-highlight">Fitter</td><td>500+</td><td>10th Pass + ITI (Fitter trade, NCVT/SCVT)</td></tr>
+        <tr><td class="td-highlight">Electrician</td><td>400+</td><td>10th Pass + ITI (Electrician, NCVT/SCVT)</td></tr>
+        <tr><td class="td-highlight">Welder</td><td>200+</td><td>10th Pass + ITI (Welder, NCVT/SCVT)</td></tr>
+        <tr><td class="td-highlight">Mechanic (Motor Vehicle / Diesel)</td><td>200+</td><td>10th Pass + ITI (Relevant Trade)</td></tr>
+        <tr><td class="td-highlight">Other Trades (Carpenter, Plumber, Turner, etc.)</td><td>300+</td><td>10th Pass + ITI in respective trade</td></tr>
+        <tr><td colspan="3" style="font-size:.75rem;color:var(--muted);font-style:italic;">Trade-wise exact numbers in official SECL notification. Apply via apprenticeshipindia.org</td></tr>
+      </tbody>
+    </table>
+
+    <p class="section-title">🎓 Eligibility & 💰 Fee</p>
+    <table class="info-table">
+      <thead><tr><th>Criteria</th><th>Details</th></tr></thead>
+      <tbody>
+        <tr><td class="td-highlight">Qualification</td><td>10th Standard Pass + ITI (NCVT/SCVT) in relevant trade</td></tr>
+        <tr><td class="td-highlight">Age</td><td>18 to 28 years | SC/ST: +5 | OBC: +3 | PwBD: +10</td></tr>
+        <tr><td class="td-highlight">Domicile</td><td>Preference to Chhattisgarh / local area candidates</td></tr>
+        <tr><td class="td-highlight">Application Fee</td><td class="td-green">NIL (No fee for Apprentice positions under Apprentice Act)</td></tr>
+        <tr><td class="td-highlight">Selection</td><td>Merit-based on 10th + ITI marks. No written exam.</td></tr>
+        <tr><td class="td-highlight">Duration</td><td>1 year apprenticeship at SECL mines and workshops</td></tr>
+        <tr><td class="td-highlight">Apply at</td><td>secl-cil.in and apprenticeshipindia.org</td></tr>
+      </tbody>
+    </table>
+
+    <p class="section-title">📅 Important Dates</p>
+    <div class="dates-grid">
+      <div class="date-chip date-chip--ok"><div class="date-chip__label">Notification Released</div><div class="date-chip__date">March 2026</div></div>
+      <div class="date-chip date-chip--alert"><div class="date-chip__label">Last Date to Apply</div><div class="date-chip__date">Check secl-cil.in</div></div>
+    </div>
+  </div>
+  <div class="job-post__footer">
+    <p class="job-post__disclaimer">⚠️ Verify current last date and apply via apprenticeshipindia.org or secl-cil.in.</p>
+    <a href="https://secl-cil.in/" target="_blank" rel="noopener" class="btn-apply">📩 Apply Now →</a>
+  </div>
+</div>
+
+
+<!-- ═══ PAGE FOOTER ═══ -->
+<div style="text-align:center;margin-top:40px;padding:20px;font-size:.8rem;color:var(--muted);border-top:1px solid var(--border);max-width:860px;margin-left:auto;margin-right:auto;">
+  📋 All information sourced from official government portals and Employment News (March 2026). <br>
+  ⚠️ Always verify on the official website before applying. Fees and dates subject to change.<br>
+  © 2026 Your Sarkari Job Alert Website · Updated Daily
+</div>
+
+</body>
+</html>
