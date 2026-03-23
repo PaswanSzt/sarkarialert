@@ -1,0 +1,768 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin Panel v2 | SarkariAlert.in</title>
+<link href="https://fonts.googleapis.com/css2?family=Teko:wght@500;600;700&family=Hind:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#091628;--navy2:#0D1F3C;--card:#111E35;--card2:#162844;
+  --orange:#E8460A;--orange2:#FF5C1A;--gold:#F5A623;
+  --border:rgba(255,255,255,.08);--border2:rgba(255,255,255,.14);
+  --text:#E8EDF5;--muted:#7A8CAA;
+  --green:#10B981;--green-bg:rgba(16,185,129,.12);
+  --red:#EF4444;--red-bg:rgba(239,68,68,.12);
+  --blue:#3B82F6;--blue-bg:rgba(59,130,246,.12);
+  --amber:#F59E0B;--amber-bg:rgba(245,158,11,.12);
+  --purple:#8B5CF6;--purple-bg:rgba(139,92,246,.12);
+  --input:rgba(255,255,255,.05);--radius:10px;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Hind',sans-serif;background:var(--navy);color:var(--text);font-size:14px;min-height:100vh}
+a{text-decoration:none;color:inherit}
+button,input,select,textarea{font-family:'Hind',sans-serif}
+
+/* ── LAYOUT ── */
+.layout{display:grid;grid-template-columns:220px 1fr;min-height:100vh}
+
+/* ── SIDEBAR ── */
+.sidebar{background:rgba(0,0,0,.25);border-right:1px solid var(--border);display:flex;flex-direction:column}
+.sb-brand{padding:18px 16px 14px;border-bottom:1px solid var(--border)}
+.sb-logo{font-family:'Teko',sans-serif;font-size:22px;font-weight:700;color:#fff;display:flex;align-items:center;gap:8px}
+.sb-logo-dot{width:32px;height:32px;background:var(--orange);border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:700;flex-shrink:0}
+.sb-logo span{color:var(--gold)}
+.sb-version{font-size:10px;color:var(--muted);letter-spacing:.5px;margin-top:2px}
+.sb-nav{padding:10px 8px;flex:1;overflow-y:auto}
+.sb-sec-label{font-size:10px;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:var(--muted);padding:10px 8px 5px}
+.sb-link{display:flex;align-items:center;gap:8px;padding:9px 10px;border-radius:8px;font-size:13px;font-weight:500;color:var(--muted);cursor:pointer;transition:all .15s;margin-bottom:1px;border:none;background:none;width:100%;text-align:left}
+.sb-link:hover{background:rgba(255,255,255,.06);color:var(--text)}
+.sb-link.active{background:rgba(232,70,10,.15);color:var(--orange)}
+.sb-link .ico{font-size:16px;flex-shrink:0}
+.sb-badge{margin-left:auto;background:var(--orange);color:#fff;font-size:10px;font-weight:700;padding:1px 6px;border-radius:99px}
+.sb-footer{padding:12px 16px;border-top:1px solid var(--border);display:flex;align-items:center;gap:8px}
+.sb-av{width:30px;height:30px;border-radius:50%;background:var(--orange);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;flex-shrink:0}
+.sb-user-info{flex:1;min-width:0}
+.sb-user-name{font-size:12px;font-weight:600;color:var(--text)}
+.sb-user-role{font-size:10px;color:var(--muted)}
+.sb-logout-btn{background:none;border:none;color:var(--muted);font-size:14px;cursor:pointer;padding:4px}
+.sb-logout-btn:hover{color:var(--red)}
+
+/* ── MAIN ── */
+.main-area{display:flex;flex-direction:column;overflow:hidden}
+.topbar{background:var(--card);border-bottom:1px solid var(--border);padding:12px 24px;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-shrink:0}
+.topbar-title{font-family:'Teko',sans-serif;font-size:20px;font-weight:600;color:var(--text);display:flex;align-items:center;gap:10px}
+.topbar-section-badge{font-size:11px;font-weight:700;padding:2px 10px;border-radius:5px;letter-spacing:.3px}
+.topbar-right{display:flex;gap:8px;align-items:center}
+.tb-btn{display:inline-flex;align-items:center;gap:6px;padding:8px 14px;border-radius:8px;font-size:13px;font-weight:600;border:none;cursor:pointer;transition:all .15s;white-space:nowrap}
+.tb-primary{background:var(--orange);color:#fff}
+.tb-primary:hover{background:var(--orange2)}
+.tb-outline{background:transparent;color:var(--muted);border:1px solid var(--border2)}
+.tb-outline:hover{background:rgba(255,255,255,.06);color:var(--text)}
+
+.content{padding:22px 24px;flex:1;overflow-y:auto}
+
+/* ── STATS ── */
+.stats-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:10px;margin-bottom:22px}
+.stat-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:14px 16px;cursor:pointer;transition:border-color .15s}
+.stat-card:hover{border-color:var(--border2)}
+.stat-card.active-sec{border-color:var(--orange)}
+.stat-icon{font-size:18px;margin-bottom:6px}
+.stat-label{font-size:10px;color:var(--muted);letter-spacing:.3px;margin-bottom:3px;text-transform:uppercase}
+.stat-value{font-family:'Teko',sans-serif;font-size:22px;font-weight:700;color:var(--text);line-height:1}
+
+/* ── FILTER ROW ── */
+.filter-row{display:flex;gap:8px;margin-bottom:14px;flex-wrap:wrap;align-items:center}
+.search-field{display:flex;align-items:center;gap:8px;background:var(--card);border:1px solid var(--border2);border-radius:8px;padding:8px 12px;flex:1;min-width:200px}
+.search-field input{background:none;border:none;outline:none;color:var(--text);font-size:13px;width:100%}
+.search-field input::placeholder{color:var(--muted)}
+.fsel{background:var(--card);border:1px solid var(--border2);border-radius:8px;padding:8px 12px;color:var(--text);font-size:13px;outline:none;cursor:pointer}
+.fsel option{background:var(--navy2)}
+.results-count{font-size:12px;color:var(--muted);margin-left:auto;white-space:nowrap}
+.results-count span{color:var(--orange);font-weight:600}
+
+/* ── TABLE ── */
+.table-wrap{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden}
+.posts-table{width:100%;border-collapse:collapse}
+.posts-table th{background:rgba(255,255,255,.04);padding:11px 14px;text-align:left;font-size:10px;font-weight:600;letter-spacing:.8px;text-transform:uppercase;color:var(--muted);border-bottom:1px solid var(--border);white-space:nowrap}
+.posts-table td{padding:13px 14px;border-bottom:1px solid var(--border);vertical-align:middle}
+.posts-table tbody tr:last-child td{border-bottom:none}
+.posts-table tbody tr:hover td{background:rgba(255,255,255,.02)}
+.pt-title{font-size:13px;font-weight:600;color:var(--text);max-width:220px;line-height:1.35}
+.pt-dept{font-size:11px;color:var(--muted);margin-top:2px}
+.sec-pill{display:inline-block;padding:2px 8px;border-radius:5px;font-size:10px;font-weight:700;letter-spacing:.3px}
+.sec-jobs{background:rgba(11,29,58,.5);color:#93C5FD}
+.sec-results{background:var(--green-bg);color:var(--green)}
+.sec-admit_cards{background:var(--blue-bg);color:var(--blue)}
+.sec-syllabus{background:var(--purple-bg);color:var(--purple)}
+.sec-schemes{background:var(--red-bg);color:var(--red)}
+.sec-answer_keys{background:var(--amber-bg);color:var(--amber)}
+.cat-pill{display:inline-block;padding:2px 8px;border-radius:5px;font-size:10px;font-weight:700}
+.cat-railway{background:var(--blue-bg);color:#60A5FA}
+.cat-upsc{background:var(--purple-bg);color:#A78BFA}
+.cat-banking{background:var(--green-bg);color:#34D399}
+.cat-defence{background:var(--red-bg);color:#F87171}
+.cat-state{background:var(--amber-bg);color:#FCD34D}
+.status-pill{display:inline-flex;align-items:center;gap:3px;padding:2px 8px;border-radius:99px;font-size:10px;font-weight:700}
+.s-open{background:var(--green-bg);color:var(--green)}
+.s-soon{background:var(--blue-bg);color:var(--blue)}
+.s-closed,.s-result_out,.s-declared,.s-available{background:rgba(255,255,255,.07);color:var(--muted)}
+.s-declared{background:var(--green-bg);color:var(--green)}
+.s-available{background:var(--amber-bg);color:var(--amber)}
+.act-row{display:flex;gap:5px}
+.act-btn{padding:5px 10px;border-radius:6px;font-size:11px;font-weight:600;border:none;cursor:pointer;transition:all .15s}
+.btn-edit{background:var(--blue-bg);color:#60A5FA}
+.btn-edit:hover{background:var(--blue);color:#fff}
+.btn-del{background:var(--red-bg);color:#F87171}
+.btn-del:hover{background:var(--red);color:#fff}
+.new-badge{background:var(--orange);color:#fff;font-size:9px;font-weight:700;padding:1px 5px;border-radius:3px;margin-left:4px;vertical-align:middle}
+.hot-badge{background:var(--amber-bg);color:var(--amber);font-size:9px;font-weight:700;padding:1px 5px;border-radius:3px;margin-left:2px;vertical-align:middle}
+.empty-state{padding:60px 20px;text-align:center;color:var(--muted)}
+.empty-icon{font-size:48px;margin-bottom:12px}
+.empty-title{font-size:18px;font-weight:600;color:var(--text);margin-bottom:6px;font-family:'Teko',sans-serif}
+.spinner{display:inline-block;width:20px;height:20px;border:2px solid var(--border2);border-top-color:var(--orange);border-radius:50%;animation:spin .7s linear infinite;vertical-align:middle;margin-right:8px}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* ── MODAL ── */
+.modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.75);z-index:200;overflow-y:auto;padding:20px 12px}
+.modal-overlay.open{display:block}
+.modal{background:var(--navy2);border:1px solid var(--border2);border-radius:16px;width:100%;max-width:700px;margin:0 auto;animation:mIn .2s ease}
+@keyframes mIn{from{opacity:0;transform:translateY(-12px)}to{opacity:1;transform:translateY(0)}}
+.modal-head{padding:18px 22px 14px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between}
+.modal-title{font-family:'Teko',sans-serif;font-size:20px;font-weight:600;color:var(--text)}
+.modal-close{background:rgba(255,255,255,.08);border:none;color:var(--muted);width:28px;height:28px;border-radius:6px;font-size:15px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .15s}
+.modal-close:hover{background:var(--red-bg);color:var(--red)}
+.modal-body{padding:20px 22px}
+.modal-foot{padding:14px 22px;border-top:1px solid var(--border);display:flex;gap:8px;justify-content:flex-end}
+
+/* ── FORM ── */
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.fg{display:flex;flex-direction:column;gap:5px}
+.fg.full{grid-column:span 2}
+.fg-label{font-size:11px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.6px}
+.fg-input,.fg-select,.fg-textarea{background:var(--input);border:1px solid var(--border2);border-radius:8px;padding:9px 12px;color:var(--text);font-size:13.5px;outline:none;transition:border-color .2s;width:100%}
+.fg-input:focus,.fg-select:focus,.fg-textarea:focus{border-color:var(--orange)}
+.fg-input::placeholder,.fg-textarea::placeholder{color:var(--muted)}
+.fg-select option{background:var(--navy2)}
+.fg-textarea{min-height:90px;resize:vertical;line-height:1.5}
+.form-divider{font-family:'Teko',sans-serif;font-size:14px;font-weight:600;color:var(--muted);letter-spacing:.5px;text-transform:uppercase;grid-column:span 2;padding-bottom:5px;border-bottom:1px solid var(--border);margin-top:6px}
+.checks-row{display:flex;gap:16px;flex-wrap:wrap;margin-top:2px}
+.chk{display:flex;align-items:center;gap:6px;font-size:13px;color:var(--text);cursor:pointer}
+.chk input[type=checkbox]{accent-color:var(--orange);width:15px;height:15px;cursor:pointer}
+.btn-cancel{background:rgba(255,255,255,.07);color:var(--muted);border:1px solid var(--border2);padding:9px 18px;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;transition:all .15s}
+.btn-cancel:hover{background:rgba(255,255,255,.1);color:var(--text)}
+.btn-save{background:var(--orange);color:#fff;border:none;padding:9px 22px;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;transition:all .15s}
+.btn-save:hover{background:var(--orange2)}
+.btn-save.loading{opacity:.65;pointer-events:none}
+
+/* ── CONFIRM ── */
+.confirm-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.75);z-index:300;align-items:center;justify-content:center;padding:20px}
+.confirm-overlay.open{display:flex}
+.confirm-box{background:var(--navy2);border:1px solid var(--border2);border-radius:14px;padding:26px;max-width:360px;width:100%;text-align:center;animation:mIn .2s ease}
+.confirm-icon{font-size:42px;margin-bottom:10px}
+.confirm-title{font-family:'Teko',sans-serif;font-size:20px;font-weight:600;color:var(--text);margin-bottom:6px}
+.confirm-desc{font-size:13px;color:var(--muted);margin-bottom:20px;line-height:1.55}
+.confirm-btns{display:flex;gap:10px;justify-content:center}
+.btn-danger{background:var(--red);color:#fff;border:none;padding:9px 20px;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer}
+
+/* ── TOAST ── */
+.toast{position:fixed;bottom:20px;right:20px;background:var(--card2);border:1px solid var(--border2);border-radius:10px;padding:12px 16px;font-size:13px;color:var(--text);display:flex;align-items:center;gap:8px;z-index:999;transform:translateY(60px);opacity:0;transition:all .28s;max-width:300px;box-shadow:0 6px 24px rgba(0,0,0,.4)}
+.toast.show{transform:translateY(0);opacity:1}
+.toast.success{border-left:3px solid var(--green)}
+.toast.error{border-left:3px solid var(--red)}
+
+/* ── CONFIG WARNING ── */
+.cfg-warn{background:var(--amber-bg);border:1px solid rgba(245,158,11,.3);border-radius:10px;padding:14px 18px;margin-bottom:20px;display:flex;gap:10px;align-items:flex-start;font-size:13px;color:#D97706;line-height:1.55}
+.cfg-warn strong{color:var(--amber);display:block;margin-bottom:3px}
+
+@media(max-width:900px){.layout{grid-template-columns:1fr}.sidebar{display:none}.stats-grid{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:600px){.stats-grid{grid-template-columns:repeat(2,1fr)}.form-grid{grid-template-columns:1fr}.fg.full{grid-column:span 1}.form-divider{grid-column:span 1}}
+</style>
+</head>
+<body>
+
+<script>if(sessionStorage.getItem('sa_admin_auth')!=='true')window.location.href='login.html';</script>
+
+<div class="layout">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div class="sb-brand">
+      <div class="sb-logo">
+        <div class="sb-logo-dot">SA</div>
+        <div>Sarkari<span>Alert</span></div>
+      </div>
+      <div class="sb-version">Admin Panel v2 · CMS</div>
+    </div>
+
+    <nav class="sb-nav">
+      <div class="sb-sec-label">Sections</div>
+      <button class="sb-link active" data-section="all" onclick="setSection('all',this)"><span class="ico">📊</span> All Posts <span class="sb-badge" id="sb-all">0</span></button>
+      <button class="sb-link" data-section="jobs" onclick="setSection('jobs',this)"><span class="ico">💼</span> Latest Jobs <span class="sb-badge" id="sb-jobs">0</span></button>
+      <button class="sb-link" data-section="results" onclick="setSection('results',this)"><span class="ico">📋</span> Results <span class="sb-badge" id="sb-results">0</span></button>
+      <button class="sb-link" data-section="admit_cards" onclick="setSection('admit_cards',this)"><span class="ico">🎫</span> Admit Cards <span class="sb-badge" id="sb-admit_cards">0</span></button>
+      <button class="sb-link" data-section="syllabus" onclick="setSection('syllabus',this)"><span class="ico">📚</span> Syllabus <span class="sb-badge" id="sb-syllabus">0</span></button>
+      <button class="sb-link" data-section="schemes" onclick="setSection('schemes',this)"><span class="ico">🏛️</span> Schemes/Yojana <span class="sb-badge" id="sb-schemes">0</span></button>
+      <button class="sb-link" data-section="answer_keys" onclick="setSection('answer_keys',this)"><span class="ico">📝</span> Answer Keys <span class="sb-badge" id="sb-answer_keys">0</span></button>
+
+      <div class="sb-sec-label" style="margin-top:8px">Actions</div>
+      <button class="sb-link" onclick="openAdd()"><span class="ico">➕</span> Add New Post</button>
+      <a href="../index.html" target="_blank" class="sb-link"><span class="ico">🌐</span> View Website ↗</a>
+    </nav>
+
+    <div class="sb-footer">
+      <div class="sb-av">A</div>
+      <div class="sb-user-info"><div class="sb-user-name">Admin</div><div class="sb-user-role">Super Admin</div></div>
+      <button class="sb-logout-btn" onclick="logout()" title="Logout">⏏</button>
+    </div>
+  </aside>
+
+  <!-- MAIN -->
+  <div class="main-area">
+
+    <div class="topbar">
+      <div class="topbar-title" id="topbarTitle">📊 All Posts</div>
+      <div class="topbar-right">
+        <button class="tb-btn tb-primary" onclick="openAdd()">➕ Add New Post</button>
+        <a href="../index.html" target="_blank" class="tb-btn tb-outline">🌐 View Site ↗</a>
+      </div>
+    </div>
+
+    <div class="content">
+
+      <!-- Config warning -->
+      <div class="cfg-warn" id="cfgWarn" style="display:none">
+        <span style="font-size:18px;flex-shrink:0">⚠️</span>
+        <div><strong>Supabase not configured!</strong> Open config.js and fill in your SUPABASE_URL and SUPABASE_KEY. Data is currently stored in browser memory only (demo mode).</div>
+      </div>
+
+      <!-- Stats cards — one per section -->
+      <div class="stats-grid">
+        <div class="stat-card active-sec" onclick="setSection('all',document.querySelector('[data-section=all]'))" id="sc-all">
+          <div class="stat-icon">📊</div>
+          <div class="stat-label">All Posts</div>
+          <div class="stat-value" id="sv-all">0</div>
+        </div>
+        <div class="stat-card" onclick="setSection('jobs',document.querySelector('[data-section=jobs]'))" id="sc-jobs">
+          <div class="stat-icon">💼</div>
+          <div class="stat-label">Jobs</div>
+          <div class="stat-value" id="sv-jobs">0</div>
+        </div>
+        <div class="stat-card" onclick="setSection('results',document.querySelector('[data-section=results]'))" id="sc-results">
+          <div class="stat-icon">📋</div>
+          <div class="stat-label">Results</div>
+          <div class="stat-value" id="sv-results">0</div>
+        </div>
+        <div class="stat-card" onclick="setSection('admit_cards',document.querySelector('[data-section=admit_cards]'))" id="sc-admit_cards">
+          <div class="stat-icon">🎫</div>
+          <div class="stat-label">Admit Cards</div>
+          <div class="stat-value" id="sv-admit_cards">0</div>
+        </div>
+        <div class="stat-card" onclick="setSection('syllabus',document.querySelector('[data-section=syllabus]'))" id="sc-syllabus">
+          <div class="stat-icon">📚</div>
+          <div class="stat-label">Syllabus</div>
+          <div class="stat-value" id="sv-syllabus">0</div>
+        </div>
+        <div class="stat-card" onclick="setSection('schemes',document.querySelector('[data-section=schemes]'))" id="sc-schemes">
+          <div class="stat-icon">🏛️</div>
+          <div class="stat-label">Schemes</div>
+          <div class="stat-value" id="sv-schemes">0</div>
+        </div>
+      </div>
+
+      <!-- Filter row -->
+      <div class="filter-row">
+        <div class="search-field">
+          <span>🔍</span>
+          <input type="text" id="searchInput" placeholder="Search posts…" oninput="renderTable()">
+        </div>
+        <select class="fsel" id="catFilter" onchange="renderTable()">
+          <option value="">All Categories</option>
+          <option value="railway">Railway</option>
+          <option value="upsc">UPSC/SSC</option>
+          <option value="banking">Banking</option>
+          <option value="defence">Defence/Police</option>
+          <option value="state">State Govt</option>
+        </select>
+        <select class="fsel" id="statusFilter" onchange="renderTable()">
+          <option value="">All Status</option>
+          <option value="open">Apply Open</option>
+          <option value="soon">Coming Soon</option>
+          <option value="closed">Closed</option>
+          <option value="declared">Result Declared</option>
+          <option value="available">Available</option>
+        </select>
+        <div class="results-count" id="resultsCount">Showing <span>0</span> posts</div>
+      </div>
+
+      <!-- Table -->
+      <div class="table-wrap">
+        <table class="posts-table">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Title / Department</th>
+              <th>Section</th>
+              <th>Category</th>
+              <th>Vacancies</th>
+              <th>Last Date</th>
+              <th>Status</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="tableBody">
+            <tr><td colspan="8" style="padding:40px;text-align:center;color:var(--muted)"><span class="spinner"></span>Loading posts…</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ══════════ ADD / EDIT MODAL ══════════ -->
+<div class="modal-overlay" id="postModal">
+  <div class="modal">
+    <div class="modal-head">
+      <div class="modal-title" id="modalTitle">➕ Add New Post</div>
+      <button class="modal-close" onclick="closeModal()">✕</button>
+    </div>
+    <div class="modal-body">
+      <input type="hidden" id="editId">
+      <div class="form-grid">
+
+        <div class="form-divider">Section &amp; Category</div>
+
+        <div class="fg">
+          <label class="fg-label">Section *</label>
+          <select class="fg-select" id="f_section">
+            <option value="jobs">💼 Latest Jobs</option>
+            <option value="results">📋 Results</option>
+            <option value="admit_cards">🎫 Admit Cards</option>
+            <option value="syllabus">📚 Syllabus</option>
+            <option value="schemes">🏛️ Schemes / Yojana</option>
+            <option value="answer_keys">📝 Answer Keys</option>
+          </select>
+        </div>
+
+        <div class="fg">
+          <label class="fg-label">Category *</label>
+          <select class="fg-select" id="f_cat">
+            <option value="railway">🚂 Railway</option>
+            <option value="upsc">🏛️ UPSC/SSC</option>
+            <option value="banking">🏦 Banking</option>
+            <option value="defence">🛡️ Defence/Police</option>
+            <option value="state">🗺️ State Govt</option>
+          </select>
+        </div>
+
+        <div class="form-divider">Basic Information</div>
+
+        <div class="fg full">
+          <label class="fg-label">Post Title *</label>
+          <input class="fg-input" id="f_title" placeholder="e.g. UPSC CSE 2026 Final Result Declared — AIR 1 Anuj Agnihotri">
+        </div>
+
+        <div class="fg">
+          <label class="fg-label">Department / Organisation</label>
+          <input class="fg-input" id="f_dept" placeholder="e.g. Union Public Service Commission">
+        </div>
+
+        <div class="fg">
+          <label class="fg-label">Icon (emoji)</label>
+          <input class="fg-input" id="f_icon" placeholder="🏛️" maxlength="4">
+        </div>
+
+        <div class="fg full">
+          <label class="fg-label">Short Summary (shown on card on homepage)</label>
+          <input class="fg-input" id="f_summary" placeholder="One-line summary for job/result cards on homepage">
+        </div>
+
+        <div class="form-divider">Details</div>
+
+        <div class="fg">
+          <label class="fg-label">Vacancies / Posts</label>
+          <input class="fg-input" id="f_vacancies" placeholder="e.g. 11,127 or Result Declared">
+        </div>
+
+        <div class="fg">
+          <label class="fg-label">Qualification</label>
+          <input class="fg-input" id="f_qual" placeholder="e.g. 10th Pass / ITI">
+        </div>
+
+        <div class="fg">
+          <label class="fg-label">Age Limit</label>
+          <input class="fg-input" id="f_age" placeholder="e.g. 18–30 years">
+        </div>
+
+        <div class="fg">
+          <label class="fg-label">Fee — General / OBC / EWS</label>
+          <input class="fg-input" id="f_fee_gen" placeholder="e.g. ₹500 or NIL">
+        </div>
+
+        <div class="fg">
+          <label class="fg-label">Fee — SC / ST / Female / PwBD</label>
+          <input class="fg-input" id="f_fee_sc" placeholder="e.g. ₹250 or NIL">
+        </div>
+
+        <div class="fg">
+          <label class="fg-label">Tags (comma-separated)</label>
+          <input class="fg-input" id="f_tags" placeholder="railway, group d, iti, 10th pass">
+        </div>
+
+        <div class="form-divider">Dates &amp; Links</div>
+
+        <div class="fg">
+          <label class="fg-label">Notification / Result Date</label>
+          <input class="fg-input" id="f_notif_date" placeholder="e.g. 22 March 2026">
+        </div>
+
+        <div class="fg">
+          <label class="fg-label">Last Date / Exam Date / Result Date</label>
+          <input class="fg-input" id="f_last_date" placeholder="e.g. 14 June 2026">
+        </div>
+
+        <div class="fg">
+          <label class="fg-label">Exam Date (if separate)</label>
+          <input class="fg-input" id="f_exam_date" placeholder="e.g. 24 May 2026">
+        </div>
+
+        <div class="fg">
+          <label class="fg-label">Status</label>
+          <select class="fg-select" id="f_status">
+            <option value="open">🟢 Apply Open</option>
+            <option value="soon">🔵 Coming Soon</option>
+            <option value="closed">🔴 Application Closed</option>
+            <option value="declared">✅ Result Declared</option>
+            <option value="available">📥 Available (Admit Card / Syllabus)</option>
+            <option value="result_out">📋 Result Out</option>
+          </select>
+        </div>
+
+        <div class="fg">
+          <label class="fg-label">Apply / Check / Download Link</label>
+          <input class="fg-input" id="f_apply_link" placeholder="https://upsc.gov.in/">
+        </div>
+
+        <div class="fg">
+          <label class="fg-label">Official Website (for citation)</label>
+          <input class="fg-input" id="f_official_site" placeholder="e.g. upsc.gov.in">
+        </div>
+
+        <div class="fg">
+          <label class="fg-label">PDF Link (Syllabus / Answer Key)</label>
+          <input class="fg-input" id="f_pdf_link" placeholder="https://ssc.gov.in/uploads/syllabus.pdf">
+        </div>
+
+        <div class="form-divider">Flags</div>
+
+        <div class="fg full">
+          <div class="checks-row">
+            <label class="chk"><input type="checkbox" id="f_is_new"> 🆕 Mark as NEW</label>
+            <label class="chk"><input type="checkbox" id="f_is_hot"> 🔥 Mark as HOT</label>
+            <label class="chk"><input type="checkbox" id="f_is_important"> ⭐ Mark as Important</label>
+          </div>
+        </div>
+
+        <div class="fg full">
+          <label class="fg-label">Additional Notes / Selection Process</label>
+          <textarea class="fg-textarea" id="f_notes" placeholder="Any extra info: selection process, important points, eligibility details…"></textarea>
+        </div>
+
+      </div>
+    </div>
+    <div class="modal-foot">
+      <button class="btn-cancel" onclick="closeModal()">Cancel</button>
+      <button class="btn-save" id="saveBtn" onclick="savePost()">💾 Save Post</button>
+    </div>
+  </div>
+</div>
+
+<!-- CONFIRM DELETE -->
+<div class="confirm-overlay" id="confirmOverlay">
+  <div class="confirm-box">
+    <div class="confirm-icon">🗑️</div>
+    <div class="confirm-title">Delete this post?</div>
+    <div class="confirm-desc" id="confirmDesc">This will permanently remove the post.</div>
+    <div class="confirm-btns">
+      <button class="btn-cancel" onclick="closeConfirm()">Cancel</button>
+      <button class="btn-danger" onclick="doDelete()">Yes, Delete</button>
+    </div>
+  </div>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
+
+<script src="../config.js"></script>
+<script>
+// ════════════════════════════════════════════════
+//   STATE
+// ════════════════════════════════════════════════
+var allPosts   = [];
+var activeSection = 'all';
+var deleteId   = null;
+var toastTimer = null;
+
+// ════════════════════════════════════════════════
+//   DEMO FALLBACK DATA
+// ════════════════════════════════════════════════
+var DEMO = [
+  {id:1,section:'jobs',title:'RRB ALP Recruitment 2026 — Assistant Loco Pilot',dept:'Railway Recruitment Board',cat:'railway',icon:'🚂',vacancies:'11,127',qual:'10th + ITI',age:'18–30 yrs',fee_gen:'₹500',fee_sc:'₹250',last_date:'14 June 2026',exam_date:'TBA',notif_date:'16 Mar 2026',status:'soon',apply_link:'https://rrbapply.gov.in',official_site:'rrbapply.gov.in',is_new:true,is_hot:true,is_important:false,tags:'railway,alp,iti',summary:'11127 ALP vacancies. Apps open 15 May 2026.',notes:''},
+  {id:2,section:'results',title:'UPSC Civil Services Final Result 2025 Declared',dept:'Union Public Service Commission',cat:'upsc',icon:'🏛️',vacancies:'958 Selected',qual:'Graduate',age:'21–32',fee_gen:'₹100',fee_sc:'NIL',last_date:'6 March 2026',result_date:'6 March 2026',notif_date:'6 Mar 2026',status:'declared',apply_link:'https://upsc.gov.in',official_site:'upsc.gov.in',is_new:true,is_hot:true,is_important:true,tags:'upsc,ias,ips,result',summary:'958 candidates selected. Anuj Agnihotri AIR 1.',notes:''},
+  {id:3,section:'admit_cards',title:'UPSC CSE Prelims 2026 Admit Card',dept:'Union Public Service Commission',cat:'upsc',icon:'🎫',vacancies:'—',last_date:'24 May 2026',exam_date:'24 May 2026',notif_date:'May 2026',status:'soon',apply_link:'https://upsconline.nic.in',official_site:'upsconline.nic.in',is_new:true,is_hot:false,is_important:false,tags:'upsc,admit card,prelims',summary:'Admit card expected 2 weeks before exam (24 May 2026).',notes:''},
+  {id:4,section:'syllabus',title:'SSC CGL 2026 Syllabus & Exam Pattern — Tier 1 & 2',dept:'Staff Selection Commission',cat:'upsc',icon:'📚',vacancies:'14,582',last_date:'Download PDF',notif_date:'31 Mar 2026',status:'available',apply_link:'https://ssc.gov.in',official_site:'ssc.gov.in',is_new:true,is_hot:false,is_important:false,tags:'ssc,cgl,syllabus,tier 1,tier 2',summary:'Complete SSC CGL 2026 syllabus PDF available.',notes:''},
+  {id:5,section:'schemes',title:'PM Kisan Samman Nidhi — 19th Instalment 2026',dept:'Ministry of Agriculture, Govt of India',cat:'state',icon:'🌾',vacancies:'9 Crore+ Farmers',last_date:'Ongoing',notif_date:'March 2026',status:'open',apply_link:'https://pmkisan.gov.in',official_site:'pmkisan.gov.in',is_new:true,is_hot:false,is_important:true,tags:'pm kisan,scheme,farmer,yojana',summary:'₹2,000 instalment transferred to 9+ crore farmers.',notes:''},
+  {id:6,section:'answer_keys',title:'SSC CGL Tier 2 2025 Final Answer Key Released',dept:'Staff Selection Commission',cat:'upsc',icon:'📝',vacancies:'14,582',last_date:'Raise objection: closed',notif_date:'30 Jan 2026',status:'available',apply_link:'https://ssc.gov.in',official_site:'ssc.gov.in',is_new:false,is_hot:false,is_important:false,tags:'ssc,cgl,answer key,tier 2',summary:'Final answer key released. Objection window closed.',notes:''},
+];
+
+// ════════════════════════════════════════════════
+//   DATA LAYER
+// ════════════════════════════════════════════════
+function lsGet()      { try { return JSON.parse(localStorage.getItem('sa_posts_v2')||'[]'); } catch(e){return [];} }
+function lsSave(data) { localStorage.setItem('sa_posts_v2', JSON.stringify(data)); }
+
+async function apiGetAll() {
+  if (!SUPABASE_READY) {
+    var d = lsGet(); if (!d.length){ lsSave(DEMO); return DEMO; } return d;
+  }
+  return dbFetch('posts?order=id.desc&select=*');
+}
+async function apiInsert(data) {
+  if (!SUPABASE_READY) {
+    var d=lsGet(); data.id=Date.now(); d.unshift(data); lsSave(d); return data;
+  }
+  var res = await dbInsert('posts', data); return Array.isArray(res)?res[0]:res;
+}
+async function apiUpdate(id, data) {
+  if (!SUPABASE_READY) {
+    var d=lsGet(),i=d.findIndex(x=>x.id==id); if(i>-1){d[i]=Object.assign(d[i],data);lsSave(d);} return;
+  }
+  return dbUpdate('posts', id, data);
+}
+async function apiDelete(id) {
+  if (!SUPABASE_READY) {
+    lsSave(lsGet().filter(x=>x.id!=id)); return;
+  }
+  return dbDelete('posts', id);
+}
+
+// ════════════════════════════════════════════════
+//   INIT
+// ════════════════════════════════════════════════
+async function init() {
+  if (!SUPABASE_READY) document.getElementById('cfgWarn').style.display='flex';
+  try {
+    allPosts = await apiGetAll();
+    updateStats();
+    renderTable();
+  } catch(e) { toast('❌ Error loading: '+e.message,'error'); }
+}
+
+// ════════════════════════════════════════════════
+//   STATS
+// ════════════════════════════════════════════════
+var SEC_KEYS = ['all','jobs','results','admit_cards','syllabus','schemes','answer_keys'];
+function updateStats() {
+  SEC_KEYS.forEach(function(k){
+    var count = k==='all' ? allPosts.length : allPosts.filter(p=>p.section===k).length;
+    var sv = document.getElementById('sv-'+k);
+    var sb = document.getElementById('sb-'+k);
+    if(sv) sv.textContent = count;
+    if(sb) sb.textContent = count;
+  });
+}
+
+// ════════════════════════════════════════════════
+//   SECTION SWITCHING
+// ════════════════════════════════════════════════
+function setSection(key, btn) {
+  activeSection = key;
+  document.querySelectorAll('.sb-link').forEach(b=>b.classList.remove('active'));
+  document.querySelectorAll('.stat-card').forEach(c=>c.classList.remove('active-sec'));
+  if (btn) btn.classList.add('active');
+  var sc = document.getElementById('sc-'+key);
+  if (sc) sc.classList.add('active-sec');
+  var labels = {all:'📊 All Posts',jobs:'💼 Latest Jobs',results:'📋 Results',admit_cards:'🎫 Admit Cards',syllabus:'📚 Syllabus',schemes:'🏛️ Schemes / Yojana',answer_keys:'📝 Answer Keys'};
+  document.getElementById('topbarTitle').textContent = labels[key] || '📊 Posts';
+  renderTable();
+}
+
+// ════════════════════════════════════════════════
+//   TABLE RENDER
+// ════════════════════════════════════════════════
+var SEC_LABELS = {jobs:'Jobs',results:'Results',admit_cards:'Admit Card',syllabus:'Syllabus',schemes:'Scheme',answer_keys:'Answer Key'};
+var STATUS_HTML = {
+  open:      '<span class="status-pill s-open">● Open</span>',
+  soon:      '<span class="status-pill s-soon">● Soon</span>',
+  closed:    '<span class="status-pill s-closed">● Closed</span>',
+  declared:  '<span class="status-pill s-declared">✅ Declared</span>',
+  available: '<span class="status-pill s-available">📥 Available</span>',
+  result_out:'<span class="status-pill s-declared">📋 Result Out</span>',
+};
+
+function renderTable() {
+  var q   = document.getElementById('searchInput').value.toLowerCase();
+  var cat = document.getElementById('catFilter').value;
+  var st  = document.getElementById('statusFilter').value;
+
+  var filtered = allPosts.filter(function(p) {
+    var secOk  = activeSection==='all' || p.section===activeSection;
+    var catOk  = !cat || p.cat===cat;
+    var stOk   = !st  || p.status===st;
+    var qOk    = !q   || (p.title+(p.dept||'')+(p.tags||'')).toLowerCase().includes(q);
+    return secOk && catOk && stOk && qOk;
+  });
+
+  document.getElementById('resultsCount').innerHTML = 'Showing <span>'+filtered.length+'</span> posts';
+  var tbody = document.getElementById('tableBody');
+
+  if (!filtered.length) {
+    tbody.innerHTML = '<tr><td colspan="8"><div class="empty-state"><div class="empty-icon">🔍</div><div class="empty-title">No posts found</div><div>Try different filters or add a new post</div></div></td></tr>';
+    return;
+  }
+
+  tbody.innerHTML = filtered.map(function(p,i) {
+    return '<tr>'+
+      '<td style="color:var(--muted);font-size:11px">'+(i+1)+'</td>'+
+      '<td><div class="pt-title">'+(p.icon||'')+'&nbsp;'+esc(p.title)+
+        (p.is_new?'<span class="new-badge">NEW</span>':'')+
+        (p.is_hot?'<span class="hot-badge">HOT</span>':'')+
+      '</div><div class="pt-dept">'+esc(p.dept||'')+'</div></td>'+
+      '<td><span class="sec-pill sec-'+p.section+'">'+esc(SEC_LABELS[p.section]||p.section)+'</span></td>'+
+      '<td><span class="cat-pill cat-'+p.cat+'">'+esc(p.cat||'')+'</span></td>'+
+      '<td style="font-weight:600;color:var(--orange)">'+esc(p.vacancies||'—')+'</td>'+
+      '<td style="font-size:12px;color:var(--text);white-space:nowrap">'+esc(p.last_date||'—')+'</td>'+
+      '<td>'+(STATUS_HTML[p.status]||STATUS_HTML.closed)+'</td>'+
+      '<td><div class="act-row">'+
+        '<button class="act-btn btn-edit" onclick="openEdit('+p.id+')">✏️ Edit</button>'+
+        '<button class="act-btn btn-del" onclick="askDelete('+p.id+',\''+esc(p.title).slice(0,40).replace(/'/g,"\\'")+'…\')">🗑️</button>'+
+      '</div></td>'+
+    '</tr>';
+  }).join('');
+}
+
+function esc(s){return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;')}
+
+// ════════════════════════════════════════════════
+//   MODAL
+// ════════════════════════════════════════════════
+var FIELDS = ['section','cat','title','dept','icon','summary','vacancies','qual','age','fee_gen','fee_sc','tags','notif_date','last_date','exam_date','status','apply_link','official_site','pdf_link','notes'];
+
+function clearForm() {
+  document.getElementById('editId').value='';
+  FIELDS.forEach(function(f){ var el=document.getElementById('f_'+f); if(el) el.value=''; });
+  document.getElementById('f_section').value='jobs';
+  document.getElementById('f_cat').value='railway';
+  document.getElementById('f_status').value='open';
+  document.getElementById('f_icon').value='🏛️';
+  ['is_new','is_hot','is_important'].forEach(function(f){ document.getElementById('f_'+f).checked=false; });
+}
+
+function openAdd() {
+  clearForm();
+  if(activeSection && activeSection!=='all') document.getElementById('f_section').value=activeSection;
+  document.getElementById('modalTitle').textContent='➕ Add New Post';
+  document.getElementById('saveBtn').textContent='💾 Save Post';
+  document.getElementById('postModal').classList.add('open');
+}
+
+function openEdit(id) {
+  var p = allPosts.find(function(x){return x.id==id;});
+  if(!p) return;
+  clearForm();
+  document.getElementById('editId').value=p.id;
+  FIELDS.forEach(function(f){ var el=document.getElementById('f_'+f); if(el) el.value=p[f]||''; });
+  ['is_new','is_hot','is_important'].forEach(function(f){ document.getElementById('f_'+f).checked=!!p[f]; });
+  document.getElementById('modalTitle').textContent='✏️ Edit Post';
+  document.getElementById('saveBtn').textContent='💾 Update Post';
+  document.getElementById('postModal').classList.add('open');
+}
+
+function closeModal() { document.getElementById('postModal').classList.remove('open'); }
+
+async function savePost() {
+  var title = document.getElementById('f_title').value.trim();
+  if(!title){ toast('❌ Title is required','error'); return; }
+
+  // Auto-generate tags if empty
+  var tags = document.getElementById('f_tags').value.trim();
+  if (!tags) {
+    var cat  = document.getElementById('f_cat').value;
+    var sec  = document.getElementById('f_section').value;
+    tags = [cat, sec.replace('_',' ')].join(',');
+  }
+  document.getElementById('f_tags').value = tags;
+
+  var data = {};
+  FIELDS.forEach(function(f){ var el=document.getElementById('f_'+f); if(el) data[f]=el.value.trim(); });
+  data.is_new       = document.getElementById('f_is_new').checked;
+  data.is_hot       = document.getElementById('f_is_hot').checked;
+  data.is_important = document.getElementById('f_is_important').checked;
+
+  var btn = document.getElementById('saveBtn');
+  btn.classList.add('loading'); btn.textContent='⏳ Saving…';
+
+  try {
+    var editId = document.getElementById('editId').value;
+    if (editId) {
+      await apiUpdate(editId, data);
+      var idx = allPosts.findIndex(function(p){return p.id==editId;});
+      if(idx>-1) allPosts[idx]=Object.assign(allPosts[idx],data);
+      toast('✅ Post updated!','success');
+    } else {
+      var np = await apiInsert(data);
+      allPosts.unshift(np);
+      toast('✅ Post added and live!','success');
+    }
+    updateStats();
+    renderTable();
+    closeModal();
+  } catch(e) { toast('❌ Error: '+e.message,'error'); }
+
+  btn.classList.remove('loading');
+  btn.textContent = document.getElementById('editId').value ? '💾 Update Post' : '💾 Save Post';
+}
+
+// ════════════════════════════════════════════════
+//   DELETE
+// ════════════════════════════════════════════════
+function askDelete(id, title) {
+  deleteId=id;
+  document.getElementById('confirmDesc').textContent='Delete "'+title+'"? This cannot be undone.';
+  document.getElementById('confirmOverlay').classList.add('open');
+}
+function closeConfirm(){ deleteId=null; document.getElementById('confirmOverlay').classList.remove('open'); }
+async function doDelete(){
+  if(!deleteId) return;
+  try{
+    await apiDelete(deleteId);
+    allPosts=allPosts.filter(function(p){return p.id!=deleteId;});
+    updateStats(); renderTable();
+    toast('🗑️ Post deleted','success');
+    closeConfirm();
+  }catch(e){ toast('❌ '+e.message,'error'); }
+}
+
+// ════════════════════════════════════════════════
+//   TOAST
+// ════════════════════════════════════════════════
+function toast(msg, type) {
+  var t=document.getElementById('toast');
+  t.textContent=msg; t.className='toast '+(type||'');
+  clearTimeout(toastTimer);
+  setTimeout(function(){t.classList.add('show');},10);
+  toastTimer=setTimeout(function(){t.classList.remove('show');},3200);
+}
+
+// ════════════════════════════════════════════════
+//   MISC
+// ════════════════════════════════════════════════
+function logout(){ sessionStorage.removeItem('sa_admin_auth'); window.location.href='login.html'; }
+document.getElementById('postModal').addEventListener('click',function(e){if(e.target===this)closeModal();});
+document.getElementById('confirmOverlay').addEventListener('click',function(e){if(e.target===this)closeConfirm();});
+
+init();
+</script>
+</body>
+</html>

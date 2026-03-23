@@ -3,907 +3,1410 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="SarkariAlert.in – India's fastest government job alert portal. Latest UPSC, SSC, Railway, Banking, Police recruitment notifications 2026.">
-<title>SarkariAlert.in – Latest Government Job Alerts 2026</title>
+<meta name="description" content="SarkariAlert.in — India's most trusted portal for Sarkari Jobs, Results, Admit Cards, Board Exams, University Results, Schemes & more. Updated daily.">
+<meta name="keywords" content="sarkari result, government jobs, board result, admit card, sarkari naukri, UPSC, SSC, Railway, Bank jobs, CBSE result, Bihar Board, UP Board">
+<title>SarkariAlert.in | Sarkari Result, Jobs, Admit Card, Board Results 2026</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Teko:wght@500;600;700&family=Hind:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600;700&family=Teko:wght@500;600;700&display=swap" rel="stylesheet">
 <style>
-/* ══════════════════════════════════════════
+/* ═══════════════════════════════════════════
    DESIGN TOKENS
-══════════════════════════════════════════ */
+═══════════════════════════════════════════ */
 :root {
   --navy:      #0B1D3A;
-  --navy2:     #162d55;
-  --orange:    #E8460A;
-  --orange2:   #ff5c1a;
-  --gold:      #F5A623;
+  --navy2:     #122649;
+  --orange:    #D94F00;
+  --orange2:   #F05A00;
+  --orange-bg: #FFF3EC;
+  --gold:      #F59E0B;
   --white:     #FFFFFF;
-  --bg:        #F2F4F8;
+  --bg:        #F0F2F5;
   --card:      #FFFFFF;
-  --border:    #DDE1EC;
-  --text:      #0B1D3A;
-  --muted:     #6B7A99;
-  --green:     #097A47;
-  --green-bg:  #E5F5ED;
-  --red:       #C0392B;
-  --red-bg:    #FDECEA;
-  --blue-bg:   #E8F0FE;
-  --blue:      #1A56C4;
-  --radius:    10px;
-  --shadow:    0 2px 16px rgba(11,29,58,.07);
+  --border:    #DEE3EC;
+  --text:      #1A1F2E;
+  --muted:     #6B7694;
+  --light:     #F8F9FC;
+
+  /* Section colours */
+  --c-jobs:     #1565C0; --c-jobs-bg:     #E8F0FE;
+  --c-results:  #0A7C47; --c-results-bg:  #E5F5ED;
+  --c-admit:    #7B1FA2; --c-admit-bg:    #F3E5F5;
+  --c-board:    #C62828; --c-board-bg:    #FDECEA;
+  --c-schemes:  #E65100; --c-schemes-bg:  #FFF3E0;
+  --c-univ:     #00695C; --c-univ-bg:     #E0F2F1;
+  --c-answer:   #455A64; --c-answer-bg:   #ECEFF1;
+  --c-syllabus: #4A148C; --c-syllabus-bg: #EDE7F6;
+
+  --radius: 8px;
+  --shadow: 0 1px 6px rgba(0,0,0,.08);
 }
 
-/* ══════════════════════════════════════════
-   RESET & BASE
-══════════════════════════════════════════ */
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
-body{font-family:'Hind',sans-serif;background:var(--bg);color:var(--text);font-size:15px;line-height:1.6}
-a{text-decoration:none;color:inherit}
-img{max-width:100%}
-ul{list-style:none}
+/* ═══════════════════════════════════════════
+   RESET
+═══════════════════════════════════════════ */
+*,*::before,*::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Noto Sans', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  font-size: 14px;
+  line-height: 1.6;
+}
+a { text-decoration: none; color: inherit; }
+ul { list-style: none; }
 
-/* ══════════════════════════════════════════
-   TOP BAR
-══════════════════════════════════════════ */
-.topbar{background:var(--navy);color:#fff;font-size:12px;padding:6px 0;overflow:hidden}
-.topbar-inner{max-width:1200px;margin:0 auto;padding:0 20px;display:flex;align-items:center;gap:12px}
-.topbar-label{background:var(--orange);color:#fff;padding:2px 10px;border-radius:3px;font-weight:600;font-size:11px;letter-spacing:.5px;flex-shrink:0}
-.ticker{flex:1;overflow:hidden;white-space:nowrap}
-.ticker-inner{display:inline-block;animation:ticker 35s linear infinite}
-@keyframes ticker{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
-.ticker-inner:hover{animation-play-state:paused}
-.ticker-item{display:inline;margin:0 28px}
-.ticker-item a{color:#FFD180}
-.ticker-item a:hover{text-decoration:underline}
-.topbar-right{flex-shrink:0;opacity:.8}
+/* ═══════════════════════════════════════════
+   BREAKING NEWS TICKER
+═══════════════════════════════════════════ */
+.breaking {
+  background: var(--navy);
+  display: flex;
+  align-items: center;
+  height: 32px;
+  overflow: hidden;
+}
+.breaking-label {
+  background: var(--orange);
+  color: #fff;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 0 12px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
+  letter-spacing: .5px;
+  flex-shrink: 0;
+}
+.breaking-scroll { flex: 1; overflow: hidden; }
+.breaking-inner {
+  display: inline-flex;
+  gap: 0;
+  white-space: nowrap;
+  animation: scroll 50s linear infinite;
+}
+.breaking-inner:hover { animation-play-state: paused; }
+@keyframes scroll { 0%{transform:translateX(0)} 100%{transform:translateX(-50%)} }
+.breaking-item {
+  font-size: 12px;
+  color: #E0E8FF;
+  padding: 0 28px 0 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.breaking-item a { color: #FFD180; }
+.breaking-item a:hover { text-decoration: underline; }
+.breaking-sep { color: rgba(255,255,255,.3); }
 
-/* ══════════════════════════════════════════
-   HEADER / NAV
-══════════════════════════════════════════ */
-header{background:var(--navy);position:sticky;top:0;z-index:100;box-shadow:0 2px 20px rgba(0,0,0,.25)}
-.header-inner{max-width:1200px;margin:0 auto;padding:0 20px;display:flex;align-items:center;gap:20px;height:64px}
+/* ═══════════════════════════════════════════
+   HEADER
+═══════════════════════════════════════════ */
+header {
+  background: var(--navy);
+  box-shadow: 0 2px 12px rgba(0,0,0,.25);
+  position: sticky; top: 0; z-index: 100;
+}
+.header-wrap {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 16px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  height: 58px;
+}
+.logo { display: flex; align-items: center; gap: 10px; flex-shrink: 0; }
+.logo-mark {
+  width: 36px; height: 36px;
+  background: var(--orange);
+  border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Teko', sans-serif;
+  font-size: 18px; font-weight: 700; color: #fff;
+}
+.logo-text {
+  font-family: 'Teko', sans-serif;
+  font-size: 24px; font-weight: 700; color: #fff; line-height: 1;
+}
+.logo-text span { color: var(--gold); }
+.logo-sub { font-size: 9px; color: rgba(255,255,255,.45); letter-spacing: .5px; }
 
-.logo{display:flex;align-items:center;gap:10px;flex-shrink:0}
-.logo-icon{width:38px;height:38px;background:var(--orange);border-radius:8px;display:flex;align-items:center;justify-content:center;font-family:'Teko',sans-serif;font-size:20px;color:#fff;font-weight:700}
-.logo-text{font-family:'Teko',sans-serif;font-size:26px;font-weight:700;color:#fff;line-height:1}
-.logo-text span{color:var(--gold)}
-.logo-tag{font-size:10px;color:#aab4cc;display:block;letter-spacing:.5px;margin-top:-2px}
+/* SEARCH */
+.header-search {
+  flex: 1;
+  max-width: 480px;
+  display: flex;
+  align-items: center;
+  background: rgba(255,255,255,.1);
+  border: 1px solid rgba(255,255,255,.18);
+  border-radius: 7px;
+  padding: 0 12px;
+  height: 38px;
+  transition: background .2s;
+}
+.header-search:focus-within {
+  background: rgba(255,255,255,.16);
+  border-color: var(--orange);
+}
+.header-search input {
+  flex: 1; background: none; border: none; outline: none;
+  color: #fff; font-size: 13.5px; font-family: 'Noto Sans', sans-serif;
+}
+.header-search input::placeholder { color: rgba(255,255,255,.4); }
+.header-search-btn {
+  background: var(--orange); color: #fff;
+  border: none; border-radius: 5px;
+  padding: 4px 12px; font-size: 12px;
+  font-weight: 600; cursor: pointer;
+  transition: background .15s;
+}
+.header-search-btn:hover { background: var(--orange2); }
 
-nav{display:flex;align-items:center;gap:2px;margin-left:auto}
-.nav-link{color:#ccd3e0;font-size:13.5px;font-weight:500;padding:8px 14px;border-radius:6px;transition:background .15s,color .15s;white-space:nowrap}
-.nav-link:hover,.nav-link.active{background:rgba(255,255,255,.1);color:#fff}
-.nav-link.active{color:var(--gold)}
+/* HEADER NAV */
+.header-nav {
+  display: flex; align-items: center; gap: 2px; margin-left: auto;
+}
+.hn-link {
+  color: rgba(255,255,255,.7);
+  font-size: 12.5px; font-weight: 500;
+  padding: 6px 10px; border-radius: 6px;
+  transition: all .15s; white-space: nowrap;
+}
+.hn-link:hover { background: rgba(255,255,255,.1); color: #fff; }
+.hn-alert {
+  background: var(--orange); color: #fff;
+  padding: 6px 14px; border-radius: 6px;
+  font-size: 12.5px; font-weight: 600;
+  margin-left: 6px;
+}
+.hn-alert:hover { background: var(--orange2); }
+.hamburger {
+  display: none; flex-direction: column; gap: 4px;
+  cursor: pointer; padding: 6px; margin-left: auto;
+}
+.hamburger span { width: 20px; height: 2px; background: #fff; border-radius: 2px; }
 
-.nav-cta{background:var(--orange);color:#fff;padding:8px 18px;border-radius:7px;font-size:13.5px;font-weight:600;margin-left:8px;transition:background .15s,transform .12s}
-.nav-cta:hover{background:var(--orange2);transform:translateY(-1px)}
+/* ═══════════════════════════════════════════
+   NAV TABS (main category navigation)
+═══════════════════════════════════════════ */
+.nav-tabs {
+  background: #fff;
+  border-bottom: 2px solid var(--border);
+  position: sticky; top: 58px; z-index: 90;
+  box-shadow: 0 2px 6px rgba(0,0,0,.05);
+}
+.nav-tabs-inner {
+  max-width: 1200px; margin: 0 auto; padding: 0 16px;
+  display: flex; align-items: center; gap: 0;
+  overflow-x: auto; scrollbar-width: none;
+}
+.nav-tabs-inner::-webkit-scrollbar { display: none; }
+.nt-link {
+  display: flex; align-items: center; gap: 5px;
+  padding: 10px 14px;
+  font-size: 13px; font-weight: 600;
+  color: var(--muted);
+  border-bottom: 2px solid transparent;
+  margin-bottom: -2px;
+  cursor: pointer;
+  transition: all .15s;
+  white-space: nowrap;
+  border: none; background: none;
+  font-family: 'Noto Sans', sans-serif;
+}
+.nt-link:hover { color: var(--orange); }
+.nt-link.active { color: var(--orange); border-bottom: 2px solid var(--orange); }
+.nt-count {
+  background: var(--orange);
+  color: #fff;
+  font-size: 10px;
+  font-weight: 700;
+  padding: 1px 5px;
+  border-radius: 99px;
+}
 
-.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:6px;margin-left:auto}
-.hamburger span{width:22px;height:2px;background:#fff;border-radius:2px;transition:.2s}
+/* ═══════════════════════════════════════════
+   STATS STRIP
+═══════════════════════════════════════════ */
+.stats-strip {
+  background: var(--navy);
+  padding: 10px 16px;
+}
+.stats-strip-inner {
+  max-width: 1200px; margin: 0 auto;
+  display: flex; align-items: center;
+  gap: 24px; flex-wrap: wrap;
+}
+.ss-item {
+  display: flex; align-items: center; gap: 8px;
+  color: rgba(255,255,255,.75);
+  font-size: 12px;
+}
+.ss-num {
+  font-family: 'Teko', sans-serif;
+  font-size: 18px; font-weight: 700;
+  color: var(--gold);
+  line-height: 1;
+}
+.ss-sep { color: rgba(255,255,255,.2); }
 
-/* ══════════════════════════════════════════
-   HERO
-══════════════════════════════════════════ */
-.hero{background:linear-gradient(135deg,var(--navy) 0%,var(--navy2) 55%,#1e3a6e 100%);padding:52px 20px 0;overflow:hidden;position:relative}
-.hero::before{content:'';position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.025'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")}
-.hero-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr auto;gap:40px;align-items:end}
-.hero-content{padding-bottom:48px}
-.hero-eyebrow{display:inline-flex;align-items:center;gap:8px;background:rgba(232,70,10,.18);border:1px solid rgba(232,70,10,.35);color:#FFB38A;font-size:12px;font-weight:600;letter-spacing:1px;text-transform:uppercase;padding:5px 14px;border-radius:99px;margin-bottom:18px}
-.hero-eyebrow::before{content:'';width:7px;height:7px;border-radius:50%;background:var(--orange);animation:blink 1.4s infinite}
-@keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
-.hero h1{font-family:'Teko',sans-serif;font-size:clamp(2.4rem,5vw,3.8rem);font-weight:700;color:#fff;line-height:1.05;margin-bottom:14px}
-.hero h1 span{color:var(--gold)}
-.hero-sub{color:#9DAEC8;font-size:16px;max-width:540px;margin-bottom:28px;line-height:1.65}
-.hero-stats{display:flex;gap:24px;flex-wrap:wrap}
-.hero-stat{text-align:center}
-.hero-stat-num{font-family:'Teko',sans-serif;font-size:2rem;font-weight:700;color:var(--gold);line-height:1}
-.hero-stat-label{font-size:11px;color:#7E90AE;letter-spacing:.5px;text-transform:uppercase}
-
-.hero-graphic{align-self:end;padding-bottom:0}
-.hero-card-stack{position:relative;width:260px;height:200px}
-.hc{position:absolute;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:12px;padding:14px 16px;width:240px}
-.hc:nth-child(1){top:0;left:20px;transform:rotate(3deg)}
-.hc:nth-child(2){top:24px;left:10px;transform:rotate(-1.5deg);background:rgba(255,255,255,.08)}
-.hc:nth-child(3){top:48px;left:0;background:rgba(255,255,255,.11);border-color:rgba(232,70,10,.4)}
-.hc-badge{font-size:10px;font-weight:600;color:var(--orange);background:rgba(232,70,10,.15);padding:2px 8px;border-radius:4px;display:inline-block;margin-bottom:6px;letter-spacing:.5px}
-.hc-title{font-size:13px;font-weight:600;color:#fff;margin-bottom:3px}
-.hc-meta{font-size:11px;color:#7E90AE}
-
-/* ══════════════════════════════════════════
-   SEARCH BAR
-══════════════════════════════════════════ */
-.search-section{background:var(--navy);padding:0 20px 24px}
-.search-wrap{max-width:1200px;margin:0 auto}
-.search-box{background:rgba(255,255,255,.07);border:1.5px solid rgba(255,255,255,.12);border-radius:12px;display:flex;align-items:center;padding:6px 6px 6px 18px;gap:10px;transition:border-color .2s}
-.search-box:focus-within{border-color:var(--orange);background:rgba(255,255,255,.1)}
-.search-box input{flex:1;background:none;border:none;outline:none;color:#fff;font-size:15px;font-family:'Hind',sans-serif;min-width:0}
-.search-box input::placeholder{color:#6B7A99}
-.search-btn{background:var(--orange);color:#fff;border:none;padding:10px 22px;border-radius:8px;font-size:14px;font-weight:600;cursor:pointer;font-family:'Hind',sans-serif;transition:background .15s;white-space:nowrap}
-.search-btn:hover{background:var(--orange2)}
-.search-tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
-.search-tag{color:#9DAEC8;font-size:12px;cursor:pointer;padding:4px 10px;border-radius:5px;border:1px solid rgba(255,255,255,.1);transition:all .15s}
-.search-tag:hover{color:#fff;border-color:rgba(255,255,255,.3)}
-.search-tag::before{content:'🔍 '}
-
-/* ══════════════════════════════════════════
-   CATEGORY PILLS
-══════════════════════════════════════════ */
-.categories{background:#fff;border-bottom:1px solid var(--border);padding:0 20px;position:sticky;top:64px;z-index:90;box-shadow:0 2px 8px rgba(0,0,0,.04)}
-.cats-inner{max-width:1200px;margin:0 auto;display:flex;gap:4px;overflow-x:auto;padding:10px 0;scrollbar-width:none}
-.cats-inner::-webkit-scrollbar{display:none}
-.cat-btn{flex-shrink:0;padding:7px 16px;border-radius:7px;border:1.5px solid var(--border);background:#fff;color:var(--muted);font-size:13px;font-weight:500;cursor:pointer;font-family:'Hind',sans-serif;transition:all .15s;white-space:nowrap}
-.cat-btn:hover{border-color:var(--orange);color:var(--orange)}
-.cat-btn.active{background:var(--navy);color:#fff;border-color:var(--navy)}
-
-/* ══════════════════════════════════════════
+/* ═══════════════════════════════════════════
    MAIN LAYOUT
-══════════════════════════════════════════ */
-.main{max-width:1200px;margin:0 auto;padding:28px 20px 60px;display:grid;grid-template-columns:1fr 320px;gap:28px;align-items:start}
-
-/* ══════════════════════════════════════════
-   SECTION HEADERS
-══════════════════════════════════════════ */
-.sec-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}
-.sec-title{font-family:'Teko',sans-serif;font-size:22px;font-weight:600;color:var(--navy);display:flex;align-items:center;gap:8px}
-.sec-title::before{content:'';display:block;width:4px;height:22px;background:var(--orange);border-radius:2px}
-.sec-link{font-size:13px;color:var(--orange);font-weight:600}
-.sec-link:hover{text-decoration:underline}
-
-/* ══════════════════════════════════════════
-   JOB CARDS
-══════════════════════════════════════════ */
-.job-card{background:var(--card);border:1.5px solid var(--border);border-radius:var(--radius);padding:18px 20px;margin-bottom:14px;display:flex;gap:16px;transition:box-shadow .2s,border-color .2s,transform .15s;cursor:pointer;position:relative;overflow:hidden}
-.job-card::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--orange);border-radius:3px 0 0 3px}
-.job-card.railway::before{background:var(--blue)}
-.job-card.upsc::before{background:#7B2FBE}
-.job-card.banking::before{background:var(--green)}
-.job-card.defence::before{background:var(--red)}
-.job-card.state::before{background:var(--gold)}
-.job-card:hover{box-shadow:var(--shadow);border-color:#bbc5de;transform:translateY(-2px)}
-
-.jc-icon{width:44px;height:44px;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;background:var(--bg)}
-.jc-body{flex:1;min-width:0}
-.jc-top{display:flex;align-items:flex-start;justify-content:space-between;gap:10px;margin-bottom:5px}
-.jc-title{font-size:15px;font-weight:600;color:var(--text);line-height:1.35}
-.jc-new{background:var(--orange);color:#fff;font-size:10px;font-weight:700;padding:2px 8px;border-radius:4px;letter-spacing:.5px;flex-shrink:0;margin-top:2px}
-.jc-dept{font-size:12.5px;color:var(--muted);margin-bottom:10px}
-.jc-tags{display:flex;flex-wrap:wrap;gap:6px}
-.tag{font-size:11.5px;font-weight:600;padding:3px 10px;border-radius:5px}
-.tag-vac{background:var(--navy);color:#fff}
-.tag-date{background:var(--red-bg);color:var(--red)}
-.tag-qual{background:var(--bg);color:var(--muted);border:1px solid var(--border)}
-.tag-open{background:var(--green-bg);color:var(--green)}
-.tag-hot{background:#FFF3E0;color:#E65100}
-.jc-arrow{align-self:center;color:var(--muted);font-size:16px;transition:transform .15s,color .15s;flex-shrink:0}
-.job-card:hover .jc-arrow{transform:translateX(4px);color:var(--orange)}
-
-/* ══════════════════════════════════════════
-   SIDEBAR
-══════════════════════════════════════════ */
-.sidebar{display:flex;flex-direction:column;gap:20px}
-
-.widget{background:var(--card);border:1.5px solid var(--border);border-radius:var(--radius);overflow:hidden}
-.widget-head{background:var(--navy);padding:12px 18px;display:flex;align-items:center;gap:8px}
-.widget-head h3{font-family:'Teko',sans-serif;font-size:18px;font-weight:600;color:#fff}
-.widget-body{padding:14px 16px}
-
-/* Important Dates widget */
-.date-item{display:flex;gap:12px;align-items:flex-start;padding:10px 0;border-bottom:1px dashed var(--border)}
-.date-item:last-child{border-bottom:none;padding-bottom:0}
-.date-box{flex-shrink:0;width:44px;text-align:center;background:var(--navy);border-radius:7px;padding:5px 4px;color:#fff}
-.date-box-day{font-family:'Teko',sans-serif;font-size:20px;font-weight:700;line-height:1;color:var(--gold)}
-.date-box-mo{font-size:10px;letter-spacing:.5px;text-transform:uppercase;color:#9DAEC8}
-.date-info-title{font-size:13px;font-weight:600;color:var(--text);line-height:1.35;margin-bottom:2px}
-.date-info-org{font-size:11.5px;color:var(--muted)}
-
-/* Quick Links widget */
-.qlink{display:flex;align-items:center;gap:10px;padding:9px 0;border-bottom:1px dashed var(--border);transition:color .15s}
-.qlink:last-child{border-bottom:none}
-.qlink:hover .qlink-title{color:var(--orange)}
-.qlink-icon{width:30px;height:30px;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0;background:var(--bg)}
-.qlink-title{font-size:13px;font-weight:600;color:var(--text);flex:1}
-.qlink-arrow{color:var(--muted);font-size:12px}
-
-/* Alert subscribe widget */
-.subscribe-widget{background:linear-gradient(135deg,var(--navy),var(--navy2));border:none}
-.subscribe-widget .widget-head{background:rgba(0,0,0,.2)}
-.sub-body{padding:18px}
-.sub-body p{font-size:13px;color:#9DAEC8;margin-bottom:14px;line-height:1.55}
-.sub-input{width:100%;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);border-radius:7px;padding:10px 14px;color:#fff;font-size:13.5px;font-family:'Hind',sans-serif;outline:none;margin-bottom:10px}
-.sub-input::placeholder{color:#5A6A88}
-.sub-input:focus{border-color:var(--orange)}
-.sub-btn{width:100%;background:var(--orange);color:#fff;border:none;padding:11px;border-radius:7px;font-size:14px;font-weight:600;cursor:pointer;font-family:'Hind',sans-serif;transition:background .15s}
-.sub-btn:hover{background:var(--orange2)}
-
-/* ══════════════════════════════════════════
-   NOTICE BOARD (marquee strip)
-══════════════════════════════════════════ */
-.notice-strip{background:#fff;border-top:2px solid var(--orange);border-bottom:1px solid var(--border);padding:0}
-.notice-inner{max-width:1200px;margin:0 auto;padding:0 20px;display:flex;align-items:center;gap:0}
-.notice-label{background:var(--orange);color:#fff;padding:8px 16px;font-size:12px;font-weight:700;letter-spacing:.5px;flex-shrink:0;text-transform:uppercase}
-.notice-scroll{overflow:hidden;flex:1}
-.notice-text{display:inline-block;white-space:nowrap;animation:marquee 40s linear infinite;font-size:13px;color:var(--text);padding:8px 0}
-.notice-text:hover{animation-play-state:paused}
-@keyframes marquee{0%{transform:translateX(100%)}100%{transform:translateX(-100%)}}
-.notice-text a{color:var(--orange);font-weight:600;margin:0 6px}
-.notice-text span{margin:0 24px;color:var(--muted)}
-
-/* ══════════════════════════════════════════
-   STATS BAR
-══════════════════════════════════════════ */
-.stats-bar{background:#fff;border-bottom:1px solid var(--border);padding:16px 20px}
-.stats-inner{max-width:1200px;margin:0 auto;display:flex;justify-content:space-around;flex-wrap:wrap;gap:14px}
-.stat-item{text-align:center}
-.stat-num{font-family:'Teko',sans-serif;font-size:26px;font-weight:700;color:var(--orange);line-height:1}
-.stat-lbl{font-size:12px;color:var(--muted);letter-spacing:.3px}
-
-/* ══════════════════════════════════════════
-   CATEGORY SECTION (grid)
-══════════════════════════════════════════ */
-.category-section{padding:28px 20px}
-.cs-inner{max-width:1200px;margin:0 auto}
-.cs-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px;margin-top:16px}
-.cs-card{background:#fff;border:1.5px solid var(--border);border-radius:var(--radius);padding:18px 16px;text-align:center;cursor:pointer;transition:all .18s}
-.cs-card:hover{border-color:var(--orange);box-shadow:0 4px 18px rgba(232,70,10,.12);transform:translateY(-2px)}
-.cs-icon{font-size:28px;margin-bottom:8px}
-.cs-name{font-family:'Teko',sans-serif;font-size:18px;font-weight:600;color:var(--navy);margin-bottom:2px}
-.cs-count{font-size:12px;color:var(--muted)}
-
-/* ══════════════════════════════════════════
-   FOOTER
-══════════════════════════════════════════ */
-footer{background:var(--navy);color:#9DAEC8;padding:40px 20px 0}
-.footer-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:32px;padding-bottom:36px}
-.footer-brand{}
-.footer-logo{font-family:'Teko',sans-serif;font-size:28px;font-weight:700;color:#fff;margin-bottom:8px}
-.footer-logo span{color:var(--gold)}
-.footer-desc{font-size:13px;line-height:1.65;max-width:260px;margin-bottom:18px}
-.footer-social{display:flex;gap:8px}
-.social-btn{width:34px;height:34px;border-radius:7px;border:1px solid rgba(255,255,255,.15);display:flex;align-items:center;justify-content:center;font-size:15px;cursor:pointer;transition:all .15s;color:#fff}
-.social-btn:hover{background:var(--orange);border-color:var(--orange)}
-.footer-col h4{font-family:'Teko',sans-serif;font-size:18px;font-weight:600;color:#fff;margin-bottom:14px;letter-spacing:.3px}
-.footer-links li{margin-bottom:8px}
-.footer-links a{font-size:13px;color:#7E90AE;transition:color .15s}
-.footer-links a:hover{color:var(--gold)}
-.footer-bottom{border-top:1px solid rgba(255,255,255,.07);padding:16px 0;text-align:center;font-size:12.5px;color:#5A6A88}
-.footer-bottom a{color:var(--gold)}
-
-/* ══════════════════════════════════════════
-   BADGE / PILLS
-══════════════════════════════════════════ */
-.live-badge{display:inline-flex;align-items:center;gap:5px;background:rgba(9,122,71,.15);border:1px solid rgba(9,122,71,.3);color:var(--green);font-size:11px;font-weight:700;padding:3px 10px;border-radius:99px;letter-spacing:.5px}
-.live-badge::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--green);animation:blink 1.2s infinite}
-
-/* ══════════════════════════════════════════
-   MOBILE NAV
-══════════════════════════════════════════ */
-.mobile-menu{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:var(--navy);z-index:200;padding:80px 24px 24px;flex-direction:column;gap:4px}
-.mobile-menu.open{display:flex}
-.mobile-close{position:absolute;top:18px;right:20px;color:#fff;font-size:24px;cursor:pointer;background:none;border:none;line-height:1}
-.mobile-link{color:#ccd3e0;font-size:18px;font-weight:500;padding:14px 16px;border-radius:8px;display:block;border-bottom:1px solid rgba(255,255,255,.06)}
-.mobile-link:hover{background:rgba(255,255,255,.07);color:#fff}
-
-/* ══════════════════════════════════════════
-   RESPONSIVE
-══════════════════════════════════════════ */
-@media(max-width:900px){
-  .main{grid-template-columns:1fr}
-  .sidebar{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr))}
-  .hero-inner{grid-template-columns:1fr}
-  .hero-graphic{display:none}
-  .footer-inner{grid-template-columns:1fr 1fr}
+═══════════════════════════════════════════ */
+.main {
+  max-width: 1200px; margin: 0 auto;
+  padding: 14px 16px 50px;
+  display: grid;
+  grid-template-columns: 1fr 290px;
+  gap: 14px;
+  align-items: start;
 }
-@media(max-width:600px){
-  nav{display:none}
-  .hamburger{display:flex}
-  .footer-inner{grid-template-columns:1fr}
-  .hero h1{font-size:2.2rem}
-  .stats-inner{gap:20px}
-  .cs-grid{grid-template-columns:repeat(3,1fr)}
+
+/* ═══════════════════════════════════════════
+   SECTION BLOCK (content boxes)
+═══════════════════════════════════════════ */
+.section-block {
+  background: var(--card);
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  margin-bottom: 14px;
+  overflow: hidden;
+  box-shadow: var(--shadow);
+}
+.sb-head {
+  display: flex; align-items: center;
+  justify-content: space-between;
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--border);
+}
+.sb-title {
+  display: flex; align-items: center; gap: 8px;
+  font-size: 14px; font-weight: 700; color: var(--text);
+}
+.sb-title-dot {
+  width: 3px; height: 18px; border-radius: 2px;
+}
+.sb-icon { font-size: 15px; }
+.sb-more {
+  font-size: 12px; font-weight: 600;
+  padding: 4px 10px; border-radius: 5px;
+  transition: all .15s;
+  white-space: nowrap;
+}
+
+/* ═══════════════════════════════════════════
+   LIST ITEMS (SarkariResult-style link list)
+═══════════════════════════════════════════ */
+.post-list { padding: 0; }
+.post-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  padding: 8px 14px;
+  border-bottom: 1px dashed #EEF0F5;
+  transition: background .12s;
+  cursor: pointer;
+}
+.post-item:last-child { border-bottom: none; }
+.post-item:hover { background: var(--light); }
+.post-item-arrow {
+  flex-shrink: 0;
+  color: var(--orange);
+  font-size: 12px;
+  margin-top: 3px;
+}
+.post-item-text {
+  flex: 1; min-width: 0;
+  font-size: 13px;
+  color: var(--text);
+  line-height: 1.45;
+}
+.post-item-text a {
+  color: #1A3A6B;
+  font-weight: 500;
+}
+.post-item-text a:hover { color: var(--orange); text-decoration: underline; }
+.post-item-meta {
+  display: flex; align-items: center; gap: 5px;
+  flex-wrap: wrap; margin-top: 2px;
+}
+.pi-date { font-size: 11px; color: var(--muted); }
+.pi-sep { color: var(--border); }
+
+/* BADGE PILLS */
+.badge {
+  display: inline-block;
+  padding: 1px 6px;
+  border-radius: 3px;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .3px;
+  white-space: nowrap;
+  text-transform: uppercase;
+}
+.b-new  { background: #FF3D00; color: #fff; }
+.b-hot  { background: #FF6D00; color: #fff; }
+.b-out  { background: #2E7D32; color: #fff; }
+.b-soon { background: #1565C0; color: #fff; }
+.b-imp  { background: #6A1B9A; color: #fff; }
+.b-adm  { background: #00695C; color: #fff; }
+
+/* ═══════════════════════════════════════════
+   FEATURED CARDS (big visual cards)
+═══════════════════════════════════════════ */
+.featured-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+  padding: 12px;
+}
+.feat-card {
+  border-radius: var(--radius);
+  padding: 14px;
+  cursor: pointer;
+  transition: transform .15s, box-shadow .15s;
+  position: relative;
+  overflow: hidden;
+}
+.feat-card:hover { transform: translateY(-2px); box-shadow: 0 4px 16px rgba(0,0,0,.12); }
+.feat-card-label {
+  font-size: 10px; font-weight: 700;
+  letter-spacing: .5px; text-transform: uppercase;
+  margin-bottom: 5px; opacity: .75;
+}
+.feat-card-title {
+  font-size: 13px; font-weight: 700;
+  line-height: 1.35; margin-bottom: 6px;
+}
+.feat-card-meta {
+  font-size: 11px; opacity: .7;
+}
+.feat-card-arrow {
+  position: absolute; right: 12px; top: 50%;
+  transform: translateY(-50%);
+  font-size: 18px; opacity: .3;
+}
+
+/* ═══════════════════════════════════════════
+   QUALIFICATION QUICK LINKS
+═══════════════════════════════════════════ */
+.qual-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+  padding: 12px;
+}
+.qual-card {
+  border-radius: var(--radius);
+  padding: 12px 10px;
+  text-align: center;
+  cursor: pointer;
+  transition: transform .15s;
+  border: 1.5px solid transparent;
+}
+.qual-card:hover { transform: translateY(-2px); }
+.qual-icon { font-size: 22px; margin-bottom: 5px; }
+.qual-label {
+  font-size: 11.5px; font-weight: 700;
+  color: var(--text); margin-bottom: 2px;
+}
+.qual-count { font-size: 10px; color: var(--muted); }
+
+/* ═══════════════════════════════════════════
+   BOARD RESULTS SECTION (special layout)
+═══════════════════════════════════════════ */
+.board-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: var(--border);
+}
+.board-item {
+  background: #fff;
+  padding: 10px 14px;
+  display: flex; flex-direction: column; gap: 3px;
+  cursor: pointer; transition: background .12s;
+}
+.board-item:hover { background: var(--light); }
+.board-name {
+  font-size: 12.5px; font-weight: 600; color: #1A3A6B;
+}
+.board-name:hover { color: var(--orange); }
+.board-class { font-size: 11px; color: var(--muted); }
+.board-status {
+  font-size: 10.5px; font-weight: 700;
+  margin-top: 3px;
+}
+.board-status.out   { color: var(--c-results); }
+.board-status.soon  { color: var(--c-jobs); }
+.board-status.exp   { color: var(--c-schemes); }
+
+/* ═══════════════════════════════════════════
+   SIDEBAR WIDGETS
+═══════════════════════════════════════════ */
+.sidebar { display: flex; flex-direction: column; gap: 12px; }
+
+.widget {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+}
+.widget-head {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 9px 14px;
+  border-bottom: 1px solid var(--border);
+}
+.widget-title {
+  font-size: 13px; font-weight: 700; color: var(--text);
+  display: flex; align-items: center; gap: 6px;
+}
+.widget-more { font-size: 11px; color: var(--orange); font-weight: 600; }
+
+/* Simple sidebar list */
+.sw-list { padding: 4px 0; }
+.sw-item {
+  display: flex; align-items: flex-start; gap: 6px;
+  padding: 7px 14px;
+  border-bottom: 1px dashed #EEF0F5;
+  cursor: pointer;
+  transition: background .12s;
+}
+.sw-item:last-child { border-bottom: none; }
+.sw-item:hover { background: var(--light); }
+.sw-dot {
+  width: 6px; height: 6px; border-radius: 50%;
+  flex-shrink: 0; margin-top: 6px;
+}
+.sw-text { font-size: 12.5px; color: #1A3A6B; font-weight: 500; line-height: 1.4; flex: 1; }
+.sw-text:hover { color: var(--orange); }
+
+/* Exam Calendar */
+.exam-cal { padding: 8px 0; }
+.ec-item {
+  display: flex; gap: 10px; align-items: flex-start;
+  padding: 8px 14px; border-bottom: 1px dashed #EEF0F5;
+}
+.ec-item:last-child { border-bottom: none; }
+.ec-date {
+  width: 40px; flex-shrink: 0; text-align: center;
+  background: var(--navy); border-radius: 5px;
+  padding: 4px 2px; color: #fff;
+}
+.ec-day {
+  font-family: 'Teko', sans-serif;
+  font-size: 18px; font-weight: 700; line-height: 1; color: var(--gold);
+}
+.ec-mo { font-size: 9px; letter-spacing: .5px; text-transform: uppercase; color: rgba(255,255,255,.6); }
+.ec-info { flex: 1; }
+.ec-exam { font-size: 12px; font-weight: 600; color: var(--text); line-height: 1.35; }
+.ec-org  { font-size: 11px; color: var(--muted); margin-top: 2px; }
+
+/* Quick Links Grid in sidebar */
+.ql-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1px;
+  background: var(--border);
+}
+.ql-item {
+  background: #fff;
+  padding: 10px 12px;
+  display: flex; align-items: center; gap: 7px;
+  cursor: pointer; transition: background .12s;
+}
+.ql-item:hover { background: var(--light); }
+.ql-icon { font-size: 14px; flex-shrink: 0; }
+.ql-label { font-size: 12px; font-weight: 600; color: var(--text); line-height: 1.3; }
+
+/* Subscribe widget */
+.sub-widget { padding: 14px; }
+.sub-widget p { font-size: 12.5px; color: var(--muted); margin-bottom: 10px; line-height: 1.55; }
+.sub-input {
+  width: 100%;
+  background: var(--light);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 9px 12px;
+  font-size: 13px;
+  font-family: 'Noto Sans', sans-serif;
+  color: var(--text);
+  outline: none;
+  margin-bottom: 8px;
+  transition: border-color .2s;
+}
+.sub-input:focus { border-color: var(--orange); }
+.sub-btn {
+  width: 100%;
+  background: var(--orange);
+  color: #fff; border: none;
+  border-radius: 6px; padding: 10px;
+  font-size: 13px; font-weight: 700;
+  cursor: pointer; font-family: 'Noto Sans', sans-serif;
+  transition: background .15s;
+}
+.sub-btn:hover { background: var(--orange2); }
+
+/* Notice Box */
+.notice-box {
+  margin: 8px 12px;
+  background: #FFFDE7;
+  border: 1px solid #F9A825;
+  border-radius: 6px;
+  padding: 9px 12px;
+  font-size: 12px;
+  color: #5D4037;
+  line-height: 1.5;
+  display: flex; gap: 7px;
+}
+.notice-icon { flex-shrink: 0; margin-top: 1px; }
+
+/* ═══════════════════════════════════════════
+   TOP SECTION PILLS (featured announcement)
+═══════════════════════════════════════════ */
+.announce-strip {
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 10px 14px;
+  margin-bottom: 14px;
+  display: flex; align-items: center; gap: 10px;
+  flex-wrap: wrap;
+  box-shadow: var(--shadow);
+}
+.ann-label {
+  background: var(--orange);
+  color: #fff;
+  font-size: 10.5px; font-weight: 700;
+  padding: 2px 8px; border-radius: 4px;
+  letter-spacing: .3px;
+  flex-shrink: 0;
+}
+.ann-links { display: flex; flex-wrap: wrap; gap: 6px; flex: 1; }
+.ann-link {
+  font-size: 12px;
+  color: #1A3A6B;
+  font-weight: 500;
+  background: var(--light);
+  border: 1px solid var(--border);
+  padding: 3px 10px;
+  border-radius: 99px;
+  transition: all .15s;
+}
+.ann-link:hover { background: var(--orange-bg); color: var(--orange); border-color: var(--orange); }
+
+/* ═══════════════════════════════════════════
+   SECTION COLOUR HELPERS
+═══════════════════════════════════════════ */
+.c-jobs    { color: var(--c-jobs); }
+.c-results { color: var(--c-results); }
+.c-admit   { color: var(--c-admit); }
+.c-board   { color: var(--c-board); }
+.c-schemes { color: var(--c-schemes); }
+.c-univ    { color: var(--c-univ); }
+.c-answer  { color: var(--c-answer); }
+
+.dot-jobs    { background: var(--c-jobs); }
+.dot-results { background: var(--c-results); }
+.dot-admit   { background: var(--c-admit); }
+.dot-board   { background: var(--c-board); }
+.dot-schemes { background: var(--c-schemes); }
+.dot-univ    { background: var(--c-univ); }
+.dot-answer  { background: var(--c-answer); }
+.dot-syllabus{ background: var(--c-syllabus); }
+
+.bg-jobs    { background: var(--c-jobs-bg); color: var(--c-jobs); }
+.bg-results { background: var(--c-results-bg); color: var(--c-results); }
+.bg-admit   { background: var(--c-admit-bg); color: var(--c-admit); }
+.bg-board   { background: var(--c-board-bg); color: var(--c-board); }
+.bg-schemes { background: var(--c-schemes-bg); color: var(--c-schemes); }
+.bg-univ    { background: var(--c-univ-bg); color: var(--c-univ); }
+
+.more-jobs    { color: var(--c-jobs); }
+.more-results { color: var(--c-results); }
+.more-admit   { color: var(--c-admit); }
+.more-board   { color: var(--c-board); }
+.more-schemes { color: var(--c-schemes); }
+.more-univ    { color: var(--c-univ); }
+.more-answer  { color: var(--c-answer); }
+.more-syllabus{ color: var(--c-syllabus); }
+
+/* ═══════════════════════════════════════════
+   TWO-COLUMN FEED (big list sections)
+═══════════════════════════════════════════ */
+.two-col-feed {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1px;
+  background: var(--border);
+}
+.tcf-col { background: #fff; }
+.tcf-head {
+  background: var(--light);
+  padding: 8px 14px;
+  font-size: 12px; font-weight: 700;
+  color: var(--text);
+  display: flex; align-items: center; gap: 6px;
+  border-bottom: 1px solid var(--border);
+}
+
+/* ═══════════════════════════════════════════
+   FOOTER
+═══════════════════════════════════════════ */
+.site-footer { background: var(--navy); color: rgba(255,255,255,.6); margin-top: 20px; }
+.footer-main {
+  max-width: 1200px; margin: 0 auto;
+  padding: 28px 16px 20px;
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 24px;
+}
+.footer-brand {}
+.footer-logo {
+  font-family: 'Teko', sans-serif;
+  font-size: 24px; font-weight: 700; color: #fff; margin-bottom: 7px;
+}
+.footer-logo span { color: var(--gold); }
+.footer-desc { font-size: 12.5px; line-height: 1.65; max-width: 240px; margin-bottom: 14px; }
+.footer-col h4 {
+  font-size: 13px; font-weight: 700; color: #fff;
+  margin-bottom: 12px; padding-bottom: 5px;
+  border-bottom: 1px solid rgba(255,255,255,.1);
+}
+.footer-links li { margin-bottom: 7px; }
+.footer-links a { font-size: 12px; color: rgba(255,255,255,.55); transition: color .15s; }
+.footer-links a:hover { color: var(--gold); }
+.footer-bottom {
+  border-top: 1px solid rgba(255,255,255,.08);
+  padding: 12px 16px; text-align: center;
+  font-size: 11.5px; color: rgba(255,255,255,.35);
+}
+.footer-bottom a { color: rgba(255,255,255,.5); }
+
+/* ═══════════════════════════════════════════
+   MOBILE
+═══════════════════════════════════════════ */
+.mobile-menu {
+  display: none;
+  position: fixed; inset: 0;
+  background: var(--navy); z-index: 200;
+  padding: 70px 20px 20px;
+  flex-direction: column; gap: 3px;
+  overflow-y: auto;
+}
+.mobile-menu.open { display: flex; }
+.mobile-close {
+  position: absolute; top: 14px; right: 16px;
+  color: #fff; font-size: 22px; background: none; border: none; cursor: pointer;
+}
+.mm-link {
+  color: rgba(255,255,255,.8); font-size: 15px; font-weight: 500;
+  padding: 12px 14px; border-radius: 7px; display: block;
+  border-bottom: 1px solid rgba(255,255,255,.07);
+}
+
+@media(max-width: 1024px) {
+  .main { grid-template-columns: 1fr; }
+  .sidebar { display: grid; grid-template-columns: repeat(2, 1fr); }
+  .footer-main { grid-template-columns: 1fr 1fr; }
+}
+@media(max-width: 720px) {
+  .header-search { display: none; }
+  .header-nav { display: none; }
+  .hamburger { display: flex; }
+  .featured-grid { grid-template-columns: 1fr; }
+  .qual-grid { grid-template-columns: repeat(2, 1fr); }
+  .board-grid { grid-template-columns: repeat(2, 1fr); }
+  .two-col-feed { grid-template-columns: 1fr; }
+  .sidebar { grid-template-columns: 1fr; }
+  .footer-main { grid-template-columns: 1fr; }
+  .stats-strip-inner { gap: 14px; }
+}
+@media(max-width: 480px) {
+  .qual-grid { grid-template-columns: repeat(4, 1fr); }
+  .board-grid { grid-template-columns: 1fr; }
 }
 </style>
 </head>
 <body>
 
-<!-- ════ TOP BAR ════ -->
-<div class="topbar">
-  <div class="topbar-inner">
-    <span class="topbar-label">🔔 ALERT</span>
-    <div class="ticker">
-      <div class="ticker-inner">
-        <span class="ticker-item"><a href="jobs.html">RRB ALP 2026 – 11,127 Vacancies</a> | Application Opens 15 May 2026</span>
-        <span class="ticker-item"><a href="jobs.html">UPSC CSE 2026 – Prelims on 24 May 2026</a></span>
-        <span class="ticker-item"><a href="jobs.html">SSC CGL 2026 – Notification Expected 31 March 2026</a></span>
-        <span class="ticker-item"><a href="jobs.html">India Post GDS 2026 – 28,636 Posts – Merit List Out</a></span>
-        <span class="ticker-item"><a href="jobs.html">RBI Assistant 2026 – 650 Posts – Apply Now</a></span>
-        <span class="ticker-item"><a href="jobs.html">RRB ALP 2026 – 11,127 Vacancies</a> | Application Opens 15 May 2026</span>
-        <span class="ticker-item"><a href="jobs.html">UPSC CSE 2026 – Prelims on 24 May 2026</a></span>
-        <span class="ticker-item"><a href="jobs.html">SSC CGL 2026 – Notification Expected 31 March 2026</a></span>
-        <span class="ticker-item"><a href="jobs.html">India Post GDS 2026 – 28,636 Posts – Merit List Out</a></span>
-        <span class="ticker-item"><a href="jobs.html">RBI Assistant 2026 – 650 Posts – Apply Now</a></span>
-      </div>
+<!-- ════ BREAKING NEWS ════ -->
+<div class="breaking">
+  <div class="breaking-label">🔴 LATEST</div>
+  <div class="breaking-scroll">
+    <div class="breaking-inner" id="ticker">
+      <span class="breaking-item"><span class="breaking-sep">▸</span><a href="section.html?s=results">Bihar Board Class 12 Result 2026 Expected This Week</a></span>
+      <span class="breaking-item"><span class="breaking-sep">▸</span><a href="section.html?s=jobs">RRB ALP 2026 — 11,127 Posts — CEN Out</a></span>
+      <span class="breaking-item"><span class="breaking-sep">▸</span><a href="section.html?s=results">UPSC CSE Final Result 2025 Declared — Anuj Agnihotri AIR 1</a></span>
+      <span class="breaking-item"><span class="breaking-sep">▸</span><a href="section.html?s=admit_cards">UP Board 12th Admit Card 2026 — Download Now</a></span>
+      <span class="breaking-item"><span class="breaking-sep">▸</span><a href="section.html?s=jobs">UPSSSC PET 2026 — 929 ASO/ARO Posts</a></span>
+      <span class="breaking-item"><span class="breaking-sep">▸</span><a href="section.html?s=results">IBPS RRB Clerk Mains Result 2026 Declared</a></span>
+      <span class="breaking-item"><span class="breaking-sep">▸</span><a href="section.html?s=schemes">PM Kisan 19th Instalment Released — Check Status</a></span>
+      <span class="breaking-item"><span class="breaking-sep">▸</span><a href="section.html?s=jobs">SSC CGL 2026 Notification Expected 31 March</a></span>
+      <!-- Duplicate for seamless loop -->
+      <span class="breaking-item"><span class="breaking-sep">▸</span><a href="section.html?s=results">Bihar Board Class 12 Result 2026 Expected This Week</a></span>
+      <span class="breaking-item"><span class="breaking-sep">▸</span><a href="section.html?s=jobs">RRB ALP 2026 — 11,127 Posts — CEN Out</a></span>
+      <span class="breaking-item"><span class="breaking-sep">▸</span><a href="section.html?s=results">UPSC CSE Final Result 2025 Declared — Anuj Agnihotri AIR 1</a></span>
+      <span class="breaking-item"><span class="breaking-sep">▸</span><a href="section.html?s=admit_cards">UP Board 12th Admit Card 2026 — Download Now</a></span>
+      <span class="breaking-item"><span class="breaking-sep">▸</span><a href="section.html?s=jobs">UPSSSC PET 2026 — 929 ASO/ARO Posts</a></span>
+      <span class="breaking-item"><span class="breaking-sep">▸</span><a href="section.html?s=results">IBPS RRB Clerk Mains Result 2026 Declared</a></span>
+      <span class="breaking-item"><span class="breaking-sep">▸</span><a href="section.html?s=schemes">PM Kisan 19th Instalment Released — Check Status</a></span>
+      <span class="breaking-item"><span class="breaking-sep">▸</span><a href="section.html?s=jobs">SSC CGL 2026 Notification Expected 31 March</a></span>
     </div>
-    <span class="topbar-right">📅 22 March 2026</span>
   </div>
 </div>
 
 <!-- ════ HEADER ════ -->
 <header>
-  <div class="header-inner">
+  <div class="header-wrap">
     <a href="index.html" class="logo">
-      <div class="logo-icon">SA</div>
+      <div class="logo-mark">SA</div>
       <div>
         <div class="logo-text">Sarkari<span>Alert</span>.in</div>
-        <span class="logo-tag">INDIA'S FASTEST GOVT JOB PORTAL</span>
+        <div class="logo-sub">INDIA'S FASTEST GOVT UPDATE PORTAL</div>
       </div>
     </a>
-    <nav>
-      <a href="index.html" class="nav-link active">Home</a>
-      <a href="jobs.html" class="nav-link">All Jobs</a>
-      <a href="results.html" class="nav-link">Results</a>
-      <a href="admit.html" class="nav-link">Admit Cards</a>
-      <a href="syllabus.html" class="nav-link">Syllabus</a>
-      <a href="about.html" class="nav-link">About</a>
-      <a href="#subscribe" class="nav-cta">🔔 Get Alerts</a>
-    </nav>
-    <div class="hamburger" onclick="openMenu()">
-      <span></span><span></span><span></span>
+
+    <div class="header-search">
+      <input type="text" id="globalSearch" placeholder="Search jobs, results, admit cards, boards…" onkeydown="if(event.key==='Enter')doSearch()">
+      <button class="header-search-btn" onclick="doSearch()">Search</button>
     </div>
+
+    <nav class="header-nav">
+      <a href="section.html?s=jobs"        class="hn-link">Jobs</a>
+      <a href="section.html?s=results"     class="hn-link">Results</a>
+      <a href="section.html?s=admit_cards" class="hn-link">Admit Card</a>
+      <a href="section.html?s=board"       class="hn-link">Board</a>
+      <a href="section.html?s=schemes"     class="hn-link">Schemes</a>
+      <a href="about.html"                 class="hn-link">About</a>
+      <a href="#subscribe" class="hn-alert">🔔 Free Alert</a>
+    </nav>
+    <div class="hamburger" onclick="openMenu()"><span></span><span></span><span></span></div>
   </div>
 </header>
 
 <!-- Mobile Menu -->
 <div class="mobile-menu" id="mobileMenu">
   <button class="mobile-close" onclick="closeMenu()">✕</button>
-  <a href="index.html" class="mobile-link">🏠 Home</a>
-  <a href="jobs.html" class="mobile-link">💼 All Jobs</a>
-  <a href="results.html" class="mobile-link">📋 Results</a>
-  <a href="admit.html" class="mobile-link">🎫 Admit Cards</a>
-  <a href="syllabus.html" class="mobile-link">📚 Syllabus</a>
-  <a href="about.html" class="mobile-link">ℹ️ About</a>
+  <div style="padding:10px 14px;margin-bottom:10px">
+    <input type="text" placeholder="Search…" style="width:100%;padding:10px 14px;border-radius:7px;border:1px solid rgba(255,255,255,.2);background:rgba(255,255,255,.08);color:#fff;font-size:14px;outline:none">
+  </div>
+  <a href="section.html?s=jobs"        class="mm-link">💼 Latest Government Jobs</a>
+  <a href="section.html?s=results"     class="mm-link">📋 Exam Results</a>
+  <a href="section.html?s=admit_cards" class="mm-link">🎫 Admit Cards</a>
+  <a href="section.html?s=board"       class="mm-link">🏫 Board Exam Results</a>
+  <a href="section.html?s=univ"        class="mm-link">🎓 University Results & Admission</a>
+  <a href="section.html?s=schemes"     class="mm-link">🏛️ Govt Schemes / Yojana</a>
+  <a href="section.html?s=answer_keys" class="mm-link">📝 Answer Keys</a>
+  <a href="section.html?s=syllabus"    class="mm-link">📚 Syllabus</a>
+  <a href="about.html"                 class="mm-link">ℹ️ About Us</a>
+  <a href="admin/login.html"           class="mm-link">🔐 Admin Panel</a>
 </div>
 
-<!-- ════ HERO ════ -->
-<div class="hero">
-  <div class="hero-inner">
-    <div class="hero-content">
-      <div class="hero-eyebrow">Live Job Alerts</div>
-      <h1>India's Fastest<br><span>Sarkari Job</span><br>Alert Portal</h1>
-      <p class="hero-sub">Get notified instantly for UPSC, SSC, Railway, Banking, Police and all Central & State Government jobs. Never miss a notification again.</p>
-      <div class="hero-stats">
-        <div class="hero-stat"><div class="hero-stat-num">1.2L+</div><div class="hero-stat-label">Active Vacancies</div></div>
-        <div class="hero-stat"><div class="hero-stat-num">15+</div><div class="hero-stat-label">Live Jobs Today</div></div>
-        <div class="hero-stat"><div class="hero-stat-num">50K+</div><div class="hero-stat-label">Alert Subscribers</div></div>
-        <div class="hero-stat"><div class="hero-stat-num">Daily</div><div class="hero-stat-label">Updates</div></div>
-      </div>
-    </div>
-    <div class="hero-graphic">
-      <div class="hero-card-stack">
-        <div class="hc"><span class="hc-badge">RAILWAY</span><div class="hc-title">RRB Group D 2026</div><div class="hc-meta">22,195 Vacancies</div></div>
-        <div class="hc"><span class="hc-badge">UPSC</span><div class="hc-title">Civil Services 2026</div><div class="hc-meta">933 Posts | Prelims 24 May</div></div>
-        <div class="hc"><span class="hc-badge">BANKING</span><div class="hc-title">RBI Assistant 2026</div><div class="hc-meta">650 Posts | Apply Now ✅</div></div>
-      </div>
-    </div>
+<!-- ════ NAV TABS ════ -->
+<div class="nav-tabs">
+  <div class="nav-tabs-inner">
+    <button class="nt-link active" onclick="filterSection('all',this)">All Updates</button>
+    <button class="nt-link" onclick="filterSection('jobs',this)">💼 Govt Jobs <span class="nt-count" id="cnt-jobs">0</span></button>
+    <button class="nt-link" onclick="filterSection('results',this)">📋 Results <span class="nt-count" id="cnt-results">0</span></button>
+    <button class="nt-link" onclick="filterSection('admit',this)">🎫 Admit Cards <span class="nt-count" id="cnt-admit">0</span></button>
+    <button class="nt-link" onclick="filterSection('board',this)">🏫 Board Exams</button>
+    <button class="nt-link" onclick="filterSection('univ',this)">🎓 University</button>
+    <button class="nt-link" onclick="filterSection('schemes',this)">🏛️ Schemes</button>
+    <button class="nt-link" onclick="filterSection('answer',this)">📝 Answer Keys</button>
+    <button class="nt-link" onclick="filterSection('syllabus',this)">📚 Syllabus</button>
   </div>
 </div>
 
-<!-- ════ SEARCH ════ -->
-<div class="search-section">
-  <div class="search-wrap">
-    <div class="search-box">
-      <span>🔍</span>
-      <input type="text" id="searchInput" placeholder="Search jobs... e.g. Railway, SSC, Police, Bank..." onkeyup="filterJobs()">
-      <button class="search-btn" onclick="filterJobs()">Search Jobs</button>
-    </div>
-    <div class="search-tags">
-      <span class="search-tag" onclick="quickSearch('Railway')">Railway</span>
-      <span class="search-tag" onclick="quickSearch('UPSC')">UPSC</span>
-      <span class="search-tag" onclick="quickSearch('SSC')">SSC CGL</span>
-      <span class="search-tag" onclick="quickSearch('Police')">Police</span>
-      <span class="search-tag" onclick="quickSearch('Banking')">Banking</span>
-      <span class="search-tag" onclick="quickSearch('Apprentice')">Apprentice</span>
-      <span class="search-tag" onclick="quickSearch('10th')">10th Pass</span>
-      <span class="search-tag" onclick="quickSearch('Graduate')">Graduate</span>
-    </div>
+<!-- ════ STATS STRIP ════ -->
+<div class="stats-strip">
+  <div class="stats-strip-inner">
+    <div class="ss-item"><div class="ss-num" id="stat-vac">1.2L+</div><div>Active Vacancies</div></div>
+    <div class="ss-sep">|</div>
+    <div class="ss-item"><div class="ss-num" id="stat-posts">50+</div><div>Posts Today</div></div>
+    <div class="ss-sep">|</div>
+    <div class="ss-item"><div class="ss-num">8</div><div>Results This Week</div></div>
+    <div class="ss-sep">|</div>
+    <div class="ss-item"><div class="ss-num">12</div><div>Admit Cards Active</div></div>
+    <div class="ss-sep">|</div>
+    <div class="ss-item"><div class="ss-num">4</div><div>Board Results Soon</div></div>
+    <div class="ss-sep">|</div>
+    <div class="ss-item"><div class="ss-num">50K+</div><div>Subscribers</div></div>
+    <div style="margin-left:auto;font-size:11px;color:rgba(255,255,255,.4)">Updated: <span id="updateTime"></span></div>
   </div>
 </div>
 
-<!-- ════ NOTICE STRIP ════ -->
-<div class="notice-strip">
-  <div class="notice-inner">
-    <span class="notice-label">📢 Notice</span>
-    <div class="notice-scroll">
-      <div class="notice-text">
-        <a href="jobs.html">RRB ALP 2026 Short Notification OUT</a><span>||</span>
-        <a href="jobs.html">UPSC CSE 2026 Prelims: 24 May 2026</a><span>||</span>
-        <a href="jobs.html">SCR Apprentice Last Date: 11 April 2026</a><span>||</span>
-        <a href="jobs.html">India Post GDS Supplementary List Released</a><span>||</span>
-        <a href="jobs.html">Punjab Police Constable Applications Open</a><span>||</span>
-        <a href="jobs.html">RBI Assistant 2026 – Apply at rbi.org.in</a><span>||</span>
-        <a href="jobs.html">SECL Apprentice 1600 Posts Notification Released</a><span>||</span>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- ════ STATS BAR ════ -->
-<div class="stats-bar">
-  <div class="stats-inner">
-    <div class="stat-item"><div class="stat-num">1,20,000+</div><div class="stat-lbl">Total Vacancies Live</div></div>
-    <div class="stat-item"><div class="stat-num">15</div><div class="stat-lbl">Jobs Added Today</div></div>
-    <div class="stat-item"><div class="stat-num">8</div><div class="stat-lbl">Apply Deadlines This Week</div></div>
-    <div class="stat-item"><div class="stat-num">3</div><div class="stat-lbl">Results Announced Today</div></div>
-    <div class="stat-item"><div class="stat-num">50K+</div><div class="stat-lbl">Email Subscribers</div></div>
-  </div>
-</div>
-
-<!-- ════ CATEGORY FILTER ════ -->
-<div class="categories">
-  <div class="cats-inner">
-    <button class="cat-btn active" onclick="filterCat('all',this)">🗂️ All Jobs</button>
-    <button class="cat-btn" onclick="filterCat('railway',this)">🚂 Railway</button>
-    <button class="cat-btn" onclick="filterCat('upsc',this)">🏛️ UPSC/SSC</button>
-    <button class="cat-btn" onclick="filterCat('banking',this)">🏦 Banking</button>
-    <button class="cat-btn" onclick="filterCat('defence',this)">🛡️ Defence/Police</button>
-    <button class="cat-btn" onclick="filterCat('state',this)">🗺️ State Govt</button>
-  </div>
-</div>
-
-<!-- ════ MAIN CONTENT ════ -->
+<!-- ════ MAIN ════ -->
 <div class="main">
 
-  <!-- LEFT: JOB LISTINGS -->
-  <div class="content-area">
-    <div class="sec-head">
-      <div class="sec-title">Latest Job Notifications</div>
-      <div style="display:flex;align-items:center;gap:10px">
-        <span class="live-badge">LIVE</span>
-        <a href="jobs.html" class="sec-link">View All Jobs →</a>
+  <!-- LEFT COLUMN -->
+  <div class="left-col">
+
+    <!-- ANNOUNCE STRIP -->
+    <div class="announce-strip">
+      <span class="ann-label">🔥 TRENDING</span>
+      <div class="ann-links">
+        <a href="section.html?s=jobs" class="ann-link">RRB ALP 2026</a>
+        <a href="section.html?s=results" class="ann-link">UPSC Result 2025</a>
+        <a href="section.html?s=jobs" class="ann-link">SSC CGL 2026</a>
+        <a href="section.html?s=board" class="ann-link">Bihar Board Result</a>
+        <a href="section.html?s=jobs" class="ann-link">UPSSSC ASO 2026</a>
+        <a href="section.html?s=admit_cards" class="ann-link">UP Board Admit Card</a>
+        <a href="section.html?s=results" class="ann-link">IBPS RRB Result</a>
+        <a href="section.html?s=schemes" class="ann-link">PM Kisan 19th</a>
       </div>
     </div>
 
-    <div id="jobsList">
-
-      <!-- Job 1 -->
-      <a href="all_govt_job_posts.html#post-2" class="job-card railway" data-cat="railway" data-title="RRB ALP Recruitment 2026 Assistant Loco Pilot Railway">
-        <div class="jc-icon">🚂</div>
-        <div class="jc-body">
-          <div class="jc-top">
-            <div class="jc-title">RRB ALP Recruitment 2026 — Assistant Loco Pilot</div>
-            <span class="jc-new">NEW</span>
-          </div>
-          <div class="jc-dept">Railway Recruitment Board (CEN 01/2026) · All Railway Zones</div>
-          <div class="jc-tags">
-            <span class="tag tag-vac">📋 11,127 Posts</span>
-            <span class="tag tag-open">🟢 Opens 15 May 2026</span>
-            <span class="tag tag-qual">10th + ITI / Diploma</span>
-            <span class="tag tag-hot">🔥 Hot</span>
-          </div>
+    <!-- ── LATEST GOVERNMENT JOBS ── -->
+    <div class="section-block" id="sec-jobs">
+      <div class="sb-head">
+        <div class="sb-title">
+          <div class="sb-title-dot" style="background:var(--c-jobs)"></div>
+          <span class="sb-icon">💼</span>
+          <span>Latest Government Jobs</span>
         </div>
-        <div class="jc-arrow">→</div>
-      </a>
+        <a href="section.html?s=jobs" class="sb-more more-jobs">View All Jobs →</a>
+      </div>
 
-      <!-- Job 2 -->
-      <a href="all_govt_job_posts.html#post-1" class="job-card railway" data-cat="railway" data-title="RRB Group D 2026 Railway Level 1 Posts">
-        <div class="jc-icon">🚂</div>
-        <div class="jc-body">
-          <div class="jc-top">
-            <div class="jc-title">RRB Group D Recruitment 2026 — Level-1 Posts (CEN 09/2025)</div>
-          </div>
-          <div class="jc-dept">Railway Recruitment Board · All 16 RRB Zones</div>
-          <div class="jc-tags">
-            <span class="tag tag-vac">📋 22,195 Posts</span>
-            <span class="tag tag-date">⏰ Exam: May 2026</span>
-            <span class="tag tag-qual">10th / ITI</span>
-          </div>
+      <!-- Featured Cards -->
+      <div class="featured-grid">
+        <div class="feat-card bg-jobs" onclick="location.href='section.html?s=jobs'">
+          <div class="feat-card-label c-jobs">Railway · CEN 01/2026</div>
+          <div class="feat-card-title">RRB ALP 2026 — Assistant Loco Pilot</div>
+          <div class="feat-card-meta">11,127 Posts | 10th+ITI | Apply: 15 May 2026</div>
+          <span class="feat-card-arrow">→</span>
         </div>
-        <div class="jc-arrow">→</div>
-      </a>
-
-      <!-- Job 3 -->
-      <a href="all_govt_job_posts.html#post-5" class="job-card upsc" data-cat="upsc" data-title="UPSC Civil Services IAS IPS 2026 Prelims">
-        <div class="jc-icon">🏛️</div>
-        <div class="jc-body">
-          <div class="jc-top">
-            <div class="jc-title">UPSC Civil Services 2026 (IAS/IPS/IFS/IRS) — Prelims 24 May</div>
-          </div>
-          <div class="jc-dept">Union Public Service Commission · upsc.gov.in</div>
-          <div class="jc-tags">
-            <span class="tag tag-vac">📋 933 Posts</span>
-            <span class="tag tag-date">⏰ Prelims: 24 May 2026</span>
-            <span class="tag tag-qual">Any Graduate</span>
-          </div>
+        <div class="feat-card bg-results" onclick="location.href='section.html?s=jobs'">
+          <div class="feat-card-label c-results">SSC | Notification Soon</div>
+          <div class="feat-card-title">SSC CGL 2026 — Combined Graduate Level</div>
+          <div class="feat-card-meta">14,582 Posts | Graduation | Notif: 31 Mar 2026</div>
+          <span class="feat-card-arrow">→</span>
         </div>
-        <div class="jc-arrow">→</div>
-      </a>
+      </div>
 
-      <!-- Job 4 -->
-      <a href="all_govt_job_posts.html#post-7" class="job-card upsc" data-cat="upsc" data-title="SSC CGL 2025 Combined Graduate Level Group B C">
-        <div class="jc-icon">📝</div>
-        <div class="jc-body">
-          <div class="jc-top">
-            <div class="jc-title">SSC CGL 2025–26 — Combined Graduate Level (Group B & C)</div>
-            <span class="jc-new">HOT</span>
-          </div>
-          <div class="jc-dept">Staff Selection Commission · ssc.gov.in</div>
-          <div class="jc-tags">
-            <span class="tag tag-vac">📋 14,582 Posts</span>
-            <span class="tag tag-open">🟢 New Notification: 31 Mar</span>
-            <span class="tag tag-qual">Graduation</span>
-          </div>
-        </div>
-        <div class="jc-arrow">→</div>
-      </a>
-
-      <!-- Job 5 -->
-      <a href="all_govt_job_posts.html#post-10" class="job-card banking" data-cat="banking" data-title="RBI Assistant 2026 Reserve Bank of India Banking">
-        <div class="jc-icon">🏦</div>
-        <div class="jc-body">
-          <div class="jc-top">
-            <div class="jc-title">RBI Assistant Recruitment 2026</div>
-            <span class="jc-new">NEW</span>
-          </div>
-          <div class="jc-dept">Reserve Bank of India · opportunities.rbi.org.in</div>
-          <div class="jc-tags">
-            <span class="tag tag-vac">📋 650 Posts</span>
-            <span class="tag tag-open">🟢 Apply Open</span>
-            <span class="tag tag-qual">Graduate 50%</span>
-            <span class="tag tag-hot">🔥 Hot</span>
-          </div>
-        </div>
-        <div class="jc-arrow">→</div>
-      </a>
-
-      <!-- Job 6 -->
-      <a href="all_govt_job_posts.html#post-11" class="job-card state" data-cat="state" data-title="India Post GDS Gramin Dak Sevak 2026 postal">
-        <div class="jc-icon">📮</div>
-        <div class="jc-body">
-          <div class="jc-top">
-            <div class="jc-title">India Post GDS 2026 — Gramin Dak Sevak (Merit List Out)</div>
-          </div>
-          <div class="jc-dept">Dept. of Posts, Govt. of India · indiapostgdsonline.gov.in</div>
-          <div class="jc-tags">
-            <span class="tag tag-vac">📋 28,636 Posts</span>
-            <span class="tag tag-hot">🔥 Merit List Released</span>
-            <span class="tag tag-qual">10th Pass</span>
-          </div>
-        </div>
-        <div class="jc-arrow">→</div>
-      </a>
-
-      <!-- Job 7 -->
-      <a href="all_govt_job_posts.html#post-3" class="job-card railway" data-cat="railway" data-title="SCR South Central Railway Apprentice 2026">
-        <div class="jc-icon">🚂</div>
-        <div class="jc-body">
-          <div class="jc-top">
-            <div class="jc-title">South Central Railway Apprentice 2026</div>
-          </div>
-          <div class="jc-dept">South Central Railway (SCR) · scr.indianrailways.gov.in</div>
-          <div class="jc-tags">
-            <span class="tag tag-vac">📋 2,801 Posts</span>
-            <span class="tag tag-date">⏰ Last Date: 11 April 2026</span>
-            <span class="tag tag-qual">10th + ITI</span>
-            <span class="tag tag-open">🟢 Apply Now</span>
-          </div>
-        </div>
-        <div class="jc-arrow">→</div>
-      </a>
-
-      <!-- Job 8 -->
-      <a href="all_govt_job_posts.html#post-8" class="job-card defence" data-cat="defence" data-title="UPSC CDS Combined Defence Services 2026">
-        <div class="jc-icon">🛡️</div>
-        <div class="jc-body">
-          <div class="jc-top">
-            <div class="jc-title">UPSC CDS-I 2026 — Combined Defence Services</div>
-          </div>
-          <div class="jc-dept">Union Public Service Commission · upsc.gov.in</div>
-          <div class="jc-tags">
-            <span class="tag tag-qual">IMA / INA / AFA / OTA</span>
-            <span class="tag tag-qual">Graduation</span>
-          </div>
-        </div>
-        <div class="jc-arrow">→</div>
-      </a>
-
-      <!-- Job 9 -->
-      <a href="all_govt_job_posts.html#post-13" class="job-card defence" data-cat="defence" data-title="Punjab Police Constable Recruitment 2026">
-        <div class="jc-icon">🚔</div>
-        <div class="jc-body">
-          <div class="jc-top">
-            <div class="jc-title">Punjab Police Constable Recruitment 2026</div>
-          </div>
-          <div class="jc-dept">Punjab Police Department · punjabpolice.gov.in</div>
-          <div class="jc-tags">
-            <span class="tag tag-vac">📋 3,298 Posts</span>
-            <span class="tag tag-open">🟢 Apply Open</span>
-            <span class="tag tag-qual">12th Pass</span>
-          </div>
-        </div>
-        <div class="jc-arrow">→</div>
-      </a>
-
-      <!-- Job 10 -->
-      <a href="all_govt_job_posts.html#post-15" class="job-card state" data-cat="state" data-title="SECL Apprentice 2026 Coal India Chhattisgarh">
-        <div class="jc-icon">⛏️</div>
-        <div class="jc-body">
-          <div class="jc-top">
-            <div class="jc-title">SECL Apprentice Recruitment 2026 — Coal India Subsidiary</div>
-          </div>
-          <div class="jc-dept">South Eastern Coalfields Ltd. · secl-cil.in</div>
-          <div class="jc-tags">
-            <span class="tag tag-vac">📋 1,600 Posts</span>
-            <span class="tag tag-open">🟢 Notification Out</span>
-            <span class="tag tag-qual">10th + ITI</span>
-          </div>
-        </div>
-        <div class="jc-arrow">→</div>
-      </a>
-
-    </div><!-- /#jobsList -->
-
-    <div id="noResults" style="display:none;text-align:center;padding:40px;color:var(--muted)">
-      <div style="font-size:36px;margin-bottom:10px">🔍</div>
-      <div style="font-size:16px;font-weight:600;margin-bottom:6px">No jobs found</div>
-      <div style="font-size:14px">Try a different keyword or category</div>
+      <!-- Job List -->
+      <ul class="post-list" id="jobs-list">
+        <li class="post-item"><span class="post-item-arrow">▶</span><div class="post-item-text"><a href="section.html?s=jobs">RRB Group D Recruitment 2026 — 22,195 Level-1 Posts (CEN 09/2025)</a><div class="post-item-meta"><span class="badge b-out">Exam Soon</span><span class="pi-sep">·</span><span class="pi-date">Railway | Age: 18–33 | 10th/ITI</span></div></div></li>
+        <li class="post-item"><span class="post-item-arrow">▶</span><div class="post-item-text"><a href="section.html?s=jobs">UPSSSC ASO/ARO Online Form 2026 — 929 Posts</a><div class="post-item-meta"><span class="badge b-new">NEW</span><span class="pi-sep">·</span><span class="pi-date">UP Govt | Graduation | Apply Now</span></div></div></li>
+        <li class="post-item"><span class="post-item-arrow">▶</span><div class="post-item-text"><a href="section.html?s=jobs">RBI Assistant Recruitment 2026 — 650 Posts</a><div class="post-item-meta"><span class="badge b-hot">OPEN</span><span class="pi-sep">·</span><span class="pi-date">RBI | Graduate (50%) | Age: 20–28</span></div></div></li>
+        <li class="post-item"><span class="post-item-arrow">▶</span><div class="post-item-text"><a href="section.html?s=jobs">SCR Apprentice Recruitment 2026 — 2,801 Posts</a><div class="post-item-meta"><span class="badge b-hot">OPEN</span><span class="pi-sep">·</span><span class="pi-date">Railway | 10th+ITI | Last Date: 11 Apr 2026</span></div></div></li>
+        <li class="post-item"><span class="post-item-arrow">▶</span><div class="post-item-text"><a href="section.html?s=jobs">UPSC Civil Services 2026 — IAS/IPS/IFS Prelims: 24 May</a><div class="post-item-meta"><span class="badge b-imp">PRELIMS MAY</span><span class="pi-sep">·</span><span class="pi-date">UPSC | Any Graduate | 933 Posts</span></div></div></li>
+        <li class="post-item"><span class="post-item-arrow">▶</span><div class="post-item-text"><a href="section.html?s=jobs">SSB Constable Tradesman & Driver 2026 — 827 Posts</a><div class="post-item-meta"><span class="badge b-new">NEW</span><span class="pi-sep">·</span><span class="pi-date">SSB | 10th+ITI | Age: 18–25</span></div></div></li>
+        <li class="post-item"><span class="post-item-arrow">▶</span><div class="post-item-text"><a href="section.html?s=jobs">India Post GDS 2026 — 28,636 Posts (Merit List Out)</a><div class="post-item-meta"><span class="badge b-out">MERIT LIST</span><span class="pi-sep">·</span><span class="pi-date">Dept of Posts | 10th Pass | All States</span></div></div></li>
+        <li class="post-item"><span class="post-item-arrow">▶</span><div class="post-item-text"><a href="section.html?s=jobs">SECL Apprentice 2026 — 1,600 Posts (Coal India)</a><div class="post-item-meta"><span class="badge b-new">NEW</span><span class="pi-sep">·</span><span class="pi-date">SECL | 10th+ITI | No Fee</span></div></div></li>
+        <li class="post-item"><span class="post-item-arrow">▶</span><div class="post-item-text"><a href="section.html?s=jobs">Punjab Police Constable Recruitment 2026 — 3,298 Posts</a><div class="post-item-meta"><span class="badge b-hot">OPEN</span><span class="pi-sep">·</span><span class="pi-date">Punjab Police | 12th Pass | Age: 18–28</span></div></div></li>
+        <li class="post-item"><span class="post-item-arrow">▶</span><div class="post-item-text"><a href="section.html?s=jobs">APPSC Group I/II/III 2026 — 10,060 Posts Calendar</a><div class="post-item-meta"><span class="badge b-soon">CALENDAR</span><span class="pi-sep">·</span><span class="pi-date">Andhra Pradesh PSC | Multiple Exams</span></div></div></li>
+      </ul>
     </div>
 
-    <div style="text-align:center;margin-top:8px">
-      <a href="jobs.html" style="display:inline-flex;align-items:center;gap:8px;background:var(--navy);color:#fff;padding:12px 28px;border-radius:9px;font-weight:600;font-size:15px;transition:background .15s" onmouseover="this.style.background='var(--navy2)'" onmouseout="this.style.background='var(--navy)'">
-        View All 15+ Job Posts →
-      </a>
+    <!-- ── QUALIFICATION FILTER ── -->
+    <div class="section-block">
+      <div class="sb-head">
+        <div class="sb-title">
+          <div class="sb-title-dot" style="background:#455A64"></div>
+          <span class="sb-icon">🎓</span>
+          <span>Jobs by Qualification</span>
+        </div>
+      </div>
+      <div class="qual-grid">
+        <div class="qual-card" style="background:#FFF3E0;border-color:#FFB74D" onclick="location.href='section.html?s=jobs'">
+          <div class="qual-icon">📖</div>
+          <div class="qual-label">8th Pass</div>
+          <div class="qual-count">12+ jobs</div>
+        </div>
+        <div class="qual-card" style="background:#E3F2FD;border-color:#64B5F6" onclick="location.href='section.html?s=jobs'">
+          <div class="qual-icon">📗</div>
+          <div class="qual-label">10th Pass</div>
+          <div class="qual-count">38+ jobs</div>
+        </div>
+        <div class="qual-card" style="background:#E8F5E9;border-color:#81C784" onclick="location.href='section.html?s=jobs'">
+          <div class="qual-icon">📘</div>
+          <div class="qual-label">12th / ITI</div>
+          <div class="qual-count">45+ jobs</div>
+        </div>
+        <div class="qual-card" style="background:#F3E5F5;border-color:#CE93D8" onclick="location.href='section.html?s=jobs'">
+          <div class="qual-icon">📙</div>
+          <div class="qual-label">Diploma</div>
+          <div class="qual-count">20+ jobs</div>
+        </div>
+        <div class="qual-card" style="background:#E8EAF6;border-color:#9FA8DA" onclick="location.href='section.html?s=jobs'">
+          <div class="qual-icon">🎓</div>
+          <div class="qual-label">Graduate</div>
+          <div class="qual-count">60+ jobs</div>
+        </div>
+        <div class="qual-card" style="background:#FCE4EC;border-color:#F48FB1" onclick="location.href='section.html?s=jobs'">
+          <div class="qual-icon">🏥</div>
+          <div class="qual-label">Medical / MBBS</div>
+          <div class="qual-count">15+ jobs</div>
+        </div>
+        <div class="qual-card" style="background:#E0F7FA;border-color:#80DEEA" onclick="location.href='section.html?s=jobs'">
+          <div class="qual-icon">⚙️</div>
+          <div class="qual-label">Engineering</div>
+          <div class="qual-count">25+ jobs</div>
+        </div>
+        <div class="qual-card" style="background:#F1F8E9;border-color:#AED581" onclick="location.href='section.html?s=jobs'">
+          <div class="qual-icon">📐</div>
+          <div class="qual-label">Post Graduate</div>
+          <div class="qual-count">18+ jobs</div>
+        </div>
+      </div>
     </div>
-  </div>
 
-  <!-- RIGHT: SIDEBAR -->
+    <!-- ── RESULTS + ADMIT CARDS TWO-COL ── -->
+    <div class="section-block" id="sec-results">
+      <div class="sb-head">
+        <div class="sb-title">
+          <div class="sb-title-dot" style="background:var(--c-results)"></div>
+          <span class="sb-icon">📋</span>
+          <span>Latest Exam Results</span>
+        </div>
+        <a href="section.html?s=results" class="sb-more more-results">All Results →</a>
+      </div>
+      <div class="two-col-feed">
+        <div class="tcf-col">
+          <div class="tcf-head">
+            <span style="width:8px;height:8px;border-radius:50%;background:var(--c-results);display:inline-block"></span>
+            Central Govt Results
+          </div>
+          <ul class="post-list">
+            <li class="post-item"><span class="post-item-arrow">▶</span><div class="post-item-text"><a href="section.html?s=results">UPSC Civil Services Final Result 2025 — Declared</a><div class="post-item-meta"><span class="badge b-out">OUT</span><span class="pi-date">958 Selected | AIR 1: Anuj Agnihotri</span></div></div></li>
+            <li class="post-item"><span class="post-item-arrow">▶</span><div class="post-item-text"><a href="section.html?s=results">IBPS RRB Clerk Mains Result 2026 — Declared</a><div class="post-item-meta"><span class="badge b-out">OUT</span><span class="pi-date">8,002 Posts | 15 Mar 2026</span></div></div></li>
+            <li class="post-item"><span class="post-item-arrow">▶</span><div class="post-item-text"><a href="section.html?s=results">RRB NTPC 12th Level CBT-2 Result 2026</a><div class="post-item-meta"><span class="badge b-out">OUT</span><span class="pi-date">Zone-wise | Scorecard Download</span></div></div></li>
+            <li class="post-item"><span class="post-item-arrow">▶</span><div class="post-item-text"><a href="section.html?s=results">SSC CGL Tier 2 Result 2025–26</a><div class="post-item-meta"><span class="badge b-soon">EXPECTED</span><span class="pi-date">March 2026 | Cut Off Awaited</span></div></div></li>
+            <li class="post-item"><span class="post-item-arrow">▶</span><div class="post-item-text"><a href="section.html?s=results">UPSC IFS Final Result 2025</a><div class="post-item-meta"><span class="badge b-out">OUT</span><span class="pi-date">Indian Forest Service | Scorecard</span></div></div></li>
+            <li class="post-item"><span class="post-item-arrow">▶</span><div class="post-item-text"><a href="section.html?s=results">Delhi DDA Various Posts Final Result 2026</a><div class="post-item-meta"><span class="badge b-out">OUT</span><span class="pi-date">Roll No Wise PDF | Download</span></div></div></li>
+            <li class="post-item"><span class="post-item-arrow">▶</span><div class="post-item-text"><a href="section.html?s=results">CTET February 2026 Result</a><div class="post-item-meta"><span class="badge b-soon">SOON</span><span class="pi-date">Teaching | CBSE | All India</span></div></div></li>
+          </ul>
+        </div>
+        <div class="tcf-col">
+          <div class="tcf-head">
+            <span style="width:8px;height:8px;border-radius:50%;background:var(--c-results);display:inline-block"></span>
+            State Govt Results
+          </div>
+          <ul class="post-list">
+            <li class="post-item"><span class="post-item-arrow">▶</span><div class="post-item-text"><a href="section.html?s=results">MP Police Constable Result 2026</a><div class="post-item-meta"><span class="badge b-out">OUT</span><span class="pi-date">Scorecard | Download Link</span></div></div></li>
+            <li class="post-item"><span class="post-item-arrow">▶</span><div class="post-item-text"><a href="section.html?s=results">UP Police Computer Operator Final Result 2026</a><div class="post-item-meta"><span class="badge b-out">OUT</span><span class="pi-date">Scorecard PDF | UPPRPB</span></div></div></li>
+            <li class="post-item"><span class="post-item-arrow">▶</span><div class="post-item-text"><a href="section.html?s=results">RRVUNL Technician Mains Result 2026</a><div class="post-item-meta"><span class="badge b-out">OUT</span><span class="pi-date">Rajasthan | Download</span></div></div></li>
+            <li class="post-item"><span class="post-item-arrow">▶</span><div class="post-item-text"><a href="section.html?s=results">MPESB Excise Constable Result 2026</a><div class="post-item-meta"><span class="badge b-out">OUT</span><span class="pi-date">Madhya Pradesh | Scorecard</span></div></div></li>
+            <li class="post-item"><span class="post-item-arrow">▶</span><div class="post-item-text"><a href="section.html?s=results">UPPSC LT Grade Teacher Result 2026</a><div class="post-item-meta"><span class="badge b-out">OUT</span><span class="pi-date">Roll No Wise | Subject-wise</span></div></div></li>
+            <li class="post-item"><span class="post-item-arrow">▶</span><div class="post-item-text"><a href="section.html?s=results">ISRO Scientist/Engineer Result 2026</a><div class="post-item-meta"><span class="badge b-out">OUT</span><span class="pi-date">Roll No Wise PDF</span></div></div></li>
+            <li class="post-item"><span class="post-item-arrow">▶</span><div class="post-item-text"><a href="section.html?s=results">SSC Selection Post Phase 13 Result 2026</a><div class="post-item-meta"><span class="badge b-out">OUT</span><span class="pi-date">SSC | Scorecard Download</span></div></div></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── ADMIT CARDS ── -->
+    <div class="section-block" id="sec-admit">
+      <div class="sb-head">
+        <div class="sb-title">
+          <div class="sb-title-dot" style="background:var(--c-admit)"></div>
+          <span class="sb-icon">🎫</span>
+          <span>Admit Cards / Hall Tickets</span>
+        </div>
+        <a href="section.html?s=admit_cards" class="sb-more more-admit">All Admit Cards →</a>
+      </div>
+      <div class="two-col-feed">
+        <div class="tcf-col">
+          <div class="tcf-head">
+            <span style="width:8px;height:8px;border-radius:50%;background:var(--c-admit);display:inline-block"></span>
+            Central Exams
+          </div>
+          <ul class="post-list">
+            <li class="post-item"><span class="post-item-arrow">▶</span><div class="post-item-text"><a href="section.html?s=admit_cards">UPSC CSE Prelims 2026 Admit Card</a><div class="post-item-meta"><span class="badge b-soon">MAY 2026</span><span class="pi-date">Exam: 24 May | upsconline.nic.in</span></div></div></li>
+            <li class="post-item"><span class="post-item-arrow">▶</span><div class="post-item-text"><a href="section.html?s=admit_cards">RRB ALP 2026 Admit Card / Exam City</a><div class="post-item-meta"><span class="badge b-soon">JUNE 2026</span><span class="pi-date">rrbapply.gov.in</span></div></div></li>
+            <li class="post-item"><span class="post-item-arrow">▶</span><div class="post-item-text"><a href="section.html?s=admit_cards">SSC CGL 2026 Tier 1 Admit Card</a><div class="post-item-meta"><span class="badge b-soon">SOON</span><span class="pi-date">ssc.gov.in</span></div></div></li>
+            <li class="post-item"><span class="post-item-arrow">▶</span><div class="post-item-text"><a href="section.html?s=admit_cards">IBPS PO/Clerk 2026 Admit Card</a><div class="post-item-meta"><span class="badge b-soon">SOON</span><span class="pi-date">ibps.in</span></div></div></li>
+            <li class="post-item"><span class="post-item-arrow">▶</span><div class="post-item-text"><a href="section.html?s=admit_cards">NDA 2026 Written Exam Admit Card</a><div class="post-item-meta"><span class="badge b-soon">SOON</span><span class="pi-date">upsc.gov.in</span></div></div></li>
+          </ul>
+        </div>
+        <div class="tcf-col">
+          <div class="tcf-head">
+            <span style="width:8px;height:8px;border-radius:50%;background:var(--c-admit);display:inline-block"></span>
+            State & Board Exams
+          </div>
+          <ul class="post-list">
+            <li class="post-item"><span class="post-item-arrow">▶</span><div class="post-item-text"><a href="section.html?s=admit_cards">UP Board Class 10 & 12 Admit Card 2026</a><div class="post-item-meta"><span class="badge b-out">OUT</span><span class="pi-date">upmsp.edu.in | Download Now</span></div></div></li>
+            <li class="post-item"><span class="post-item-arrow">▶</span><div class="post-item-text"><a href="section.html?s=admit_cards">Bihar Board 10th Admit Card 2026</a><div class="post-item-meta"><span class="badge b-out">OUT</span><span class="pi-date">biharboardonline.bihar.gov.in</span></div></div></li>
+            <li class="post-item"><span class="post-item-arrow">▶</span><div class="post-item-text"><a href="section.html?s=admit_cards">CGPSC SSE Admit Card 2026</a><div class="post-item-meta"><span class="badge b-out">OUT</span><span class="pi-date">psc.cg.gov.in | Download</span></div></div></li>
+            <li class="post-item"><span class="post-item-arrow">▶</span><div class="post-item-text"><a href="section.html?s=admit_cards">UPPSC LT Grade Teacher Admit Card 2025</a><div class="post-item-meta"><span class="badge b-out">OUT</span><span class="pi-date">uppsc.up.nic.in</span></div></div></li>
+            <li class="post-item"><span class="post-item-arrow">▶</span><div class="post-item-text"><a href="section.html?s=admit_cards">JEE Main 2026 Session 1 Admit Card</a><div class="post-item-meta"><span class="badge b-soon">SOON</span><span class="pi-date">jeemain.nta.nic.in</span></div></div></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── BOARD EXAM RESULTS ── -->
+    <div class="section-block" id="sec-board">
+      <div class="sb-head">
+        <div class="sb-title">
+          <div class="sb-title-dot" style="background:var(--c-board)"></div>
+          <span class="sb-icon">🏫</span>
+          <span>Board Exam Results 2026 — Class 10th & 12th</span>
+        </div>
+        <a href="section.html?s=board" class="sb-more more-board">All Board Results →</a>
+      </div>
+      <div class="notice-box">
+        <span class="notice-icon">ℹ️</span>
+        <span>Board results are typically announced April–June. All results below are updated directly from official board websites. <strong>Bookmark this page</strong> to check your result the moment it's declared!</span>
+      </div>
+      <div class="board-grid">
+        <div class="board-item"><div class="board-name"><a href="section.html?s=board">CBSE Class 10th Result 2026</a></div><div class="board-class">cbse.gov.in / digilocker.gov.in</div><div class="board-status soon">Expected: May 2026</div></div>
+        <div class="board-item"><div class="board-name"><a href="section.html?s=board">CBSE Class 12th Result 2026</a></div><div class="board-class">cbse.gov.in / digilocker.gov.in</div><div class="board-status soon">Expected: May 2026</div></div>
+        <div class="board-item"><div class="board-name"><a href="section.html?s=board">Bihar Board Class 12 Result 2026</a></div><div class="board-class">biharboardonline.bihar.gov.in</div><div class="board-status exp">Expected: This Week</div></div>
+        <div class="board-item"><div class="board-name"><a href="section.html?s=board">Bihar Board Class 10 Result 2026</a></div><div class="board-class">biharboardonline.bihar.gov.in</div><div class="board-status exp">Expected: March–April</div></div>
+        <div class="board-item"><div class="board-name"><a href="section.html?s=board">UP Board Class 10 Result 2026</a></div><div class="board-class">upmsp.edu.in / upresults.nic.in</div><div class="board-status soon">Expected: April 2026</div></div>
+        <div class="board-item"><div class="board-name"><a href="section.html?s=board">UP Board Class 12 Result 2026</a></div><div class="board-class">upmsp.edu.in / upresults.nic.in</div><div class="board-status soon">Expected: April 2026</div></div>
+        <div class="board-item"><div class="board-name"><a href="section.html?s=board">MP Board Class 10 Result 2026</a></div><div class="board-class">mpbse.nic.in / mpresults.nic.in</div><div class="board-status soon">Expected: May 2026</div></div>
+        <div class="board-item"><div class="board-name"><a href="section.html?s=board">MP Board Class 12 Result 2026</a></div><div class="board-class">mpbse.nic.in / mpresults.nic.in</div><div class="board-status soon">Expected: May 2026</div></div>
+        <div class="board-item"><div class="board-name"><a href="section.html?s=board">Rajasthan Board 10th Result 2026</a></div><div class="board-class">rajeduboard.rajasthan.gov.in</div><div class="board-status soon">Expected: May 2026</div></div>
+        <div class="board-item"><div class="board-name"><a href="section.html?s=board">Rajasthan Board 12th Result 2026</a></div><div class="board-class">rajeduboard.rajasthan.gov.in</div><div class="board-status soon">Expected: May 2026</div></div>
+        <div class="board-item"><div class="board-name"><a href="section.html?s=board">ICSE (10th) Result 2026</a></div><div class="board-class">cisce.org / results.cisce.org</div><div class="board-status soon">Expected: May 2026</div></div>
+        <div class="board-item"><div class="board-name"><a href="section.html?s=board">ISC (12th) Result 2026</a></div><div class="board-class">cisce.org / results.cisce.org</div><div class="board-status soon">Expected: May 2026</div></div>
+      </div>
+    </div>
+
+    <!-- ── UNIVERSITY RESULTS & ADMISSIONS ── -->
+    <div class="section-block" id="sec-univ">
+      <div class="sb-head">
+        <div class="sb-title">
+          <div class="sb-title-dot" style="background:var(--c-univ)"></div>
+          <span class="sb-icon">🎓</span>
+          <span>University Results & Admissions 2026</span>
+        </div>
+        <a href="section.html?s=univ" class="sb-more more-univ">View All →</a>
+      </div>
+      <div class="two-col-feed">
+        <div class="tcf-col">
+          <div class="tcf-head">
+            <span style="width:8px;height:8px;border-radius:50%;background:var(--c-univ);display:inline-block"></span>
+            University Results
+          </div>
+          <ul class="post-list">
+            <li class="post-item"><span class="post-item-arrow">▶</span><div class="post-item-text"><a href="section.html?s=univ">JEE Main 2026 Session 1 Result</a><div class="post-item-meta"><span class="badge b-out">OUT</span><span class="pi-date">NTA | Scorecard Download</span></div></div></li>
+            <li class="post-item"><span class="post-item-arrow">▶</span><div class="post-item-text"><a href="section.html?s=univ">NEET UG 2026 Result</a><div class="post-item-meta"><span class="badge b-soon">JUNE 2026</span><span class="pi-date">NTA | Medical Entrance</span></div></div></li>
+            <li class="post-item"><span class="post-item-arrow">▶</span><div class="post-item-text"><a href="section.html?s=univ">NTA UGC NET December Result 2026</a><div class="post-item-meta"><span class="badge b-soon">SOON</span><span class="pi-date">ugcnet.nta.nic.in</span></div></div></li>
+            <li class="post-item"><span class="post-item-arrow">▶</span><div class="post-item-text"><a href="section.html?s=univ">CUET UG 2026 Result</a><div class="post-item-meta"><span class="badge b-soon">SOON</span><span class="pi-date">NTA | Central Universities</span></div></div></li>
+            <li class="post-item"><span class="post-item-arrow">▶</span><div class="post-item-text"><a href="section.html?s=univ">DU Entrance Result 2026 (CUET)</a><div class="post-item-meta"><span class="badge b-soon">SOON</span><span class="pi-date">Delhi University</span></div></div></li>
+          </ul>
+        </div>
+        <div class="tcf-col">
+          <div class="tcf-head">
+            <span style="width:8px;height:8px;border-radius:50%;background:var(--c-univ);display:inline-block"></span>
+            Admissions Open
+          </div>
+          <ul class="post-list">
+            <li class="post-item"><span class="post-item-arrow">▶</span><div class="post-item-text"><a href="section.html?s=univ">UP BEd JEE 2026 — Entrance Exam Form</a><div class="post-item-meta"><span class="badge b-new">NEW</span><span class="pi-date">Apply: lkouniv.ac.in</span></div></div></li>
+            <li class="post-item"><span class="post-item-arrow">▶</span><div class="post-item-text"><a href="section.html?s=univ">Bihar ITI CAT Admission Form 2026</a><div class="post-item-meta"><span class="badge b-new">NEW</span><span class="pi-date">bceceboard.bihar.gov.in</span></div></div></li>
+            <li class="post-item"><span class="post-item-arrow">▶</span><div class="post-item-text"><a href="section.html?s=univ">KVS Class 1 Admission 2026 — Apply Online</a><div class="post-item-meta"><span class="badge b-out">OPEN</span><span class="pi-date">Kendriya Vidyalaya | kvsonlineadmission.kvs.gov.in</span></div></div></li>
+            <li class="post-item"><span class="post-item-arrow">▶</span><div class="post-item-text"><a href="section.html?s=univ">IGNOU Admission 2026 (January Session)</a><div class="post-item-meta"><span class="badge b-out">OPEN</span><span class="pi-date">ignouadmission.samarth.edu.in</span></div></div></li>
+            <li class="post-item"><span class="post-item-arrow">▶</span><div class="post-item-text"><a href="section.html?s=univ">Navodaya Vidyalaya Class 6 Admission 2026</a><div class="post-item-meta"><span class="badge b-out">OPEN</span><span class="pi-date">navodaya.gov.in</span></div></div></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── SCHEMES + ANSWER KEYS ROW ── -->
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px">
+
+      <div class="section-block" id="sec-schemes">
+        <div class="sb-head">
+          <div class="sb-title">
+            <div class="sb-title-dot" style="background:var(--c-schemes)"></div>
+            <span class="sb-icon">🏛️</span>
+            <span>Govt Schemes / Yojana</span>
+          </div>
+          <a href="section.html?s=schemes" class="sb-more more-schemes">More →</a>
+        </div>
+        <ul class="post-list">
+          <li class="post-item"><span class="post-item-arrow">▶</span><div class="post-item-text"><a href="section.html?s=schemes">PM Kisan 19th Instalment 2026 — Check Status</a><div class="post-item-meta"><span class="badge b-out">RELEASED</span></div></div></li>
+          <li class="post-item"><span class="post-item-arrow">▶</span><div class="post-item-text"><a href="section.html?s=schemes">PM Awas Yojana Gramin 2026 — New List</a><div class="post-item-meta"><span class="badge b-out">LIST OUT</span></div></div></li>
+          <li class="post-item"><span class="post-item-arrow">▶</span><div class="post-item-text"><a href="section.html?s=schemes">Ayushman Bharat — New Beneficiary Registration</a><div class="post-item-meta"><span class="badge b-hot">OPEN</span></div></div></li>
+          <li class="post-item"><span class="post-item-arrow">▶</span><div class="post-item-text"><a href="section.html?s=schemes">NSP Scholarship 2025–26 — Renewal Last Date</a><div class="post-item-meta"><span class="badge b-imp">DEADLINE</span></div></div></li>
+          <li class="post-item"><span class="post-item-arrow">▶</span><div class="post-item-text"><a href="section.html?s=schemes">UP Scholarship 2025–26 — Status Check</a><div class="post-item-meta"><span class="badge b-out">STATUS</span></div></div></li>
+          <li class="post-item"><span class="post-item-arrow">▶</span><div class="post-item-text"><a href="section.html?s=schemes">Pradhan Mantri Mudra Yojana — Loan Apply</a><div class="post-item-meta"><span class="badge b-hot">OPEN</span></div></div></li>
+        </ul>
+      </div>
+
+      <div class="section-block" id="sec-answer">
+        <div class="sb-head">
+          <div class="sb-title">
+            <div class="sb-title-dot" style="background:var(--c-answer)"></div>
+            <span class="sb-icon">📝</span>
+            <span>Answer Keys 2026</span>
+          </div>
+          <a href="section.html?s=answer_keys" class="sb-more more-answer">More →</a>
+        </div>
+        <ul class="post-list">
+          <li class="post-item"><span class="post-item-arrow">▶</span><div class="post-item-text"><a href="section.html?s=answer_keys">RRB Technician Grade-I Answer Key 2026</a><div class="post-item-meta"><span class="badge b-out">OUT</span></div></div></li>
+          <li class="post-item"><span class="post-item-arrow">▶</span><div class="post-item-text"><a href="section.html?s=answer_keys">RRB ALP Answer Key 2026 — Provisional</a><div class="post-item-meta"><span class="badge b-out">OUT</span></div></div></li>
+          <li class="post-item"><span class="post-item-arrow">▶</span><div class="post-item-text"><a href="section.html?s=answer_keys">SSC CGL Tier 2 Final Answer Key 2025</a><div class="post-item-meta"><span class="badge b-out">OUT</span></div></div></li>
+          <li class="post-item"><span class="post-item-arrow">▶</span><div class="post-item-text"><a href="section.html?s=answer_keys">UPSC CDS I 2026 Answer Key</a><div class="post-item-meta"><span class="badge b-soon">SOON</span></div></div></li>
+          <li class="post-item"><span class="post-item-arrow">▶</span><div class="post-item-text"><a href="section.html?s=answer_keys">Bihar JEEViKA Response Sheet 2026</a><div class="post-item-meta"><span class="badge b-out">OUT</span></div></div></li>
+          <li class="post-item"><span class="post-item-arrow">▶</span><div class="post-item-text"><a href="section.html?s=answer_keys">RRB Paramedical Staff Answer Key 2026</a><div class="post-item-meta"><span class="badge b-out">OUT</span></div></div></li>
+        </ul>
+      </div>
+
+    </div>
+
+  </div><!-- /left-col -->
+
+  <!-- RIGHT SIDEBAR -->
   <div class="sidebar">
 
-    <!-- Important Dates -->
+    <!-- Exam Calendar -->
     <div class="widget">
-      <div class="widget-head"><h3>📅 Important Dates</h3></div>
-      <div class="widget-body">
-        <div class="date-item">
-          <div class="date-box"><div class="date-box-day">11</div><div class="date-box-mo">APR</div></div>
-          <div><div class="date-info-title">SCR Apprentice – Last Date</div><div class="date-info-org">South Central Railway</div></div>
+      <div class="widget-head">
+        <div class="widget-title">📅 Upcoming Exams</div>
+        <a href="section.html?s=admit_cards" class="widget-more">All →</a>
+      </div>
+      <div class="exam-cal">
+        <div class="ec-item">
+          <div class="ec-date"><div class="ec-day">24</div><div class="ec-mo">MAY</div></div>
+          <div class="ec-info"><div class="ec-exam">UPSC CSE Prelims 2026</div><div class="ec-org">Union Public Service Commission</div></div>
         </div>
-        <div class="date-item">
-          <div class="date-box"><div class="date-box-day">14</div><div class="date-box-mo">MAY</div></div>
-          <div><div class="date-info-title">RRB ALP CEN – Detailed Notification</div><div class="date-info-org">Railway Recruitment Board</div></div>
+        <div class="ec-item">
+          <div class="ec-date"><div class="ec-day">15</div><div class="ec-mo">MAY</div></div>
+          <div class="ec-info"><div class="ec-exam">RRB ALP 2026 — Apply Opens</div><div class="ec-org">Railway Recruitment Board</div></div>
         </div>
-        <div class="date-item">
-          <div class="date-box"><div class="date-box-day">15</div><div class="date-box-mo">MAY</div></div>
-          <div><div class="date-info-title">RRB ALP – Applications Open</div><div class="date-info-org">All RRB Zones</div></div>
+        <div class="ec-item">
+          <div class="ec-date"><div class="ec-day">11</div><div class="ec-mo">APR</div></div>
+          <div class="ec-info"><div class="ec-exam">SCR Apprentice 2026 Last Date</div><div class="ec-org">South Central Railway</div></div>
         </div>
-        <div class="date-item">
-          <div class="date-box"><div class="date-box-day">24</div><div class="date-box-mo">MAY</div></div>
-          <div><div class="date-info-title">UPSC CSE Prelims 2026</div><div class="date-info-org">Union Public Service Commission</div></div>
+        <div class="ec-item">
+          <div class="ec-date"><div class="ec-day">31</div><div class="ec-mo">MAR</div></div>
+          <div class="ec-info"><div class="ec-exam">SSC CGL 2026 Notification</div><div class="ec-org">Staff Selection Commission</div></div>
         </div>
-        <div class="date-item">
-          <div class="date-box"><div class="date-box-day">14</div><div class="date-box-mo">JUN</div></div>
-          <div><div class="date-info-title">RRB ALP – Last Date to Apply</div><div class="date-info-org">Railway Recruitment Board</div></div>
-        </div>
-        <div class="date-item">
-          <div class="date-box"><div class="date-box-day">21</div><div class="date-box-mo">AUG</div></div>
-          <div><div class="date-info-title">UPSC CSE Mains 2026</div><div class="date-info-org">Union Public Service Commission</div></div>
+        <div class="ec-item">
+          <div class="ec-date"><div class="ec-day">21</div><div class="ec-mo">AUG</div></div>
+          <div class="ec-info"><div class="ec-exam">UPSC CSE Mains 2026</div><div class="ec-org">Union Public Service Commission</div></div>
         </div>
       </div>
     </div>
 
     <!-- Quick Links -->
     <div class="widget">
-      <div class="widget-head"><h3>🔗 Quick Links</h3></div>
-      <div class="widget-body">
-        <a href="https://ssc.gov.in" target="_blank" class="qlink">
-          <div class="qlink-icon">📝</div>
-          <div class="qlink-title">SSC Official Portal</div>
-          <div class="qlink-arrow">↗</div>
-        </a>
-        <a href="https://upsc.gov.in" target="_blank" class="qlink">
-          <div class="qlink-icon">🏛️</div>
-          <div class="qlink-title">UPSC Official Portal</div>
-          <div class="qlink-arrow">↗</div>
-        </a>
-        <a href="https://www.rrbapply.gov.in" target="_blank" class="qlink">
-          <div class="qlink-icon">🚂</div>
-          <div class="qlink-title">RRB Apply (Railway Jobs)</div>
-          <div class="qlink-arrow">↗</div>
-        </a>
-        <a href="https://ibps.in" target="_blank" class="qlink">
-          <div class="qlink-icon">🏦</div>
-          <div class="qlink-title">IBPS (Bank Jobs)</div>
-          <div class="qlink-arrow">↗</div>
-        </a>
-        <a href="https://employmentnews.gov.in" target="_blank" class="qlink">
-          <div class="qlink-icon">📰</div>
-          <div class="qlink-title">Employment News (Official)</div>
-          <div class="qlink-arrow">↗</div>
-        </a>
-        <a href="https://ncs.gov.in" target="_blank" class="qlink">
-          <div class="qlink-icon">💼</div>
-          <div class="qlink-title">National Career Service</div>
-          <div class="qlink-arrow">↗</div>
-        </a>
+      <div class="widget-head">
+        <div class="widget-title">🔗 Official Portals</div>
+      </div>
+      <div class="ql-grid">
+        <a href="https://upsc.gov.in" target="_blank" rel="noopener" class="ql-item"><span class="ql-icon">🏛️</span><span class="ql-label">UPSC Official</span></a>
+        <a href="https://ssc.gov.in" target="_blank" rel="noopener" class="ql-item"><span class="ql-icon">📝</span><span class="ql-label">SSC Official</span></a>
+        <a href="https://www.rrbapply.gov.in" target="_blank" rel="noopener" class="ql-item"><span class="ql-icon">🚂</span><span class="ql-label">RRB Apply</span></a>
+        <a href="https://ibps.in" target="_blank" rel="noopener" class="ql-item"><span class="ql-icon">🏦</span><span class="ql-label">IBPS Official</span></a>
+        <a href="https://cbse.gov.in" target="_blank" rel="noopener" class="ql-item"><span class="ql-icon">🏫</span><span class="ql-label">CBSE Board</span></a>
+        <a href="https://jeemain.nta.nic.in" target="_blank" rel="noopener" class="ql-item"><span class="ql-icon">🎯</span><span class="ql-label">JEE Main</span></a>
+        <a href="https://neet.nta.nic.in" target="_blank" rel="noopener" class="ql-item"><span class="ql-icon">🏥</span><span class="ql-label">NEET UG</span></a>
+        <a href="https://employmentnews.gov.in" target="_blank" rel="noopener" class="ql-item"><span class="ql-icon">📰</span><span class="ql-label">Employment News</span></a>
+        <a href="https://digilocker.gov.in" target="_blank" rel="noopener" class="ql-item"><span class="ql-icon">📲</span><span class="ql-label">DigiLocker</span></a>
+        <a href="https://www.pmkisan.gov.in" target="_blank" rel="noopener" class="ql-item"><span class="ql-icon">🌾</span><span class="ql-label">PM Kisan</span></a>
       </div>
     </div>
 
-    <!-- Subscribe widget -->
-    <div class="widget subscribe-widget" id="subscribe">
-      <div class="widget-head"><h3>🔔 Free Job Alerts</h3></div>
-      <div class="sub-body">
-        <p>Get the latest government job notifications directly in your inbox. Never miss a deadline again!</p>
+    <!-- Hot Topics -->
+    <div class="widget">
+      <div class="widget-head">
+        <div class="widget-title">🔥 Hot Topics</div>
+        <a href="section.html?s=jobs" class="widget-more">View All →</a>
+      </div>
+      <div class="sw-list">
+        <div class="sw-item"><div class="sw-dot dot-jobs"></div><a class="sw-text" href="section.html?s=jobs">RRB ALP 11,127 Posts 2026</a></div>
+        <div class="sw-item"><div class="sw-dot dot-results"></div><a class="sw-text" href="section.html?s=results">UPSC CSE Final Result 2025</a></div>
+        <div class="sw-item"><div class="sw-dot dot-board"></div><a class="sw-text" href="section.html?s=board">Bihar Board 12th Result 2026</a></div>
+        <div class="sw-item"><div class="sw-dot dot-admit"></div><a class="sw-text" href="section.html?s=admit_cards">UP Board Admit Card 2026</a></div>
+        <div class="sw-item"><div class="sw-dot dot-jobs"></div><a class="sw-text" href="section.html?s=jobs">SSC CGL 2026 Notification</a></div>
+        <div class="sw-item"><div class="sw-dot dot-results"></div><a class="sw-text" href="section.html?s=results">IBPS RRB Clerk Result 2026</a></div>
+        <div class="sw-item"><div class="sw-dot dot-schemes"></div><a class="sw-text" href="section.html?s=schemes">PM Kisan 19th Instalment</a></div>
+        <div class="sw-item"><div class="sw-dot dot-jobs"></div><a class="sw-text" href="section.html?s=jobs">India Post GDS Merit List</a></div>
+        <div class="sw-item"><div class="sw-dot dot-answer"></div><a class="sw-text" href="section.html?s=answer_keys">RRB ALP Answer Key 2026</a></div>
+        <div class="sw-item"><div class="sw-dot dot-syllabus"></div><a class="sw-text" href="section.html?s=syllabus">SSC CGL 2026 Syllabus PDF</a></div>
+      </div>
+    </div>
+
+    <!-- State-wise Jobs -->
+    <div class="widget">
+      <div class="widget-head">
+        <div class="widget-title">🗺️ State-wise Jobs</div>
+        <a href="section.html?s=jobs" class="widget-more">All →</a>
+      </div>
+      <div class="sw-list">
+        <div class="sw-item"><div class="sw-dot" style="background:#E53935"></div><a class="sw-text" href="section.html?s=jobs">Uttar Pradesh (UP) Govt Jobs</a></div>
+        <div class="sw-item"><div class="sw-dot" style="background:#8E24AA"></div><a class="sw-text" href="section.html?s=jobs">Bihar Govt Jobs</a></div>
+        <div class="sw-item"><div class="sw-dot" style="background:#1E88E5"></div><a class="sw-text" href="section.html?s=jobs">Rajasthan Govt Jobs</a></div>
+        <div class="sw-item"><div class="sw-dot" style="background:#43A047"></div><a class="sw-text" href="section.html?s=jobs">Madhya Pradesh (MP) Jobs</a></div>
+        <div class="sw-item"><div class="sw-dot" style="background:#FB8C00"></div><a class="sw-text" href="section.html?s=jobs">Maharashtra Govt Jobs</a></div>
+        <div class="sw-item"><div class="sw-dot" style="background:#00897B"></div><a class="sw-text" href="section.html?s=jobs">Delhi Govt Jobs</a></div>
+        <div class="sw-item"><div class="sw-dot" style="background:#F4511E"></div><a class="sw-text" href="section.html?s=jobs">Haryana Govt Jobs</a></div>
+        <div class="sw-item"><div class="sw-dot" style="background:#3949AB"></div><a class="sw-text" href="section.html?s=jobs">Punjab Govt Jobs</a></div>
+        <div class="sw-item"><div class="sw-dot" style="background:#5D4037"></div><a class="sw-text" href="section.html?s=jobs">Jharkhand Govt Jobs</a></div>
+        <div class="sw-item"><div class="sw-dot" style="background:#00ACC1"></div><a class="sw-text" href="section.html?s=jobs">Uttarakhand Govt Jobs</a></div>
+      </div>
+    </div>
+
+    <!-- Free Alert Subscribe -->
+    <div class="widget" id="subscribe">
+      <div class="widget-head" style="background:var(--navy)">
+        <div class="widget-title" style="color:#fff">🔔 Get Free Job Alerts</div>
+      </div>
+      <div class="sub-widget">
+        <p>Get latest government jobs, results & admit cards directly in your inbox. 100% Free. 50,000+ subscribers.</p>
         <input class="sub-input" type="text" placeholder="Your full name">
-        <input class="sub-input" type="email" placeholder="Your email address">
+        <input class="sub-input" type="email" placeholder="Email address">
         <select class="sub-input" style="cursor:pointer">
-          <option value="">Select Category</option>
-          <option>All Government Jobs</option>
-          <option>Railway Jobs</option>
-          <option>UPSC / SSC</option>
-          <option>Banking Jobs</option>
-          <option>Defence / Police</option>
+          <option>All Govt Updates (Recommended)</option>
+          <option>Railway Jobs Only</option>
+          <option>UPSC/SSC Only</option>
+          <option>Banking Jobs Only</option>
+          <option>Board Results Only</option>
           <option>State Govt Jobs</option>
         </select>
-        <button class="sub-btn" onclick="subscribeAlert()">🔔 Subscribe Free Alerts</button>
+        <button class="sub-btn" onclick="subscribeAlert()">🔔 Subscribe Free — 0 Spam</button>
+      </div>
+    </div>
+
+    <!-- Syllabus Quick Access -->
+    <div class="widget">
+      <div class="widget-head">
+        <div class="widget-title">📚 Popular Syllabus</div>
+        <a href="section.html?s=syllabus" class="widget-more">All →</a>
+      </div>
+      <div class="sw-list">
+        <div class="sw-item"><div class="sw-dot dot-syllabus"></div><a class="sw-text" href="section.html?s=syllabus">SSC CGL 2026 Complete Syllabus PDF</a></div>
+        <div class="sw-item"><div class="sw-dot dot-syllabus"></div><a class="sw-text" href="section.html?s=syllabus">UPSC CSE 2026 Prelims + Mains Syllabus</a></div>
+        <div class="sw-item"><div class="sw-dot dot-syllabus"></div><a class="sw-text" href="section.html?s=syllabus">RRB ALP 2026 Syllabus & Exam Pattern</a></div>
+        <div class="sw-item"><div class="sw-dot dot-syllabus"></div><a class="sw-text" href="section.html?s=syllabus">IBPS PO/Clerk 2026 Syllabus PDF</a></div>
+        <div class="sw-item"><div class="sw-dot dot-syllabus"></div><a class="sw-text" href="section.html?s=syllabus">CBSE Class 10 Syllabus 2025–26 PDF</a></div>
+        <div class="sw-item"><div class="sw-dot dot-syllabus"></div><a class="sw-text" href="section.html?s=syllabus">CBSE Class 12 Syllabus 2025–26 PDF</a></div>
       </div>
     </div>
 
   </div><!-- /sidebar -->
+
 </div><!-- /main -->
 
-<!-- ════ CATEGORY SECTION ════ -->
-<div class="category-section" style="background:#fff;border-top:1px solid var(--border)">
-  <div class="cs-inner">
-    <div class="sec-head">
-      <div class="sec-title">Browse by Category</div>
-      <a href="jobs.html" class="sec-link">All Categories →</a>
-    </div>
-    <div class="cs-grid">
-      <div class="cs-card" onclick="location.href='jobs.html?cat=railway'">
-        <div class="cs-icon">🚂</div>
-        <div class="cs-name">Railway</div>
-        <div class="cs-count">4 active jobs</div>
-      </div>
-      <div class="cs-card" onclick="location.href='jobs.html?cat=upsc'">
-        <div class="cs-icon">🏛️</div>
-        <div class="cs-name">UPSC / SSC</div>
-        <div class="cs-count">3 active jobs</div>
-      </div>
-      <div class="cs-card" onclick="location.href='jobs.html?cat=banking'">
-        <div class="cs-icon">🏦</div>
-        <div class="cs-name">Banking</div>
-        <div class="cs-count">1 active job</div>
-      </div>
-      <div class="cs-card" onclick="location.href='jobs.html?cat=defence'">
-        <div class="cs-icon">🛡️</div>
-        <div class="cs-name">Defence / Police</div>
-        <div class="cs-count">4 active jobs</div>
-      </div>
-      <div class="cs-card" onclick="location.href='jobs.html?cat=state'">
-        <div class="cs-icon">🗺️</div>
-        <div class="cs-name">State Govt</div>
-        <div class="cs-count">3 active jobs</div>
-      </div>
-      <div class="cs-card" onclick="location.href='jobs.html'">
-        <div class="cs-icon">📮</div>
-        <div class="cs-name">Postal / PSU</div>
-        <div class="cs-count">2 active jobs</div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- ════ FOOTER ════ -->
-<footer>
-  <div class="footer-inner">
+<!-- FOOTER -->
+<footer class="site-footer">
+  <div class="footer-main">
     <div class="footer-brand">
       <div class="footer-logo">Sarkari<span>Alert</span>.in</div>
-      <p class="footer-desc">India's fastest and most trusted government job notification portal. We aggregate jobs from all official government websites so you never miss a chance.</p>
-      <div class="footer-social">
-        <div class="social-btn" title="Telegram">✈</div>
-        <div class="social-btn" title="WhatsApp">💬</div>
-        <div class="social-btn" title="YouTube">▶</div>
-        <div class="social-btn" title="Instagram">📷</div>
+      <p class="footer-desc">India's most comprehensive government portal for Jobs, Results, Admit Cards, Board Exams, University Updates, Schemes and more. Updated daily from official sources.</p>
+      <div style="display:flex;gap:6px;flex-wrap:wrap">
+        <a href="section.html?s=jobs" style="font-size:11px;background:rgba(255,255,255,.08);color:rgba(255,255,255,.6);padding:4px 10px;border-radius:4px">Jobs</a>
+        <a href="section.html?s=results" style="font-size:11px;background:rgba(255,255,255,.08);color:rgba(255,255,255,.6);padding:4px 10px;border-radius:4px">Results</a>
+        <a href="section.html?s=admit_cards" style="font-size:11px;background:rgba(255,255,255,.08);color:rgba(255,255,255,.6);padding:4px 10px;border-radius:4px">Admit Cards</a>
+        <a href="section.html?s=board" style="font-size:11px;background:rgba(255,255,255,.08);color:rgba(255,255,255,.6);padding:4px 10px;border-radius:4px">Board</a>
       </div>
     </div>
-    <div>
-      <h4>Job Categories</h4>
+    <div class="footer-col">
+      <h4>Government Jobs</h4>
       <ul class="footer-links">
-        <li><a href="jobs.html">Railway Jobs</a></li>
-        <li><a href="jobs.html">UPSC Jobs</a></li>
-        <li><a href="jobs.html">SSC Jobs</a></li>
-        <li><a href="jobs.html">Banking Jobs</a></li>
-        <li><a href="jobs.html">Defence Jobs</a></li>
-        <li><a href="jobs.html">State Govt Jobs</a></li>
-        <li><a href="jobs.html">10th Pass Jobs</a></li>
+        <li><a href="section.html?s=jobs">Railway Jobs</a></li>
+        <li><a href="section.html?s=jobs">UPSC Jobs</a></li>
+        <li><a href="section.html?s=jobs">SSC Jobs</a></li>
+        <li><a href="section.html?s=jobs">Banking Jobs</a></li>
+        <li><a href="section.html?s=jobs">Defence Jobs</a></li>
+        <li><a href="section.html?s=jobs">Police Jobs</a></li>
+        <li><a href="section.html?s=jobs">Teaching Jobs</a></li>
+        <li><a href="section.html?s=jobs">10th Pass Jobs</a></li>
       </ul>
     </div>
-    <div>
-      <h4>Quick Links</h4>
+    <div class="footer-col">
+      <h4>Results & Boards</h4>
       <ul class="footer-links">
-        <li><a href="index.html">Home</a></li>
-        <li><a href="jobs.html">All Jobs</a></li>
-        <li><a href="results.html">Results</a></li>
-        <li><a href="admit.html">Admit Cards</a></li>
-        <li><a href="syllabus.html">Syllabus</a></li>
+        <li><a href="section.html?s=results">Exam Results</a></li>
+        <li><a href="section.html?s=board">CBSE Results</a></li>
+        <li><a href="section.html?s=board">UP Board Result</a></li>
+        <li><a href="section.html?s=board">Bihar Board Result</a></li>
+        <li><a href="section.html?s=board">MP Board Result</a></li>
+        <li><a href="section.html?s=univ">JEE Main Result</a></li>
+        <li><a href="section.html?s=univ">NEET Result</a></li>
+        <li><a href="section.html?s=univ">University Admissions</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>More</h4>
+      <ul class="footer-links">
+        <li><a href="section.html?s=admit_cards">Admit Cards</a></li>
+        <li><a href="section.html?s=answer_keys">Answer Keys</a></li>
+        <li><a href="section.html?s=syllabus">Syllabus</a></li>
+        <li><a href="section.html?s=schemes">Govt Schemes</a></li>
         <li><a href="about.html">About Us</a></li>
         <li><a href="about.html#contact">Contact</a></li>
-      </ul>
-    </div>
-    <div>
-      <h4>Important Sites</h4>
-      <ul class="footer-links">
-        <li><a href="https://ssc.gov.in" target="_blank">SSC Official</a></li>
-        <li><a href="https://upsc.gov.in" target="_blank">UPSC Official</a></li>
-        <li><a href="https://www.rrbapply.gov.in" target="_blank">RRB Apply</a></li>
-        <li><a href="https://ibps.in" target="_blank">IBPS Official</a></li>
-        <li><a href="https://rbi.org.in" target="_blank">RBI Official</a></li>
-        <li><a href="https://employmentnews.gov.in" target="_blank">Employment News</a></li>
+        <li><a href="about.html#disclaimer">Disclaimer</a></li>
+        <li><a href="admin/login.html">Admin Login</a></li>
       </ul>
     </div>
   </div>
   <div class="footer-bottom">
-    <p>© 2026 SarkariAlert.in · All information sourced from official government portals ·
-    <a href="about.html">About</a> · <a href="about.html#contact">Contact</a> · <a href="about.html#disclaimer">Disclaimer</a> ·
-    Always verify on the official website before applying.</p>
+    © 2026 SarkariAlert.in · Not affiliated with any government body · Always verify at official websites before applying ·
+    <a href="about.html">About</a> · <a href="about.html#disclaimer">Disclaimer</a> · <a href="about.html#contact">Contact</a>
   </div>
 </footer>
 
 <script>
-// ── Category filter ──────────────────────────────────────
-function filterCat(cat, btn) {
-  document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
-  btn.classList.add('active');
-  var cards = document.querySelectorAll('.job-card');
-  var visible = 0;
-  cards.forEach(function(card) {
-    var match = cat === 'all' || card.dataset.cat === cat;
-    card.style.display = match ? 'flex' : 'none';
-    if (match) visible++;
-  });
-  document.getElementById('noResults').style.display = visible === 0 ? 'block' : 'none';
-}
+// ── Update time ──────────────────────────────────────
+var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+var now = new Date();
+document.getElementById('updateTime').textContent =
+  now.getDate()+' '+months[now.getMonth()]+' '+now.getFullYear()+' '+
+  now.getHours().toString().padStart(2,'0')+':'+now.getMinutes().toString().padStart(2,'0');
 
-// ── Search filter ────────────────────────────────────────
-function filterJobs() {
-  var q = document.getElementById('searchInput').value.toLowerCase();
-  var cards = document.querySelectorAll('.job-card');
-  var visible = 0;
-  cards.forEach(function(card) {
-    var text = (card.dataset.title || card.innerText).toLowerCase();
-    var match = text.includes(q);
-    card.style.display = match ? 'flex' : 'none';
-    if (match) visible++;
-  });
-  document.getElementById('noResults').style.display = visible === 0 ? 'block' : 'none';
-}
-
-function quickSearch(term) {
-  document.getElementById('searchInput').value = term;
-  filterJobs();
-  document.querySelector('.content-area').scrollIntoView({behavior:'smooth', block:'start'});
-}
-
-// ── Mobile menu ──────────────────────────────────────────
+// ── Mobile menu ──────────────────────────────────────
 function openMenu()  { document.getElementById('mobileMenu').classList.add('open'); }
 function closeMenu() { document.getElementById('mobileMenu').classList.remove('open'); }
 
-// ── Subscribe alert ──────────────────────────────────────
-function subscribeAlert() {
-  alert('✅ Thank you! You will now receive free job alerts.\n\n(Connect your email service like EmailJS or Mailchimp to make this work on your live site.)');
+// ── Search ───────────────────────────────────────────
+function doSearch() {
+  var q = document.getElementById('globalSearch').value.trim();
+  if (q) window.location.href = 'section.html?s=all&q=' + encodeURIComponent(q);
 }
 
-// ── Animate number counters on load ─────────────────────
-window.addEventListener('load', function() {
-  var els = document.querySelectorAll('.hero-stat-num');
-  // Simple fade-in animation for hero stats
-  els.forEach(function(el, i) {
-    el.style.opacity = '0';
-    el.style.transform = 'translateY(10px)';
-    el.style.transition = 'all 0.4s ease ' + (i * 0.1 + 0.3) + 's';
-    setTimeout(function() {
-      el.style.opacity = '1';
-      el.style.transform = 'translateY(0)';
-    }, 100);
-  });
-});
+// ── Section filter (tab switching) ──────────────────
+function filterSection(sec, btn) {
+  document.querySelectorAll('.nt-link').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  // Scroll to section
+  var map = {
+    jobs:'sec-jobs', results:'sec-results', admit:'sec-admit',
+    board:'sec-board', univ:'sec-univ', schemes:'sec-schemes',
+    answer:'sec-answer', syllabus:'sec-answer'
+  };
+  if(sec !== 'all' && map[sec]) {
+    var el = document.getElementById(map[sec]);
+    if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  } else {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+}
+
+// ── Subscribe ────────────────────────────────────────
+function subscribeAlert() {
+  alert('✅ Thank you! You will receive free government job alerts.\n\nConnect EmailJS or Formspree to make this actually send emails.');
+}
+
+// ── Dynamic counts from Supabase (if configured) ────
+async function loadCounts() {
+  try {
+    if (typeof SUPABASE_URL === 'undefined' || SUPABASE_URL.includes('YOUR_PROJECT')) return;
+    var res = await fetch(SUPABASE_URL+'/rest/v1/posts?select=section',{
+      headers:{apikey:SUPABASE_KEY,Authorization:'Bearer '+SUPABASE_KEY}
+    });
+    if (!res.ok) return;
+    var data = await res.json();
+    var counts = {};
+    data.forEach(function(p){ counts[p.section] = (counts[p.section]||0)+1; });
+    ['jobs','results','admit_cards'].forEach(function(sec){
+      var el = document.getElementById('cnt-'+sec.replace('_cards',''));
+      if(el && counts[sec]) el.textContent = counts[sec];
+    });
+    var total = data.length;
+    document.getElementById('stat-posts').textContent = total+'+';
+  } catch(e) {}
+}
+loadCounts();
 </script>
 </body>
 </html>

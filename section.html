@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SarkariAlert.in</title>
+<link href="https://fonts.googleapis.com/css2?family=Teko:wght@500;600;700&family=Hind:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#0B1D3A;--navy2:#162d55;--orange:#E8460A;--orange2:#ff5c1a;--gold:#F5A623;--bg:#F2F4F8;--card:#fff;--border:#DDE1EC;--text:#0B1D3A;--muted:#6B7A99;--green:#097A47;--green-bg:#E5F5ED;--red:#C0392B;--red-bg:#FDECEA;--blue:#1A56C4;--blue-bg:#E8F0FE;--radius:10px;--shadow:0 2px 16px rgba(11,29,58,.07)}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Hind',sans-serif;background:var(--bg);color:var(--text);font-size:15px;line-height:1.6}
+a{text-decoration:none;color:inherit}
+ul{list-style:none}
+header{background:var(--navy);position:sticky;top:0;z-index:100;box-shadow:0 2px 20px rgba(0,0,0,.25)}
+.header-inner{max-width:1100px;margin:0 auto;padding:0 20px;display:flex;align-items:center;gap:20px;height:64px}
+.logo{display:flex;align-items:center;gap:10px}
+.logo-icon{width:38px;height:38px;background:var(--orange);border-radius:8px;display:flex;align-items:center;justify-content:center;font-family:'Teko',sans-serif;font-size:20px;color:#fff;font-weight:700}
+.logo-text{font-family:'Teko',sans-serif;font-size:26px;font-weight:700;color:#fff;line-height:1}
+.logo-text span{color:var(--gold)}
+.logo-tag{font-size:10px;color:#aab4cc;display:block}
+nav{display:flex;align-items:center;gap:2px;margin-left:auto}
+.nav-link{color:#ccd3e0;font-size:13.5px;font-weight:500;padding:8px 14px;border-radius:6px;transition:all .15s;white-space:nowrap}
+.nav-link:hover,.nav-link.active{background:rgba(255,255,255,.1);color:#fff}
+.nav-link.active{color:var(--gold)}
+.nav-cta{background:var(--orange);color:#fff;padding:8px 18px;border-radius:7px;font-size:13.5px;font-weight:600;margin-left:8px}
+
+/* PAGE HERO */
+.page-hero{padding:32px 20px;border-bottom:1px solid var(--border)}
+.ph-inner{max-width:1100px;margin:0 auto}
+.breadcrumb{font-size:12.5px;color:var(--muted);margin-bottom:10px}
+.breadcrumb a{color:var(--orange)}
+.ph-row{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.ph-title{font-family:'Teko',sans-serif;font-size:2.2rem;font-weight:700;color:var(--navy)}
+.ph-title span{color:var(--orange)}
+.ph-count{font-size:13px;color:var(--muted);margin-top:4px}
+
+/* FILTER BAR */
+.filter-bar{background:#fff;border-bottom:1px solid var(--border);padding:12px 20px;position:sticky;top:64px;z-index:90;box-shadow:0 2px 8px rgba(0,0,0,.04)}
+.filter-inner{max-width:1100px;margin:0 auto;display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.search-box{display:flex;align-items:center;gap:8px;background:var(--bg);border:1.5px solid var(--border);border-radius:8px;padding:7px 14px;flex:1;min-width:180px;max-width:300px}
+.search-box input{background:none;border:none;outline:none;font-size:13.5px;font-family:'Hind',sans-serif;color:var(--text);width:100%}
+.search-box input::placeholder{color:var(--muted)}
+.filt-btn{padding:7px 14px;border-radius:7px;border:1.5px solid var(--border);background:#fff;color:var(--muted);font-size:13px;font-weight:500;cursor:pointer;font-family:'Hind',sans-serif;transition:all .15s;white-space:nowrap}
+.filt-btn:hover{border-color:var(--orange);color:var(--orange)}
+.filt-btn.active{background:var(--navy);color:#fff;border-color:var(--navy)}
+.res-count{margin-left:auto;font-size:13px;color:var(--muted)}
+.res-count span{font-weight:700;color:var(--orange)}
+
+/* MAIN */
+.main{max-width:1100px;margin:0 auto;padding:24px 20px 60px}
+
+/* POST CARD */
+.post-card{background:var(--card);border:1.5px solid var(--border);border-radius:var(--radius);padding:20px 22px;margin-bottom:14px;display:flex;gap:16px;position:relative;overflow:hidden;transition:all .2s;cursor:pointer}
+.post-card::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;border-radius:3px 0 0 3px}
+.post-card.railway::before{background:var(--blue)}
+.post-card.upsc::before{background:#7B2FBE}
+.post-card.banking::before{background:var(--green)}
+.post-card.defence::before{background:var(--red)}
+.post-card.state::before{background:var(--gold)}
+.post-card:hover{box-shadow:var(--shadow);border-color:#bbc5de;transform:translateY(-2px)}
+.pc-icon{width:48px;height:48px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0;background:var(--bg)}
+.pc-body{flex:1;min-width:0}
+.pc-top{display:flex;align-items:flex-start;justify-content:space-between;gap:10px;margin-bottom:4px}
+.pc-title{font-size:15px;font-weight:600;color:var(--text);line-height:1.3}
+.pc-badges{display:flex;gap:5px;flex-shrink:0;flex-wrap:wrap}
+.badge{font-size:10px;font-weight:700;padding:2px 8px;border-radius:4px;text-transform:uppercase;letter-spacing:.3px}
+.badge-new{background:var(--orange);color:#fff}
+.badge-hot{background:#FFF3E0;color:#E65100}
+.badge-imp{background:#EDE9FE;color:#6D28D9}
+.pc-dept{font-size:12.5px;color:var(--muted);margin-bottom:10px}
+.pc-tags-row{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px}
+.tag{font-size:11.5px;font-weight:600;padding:3px 10px;border-radius:5px}
+.tag-vac{background:var(--navy);color:#fff}
+.tag-date{background:var(--red-bg);color:var(--red)}
+.tag-qual{background:var(--bg);color:var(--muted);border:1px solid var(--border)}
+.tag-open{background:var(--green-bg);color:var(--green)}
+.tag-blue{background:var(--blue-bg);color:var(--blue)}
+.tag-amber{background:#FFF3E0;color:#E65100}
+.pc-footer{display:flex;align-items:center;justify-content:space-between;padding-top:10px;border-top:1px dashed var(--border);flex-wrap:wrap;gap:8px}
+.pc-source{font-size:12px;color:var(--muted);display:flex;align-items:center;gap:4px}
+.pc-source a{color:var(--blue);font-weight:600}
+.pc-apply-btn{display:inline-flex;align-items:center;gap:6px;background:var(--navy);color:#fff;padding:7px 16px;border-radius:7px;font-size:13px;font-weight:600;transition:background .15s}
+.pc-apply-btn:hover{background:var(--orange)}
+.pc-arrow{align-self:center;color:var(--muted);font-size:16px;flex-shrink:0;transition:all .15s}
+.post-card:hover .pc-arrow{transform:translateX(4px);color:var(--orange)}
+
+/* SKELETON */
+.skel-card{background:#fff;border:1.5px solid var(--border);border-radius:var(--radius);padding:20px 22px;margin-bottom:14px;display:flex;gap:16px}
+.skel{background:linear-gradient(90deg,#e8ecf0 25%,#f5f7fa 50%,#e8ecf0 75%);background-size:200% 100%;animation:shimmer 1.4s infinite;border-radius:6px}
+@keyframes shimmer{0%{background-position:200% 0}100%{background-position:-200% 0}}
+
+/* EMPTY */
+.empty{text-align:center;padding:60px 20px;color:var(--muted)}
+.empty-icon{font-size:52px;margin-bottom:12px}
+.empty-title{font-family:'Teko',sans-serif;font-size:22px;color:var(--text);margin-bottom:6px}
+
+footer{background:var(--navy);color:#7E90AE;padding:20px;text-align:center;font-size:13px}
+footer a{color:var(--gold)}
+@media(max-width:600px){nav .nav-link{display:none}.ph-title{font-size:1.7rem}}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <a href="index.html" class="logo">
+      <div class="logo-icon">SA</div>
+      <div><div class="logo-text">Sarkari<span>Alert</span>.in</div><span class="logo-tag">INDIA'S FASTEST GOVT JOB PORTAL</span></div>
+    </a>
+    <nav>
+      <a href="index.html" class="nav-link">Home</a>
+      <a href="section.html?s=jobs" class="nav-link" id="nav-jobs">Jobs</a>
+      <a href="section.html?s=results" class="nav-link" id="nav-results">Results</a>
+      <a href="section.html?s=admit_cards" class="nav-link" id="nav-admit">Admit Cards</a>
+      <a href="section.html?s=syllabus" class="nav-link" id="nav-syllabus">Syllabus</a>
+      <a href="section.html?s=schemes" class="nav-link" id="nav-schemes">Schemes</a>
+      <a href="index.html#subscribe" class="nav-cta">🔔 Get Alerts</a>
+    </nav>
+  </div>
+</header>
+
+<div class="page-hero" id="pageHero" style="background:linear-gradient(135deg,var(--navy),var(--navy2))">
+  <div class="ph-inner">
+    <div class="breadcrumb" style="color:#9DAEC8"><a href="index.html" style="color:#9DAEC8">Home</a> › <span id="breadLabel" style="color:#fff">Loading…</span></div>
+    <div class="ph-row">
+      <div>
+        <div class="ph-title" style="color:#fff" id="pageTitle">Loading…</div>
+        <div class="ph-count" style="color:#9DAEC8" id="pageCount">Fetching latest posts…</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="filter-bar">
+  <div class="filter-inner">
+    <div class="search-box"><span>🔍</span><input type="text" id="searchInput" placeholder="Search…" oninput="render()"></div>
+    <button class="filt-btn active" data-cat="all" onclick="setCat('all',this)">All</button>
+    <button class="filt-btn" data-cat="railway" onclick="setCat('railway',this)">🚂 Railway</button>
+    <button class="filt-btn" data-cat="upsc" onclick="setCat('upsc',this)">🏛️ UPSC/SSC</button>
+    <button class="filt-btn" data-cat="banking" onclick="setCat('banking',this)">🏦 Banking</button>
+    <button class="filt-btn" data-cat="defence" onclick="setCat('defence',this)">🛡️ Defence</button>
+    <button class="filt-btn" data-cat="state" onclick="setCat('state',this)">🗺️ State</button>
+    <div class="res-count" id="resCount">Showing <span>0</span> posts</div>
+  </div>
+</div>
+
+<div class="main" id="mainArea">
+  <!-- Skeletons -->
+  <div id="skels">
+    <div class="skel-card"><div class="skel" style="width:48px;height:48px;border-radius:10px;flex-shrink:0"></div><div style="flex:1"><div class="skel" style="height:18px;width:75%;margin-bottom:8px"></div><div class="skel" style="height:13px;width:50%;margin-bottom:10px"></div><div style="display:flex;gap:6px"><div class="skel" style="height:22px;width:100px"></div><div class="skel" style="height:22px;width:130px"></div></div></div></div>
+    <div class="skel-card"><div class="skel" style="width:48px;height:48px;border-radius:10px;flex-shrink:0"></div><div style="flex:1"><div class="skel" style="height:18px;width:60%;margin-bottom:8px"></div><div class="skel" style="height:13px;width:45%;margin-bottom:10px"></div><div style="display:flex;gap:6px"><div class="skel" style="height:22px;width:80px"></div><div class="skel" style="height:22px;width:110px"></div></div></div></div>
+    <div class="skel-card"><div class="skel" style="width:48px;height:48px;border-radius:10px;flex-shrink:0"></div><div style="flex:1"><div class="skel" style="height:18px;width:80%;margin-bottom:8px"></div><div class="skel" style="height:13px;width:55%;margin-bottom:10px"></div><div style="display:flex;gap:6px"><div class="skel" style="height:22px;width:90px"></div><div class="skel" style="height:22px;width:120px"></div></div></div></div>
+  </div>
+  <div id="postList"></div>
+  <div id="emptyState" style="display:none" class="empty"><div class="empty-icon" id="emptyIcon">📋</div><div class="empty-title">No posts found</div><div>Try a different filter or <a href="index.html" style="color:var(--orange)">go back home</a></div></div>
+</div>
+
+<footer>
+  <p>© 2026 SarkariAlert.in · Always verify on official websites before applying ·
+  <a href="index.html">Home</a> · <a href="about.html">About</a> · <a href="about.html#disclaimer">Disclaimer</a></p>
+</footer>
+
+<script src="config.js"></script>
+<script>
+var allPosts = [];
+var activeCat = 'all';
+
+// Read section from URL: section.html?s=results
+var params  = new URLSearchParams(window.location.search);
+var SECTION = params.get('s') || 'jobs';
+
+var SEC_META = {
+  jobs:        { label:'Latest Jobs',     icon:'💼', color:'#0B1D3A', empty:'💼' },
+  results:     { label:'Exam Results',    icon:'📋', color:'#1B8A4E', empty:'📋' },
+  admit_cards: { label:'Admit Cards',     icon:'🎫', color:'#1565C0', empty:'🎫' },
+  syllabus:    { label:'Syllabus',        icon:'📚', color:'#6A0DAD', empty:'📚' },
+  schemes:     { label:'Govt Schemes',    icon:'🏛️', color:'#C0392B', empty:'🏛️' },
+  answer_keys: { label:'Answer Keys',     icon:'📝', color:'#E65100', empty:'📝' },
+};
+var meta = SEC_META[SECTION] || SEC_META['jobs'];
+
+// Set page title & hero
+document.title = meta.label + ' | SarkariAlert.in';
+document.getElementById('pageTitle').innerHTML = meta.icon + ' Latest <span>' + meta.label + '</span>';
+document.getElementById('breadLabel').textContent = meta.label;
+document.getElementById('emptyIcon').textContent = meta.empty;
+document.getElementById('pageHero').style.background = 'linear-gradient(135deg,'+meta.color+',var(--navy2))';
+
+// Highlight correct nav link
+var navMap = {jobs:'nav-jobs',results:'nav-results',admit_cards:'nav-admit',syllabus:'nav-syllabus',schemes:'nav-schemes'};
+var navEl = document.getElementById(navMap[SECTION]);
+if(navEl) navEl.classList.add('active');
+
+var STATUS_TAGS = {
+  open:      '<span class="tag tag-open">🟢 Apply Open</span>',
+  soon:      '<span class="tag tag-blue">🔵 Coming Soon</span>',
+  closed:    '<span class="tag tag-qual">🔴 Closed</span>',
+  declared:  '<span class="tag tag-open">✅ Result Declared</span>',
+  available: '<span class="tag tag-amber">📥 Available</span>',
+  result_out:'<span class="tag tag-open">📋 Result Out</span>',
+};
+
+function esc(s){return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')}
+
+async function loadPosts() {
+  try {
+    var q = 'posts?section=eq.'+SECTION+'&order=id.desc&select=*';
+    var res = await fetch(SUPABASE_URL+'/rest/v1/'+q, {
+      headers:{apikey:SUPABASE_KEY,Authorization:'Bearer '+SUPABASE_KEY}
+    });
+    if(!res.ok) throw new Error('fetch failed');
+    allPosts = await res.json();
+  } catch(e) {
+    // Demo fallback
+    allPosts = [
+      {id:1,section:SECTION,cat:'upsc',icon:meta.icon,title:'Sample Post — Add real posts from your Admin Panel',dept:'SarkariAlert.in',vacancies:'See Admin Panel',qual:'All Candidates',last_date:'Ongoing',status:'open',apply_link:'admin/dashboard.html',official_site:'sarkarialert.in',is_new:true,is_hot:false,summary:'This is a demo post. Open your Admin Panel to add real posts.',notes:''},
+    ];
+  }
+  document.getElementById('skels').style.display='none';
+  document.getElementById('pageCount').textContent = allPosts.length+' posts in this section · Updated '+new Date().toLocaleDateString('en-IN',{day:'numeric',month:'short',year:'numeric'});
+  render();
+}
+
+function setCat(cat, btn) {
+  activeCat = cat;
+  document.querySelectorAll('.filt-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  render();
+}
+
+function render() {
+  var q = document.getElementById('searchInput').value.toLowerCase();
+  var filtered = allPosts.filter(function(p){
+    var catOk = activeCat==='all'||p.cat===activeCat;
+    var qOk   = !q||(p.title+(p.dept||'')+(p.tags||'')).toLowerCase().includes(q);
+    return catOk && qOk;
+  });
+
+  document.getElementById('resCount').innerHTML='Showing <span>'+filtered.length+'</span> posts';
+  var list = document.getElementById('postList');
+  var empty = document.getElementById('emptyState');
+
+  if(!filtered.length){ list.innerHTML=''; empty.style.display='block'; return; }
+  empty.style.display='none';
+
+  list.innerHTML = filtered.map(function(p){
+    var statusTag = STATUS_TAGS[p.status] || STATUS_TAGS.closed;
+    return '<a class="post-card '+esc(p.cat)+'" href="'+(p.apply_link||'#')+'" target="_blank" rel="noopener">'+
+      '<div class="pc-icon">'+(p.icon||meta.icon)+'</div>'+
+      '<div class="pc-body">'+
+        '<div class="pc-top">'+
+          '<div class="pc-title">'+esc(p.title)+'</div>'+
+          '<div class="pc-badges">'+
+            (p.is_new?'<span class="badge badge-new">NEW</span>':'')+
+            (p.is_hot?'<span class="badge badge-hot">HOT</span>':'')+
+            (p.is_important?'<span class="badge badge-imp">⭐</span>':'')+
+          '</div>'+
+        '</div>'+
+        '<div class="pc-dept">'+esc(p.dept||'')+'</div>'+
+        '<div class="pc-tags-row">'+
+          (p.vacancies?'<span class="tag tag-vac">📋 '+esc(p.vacancies)+'</span>':'')+
+          statusTag+
+          (p.qual?'<span class="tag tag-qual">'+esc(p.qual)+'</span>':'')+
+          (p.last_date?'<span class="tag tag-date">⏰ '+esc(p.last_date)+'</span>':'')+
+        '</div>'+
+        (p.summary?'<div style="font-size:12.5px;color:var(--muted);line-height:1.5">'+esc(p.summary)+'</div>':'')+
+        '<div class="pc-footer" style="margin-top:10px">'+
+          '<div class="pc-source">📌 <a href="https://'+esc(p.official_site||'')+'" target="_blank">'+esc(p.official_site||'')+'</a></div>'+
+          '<span class="pc-apply-btn">View Details →</span>'+
+        '</div>'+
+      '</div>'+
+    '</a>';
+  }).join('');
+}
+
+loadPosts();
+</script>
+</body>
+</html>
