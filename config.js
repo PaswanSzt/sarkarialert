@@ -9,9 +9,9 @@
 //   3. Copy "Project URL" → SUPABASE_URL
 //   4. Copy "anon public" key → SUPABASE_KEY
 
-const SUPABASE_URL = "YOUR_PROJECT_URL_HERE";
-const SUPABASE_KEY = "YOUR_ANON_PUBLIC_KEY_HERE";
-const ADMIN_PASSWORD = "sarkari@admin2026";  // ← CHANGE THIS!
+const SUPABASE_URL = "https://qfgszbyvdsqdasskdtqo.supabase.co";
+const SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InFmZ3N6Ynl2ZHNxZGFzc2tkdHFvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzQyMDkwNjIsImV4cCI6MjA4OTc4NTA2Mn0.L91IriQ_razBVZspGsygTVlmKMem3DriEnoxsd5j2wc";
+const ADMIN_PASSWORD = "Paswan@7656";  // ← CHANGE THIS!
 
 // ── Site Info ──────────────────────────────────────
 const SITE_NAME    = "SarkariAlert.in";
@@ -101,6 +101,3 @@ const SUPABASE_READY = (
   SUPABASE_URL !== "YOUR_PROJECT_URL_HERE" &&
   SUPABASE_URL.includes("supabase.co")
 );
-"https://qfgszbyvdsqdasskdtqo.supabase.co";
-"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InFmZ3N6Ynl2ZHNxZGFzc2tkdHFvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzQyMDkwNjIsImV4cCI6MjA4OTc4NTA2Mn0.L91IriQ_razBVZspGsygTVlmKMem3DriEnoxsd5j2wc";
-"Paswan@7656";
