@@ -3,1410 +3,378 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="SarkariAlert.in — India's most trusted portal for Sarkari Jobs, Results, Admit Cards, Board Exams, University Results, Schemes & more. Updated daily.">
-<meta name="keywords" content="sarkari result, government jobs, board result, admit card, sarkari naukri, UPSC, SSC, Railway, Bank jobs, CBSE result, Bihar Board, UP Board">
-<title>SarkariAlert.in | Sarkari Result, Jobs, Admit Card, Board Results 2026</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600;700&family=Teko:wght@500;600;700&display=swap" rel="stylesheet">
-<style>
-/* ═══════════════════════════════════════════
-   DESIGN TOKENS
-═══════════════════════════════════════════ */
-:root {
-  --navy:      #0B1D3A;
-  --navy2:     #122649;
-  --orange:    #D94F00;
-  --orange2:   #F05A00;
-  --orange-bg: #FFF3EC;
-  --gold:      #F59E0B;
-  --white:     #FFFFFF;
-  --bg:        #F0F2F5;
-  --card:      #FFFFFF;
-  --border:    #DEE3EC;
-  --text:      #1A1F2E;
-  --muted:     #6B7694;
-  --light:     #F8F9FC;
-
-  /* Section colours */
-  --c-jobs:     #1565C0; --c-jobs-bg:     #E8F0FE;
-  --c-results:  #0A7C47; --c-results-bg:  #E5F5ED;
-  --c-admit:    #7B1FA2; --c-admit-bg:    #F3E5F5;
-  --c-board:    #C62828; --c-board-bg:    #FDECEA;
-  --c-schemes:  #E65100; --c-schemes-bg:  #FFF3E0;
-  --c-univ:     #00695C; --c-univ-bg:     #E0F2F1;
-  --c-answer:   #455A64; --c-answer-bg:   #ECEFF1;
-  --c-syllabus: #4A148C; --c-syllabus-bg: #EDE7F6;
-
-  --radius: 8px;
-  --shadow: 0 1px 6px rgba(0,0,0,.08);
-}
-
-/* ═══════════════════════════════════════════
-   RESET
-═══════════════════════════════════════════ */
-*,*::before,*::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; }
-body {
-  font-family: 'Noto Sans', sans-serif;
-  background: var(--bg);
-  color: var(--text);
-  font-size: 14px;
-  line-height: 1.6;
-}
-a { text-decoration: none; color: inherit; }
-ul { list-style: none; }
-
-/* ═══════════════════════════════════════════
-   BREAKING NEWS TICKER
-═══════════════════════════════════════════ */
-.breaking {
-  background: var(--navy);
-  display: flex;
-  align-items: center;
-  height: 32px;
-  overflow: hidden;
-}
-.breaking-label {
-  background: var(--orange);
-  color: #fff;
-  font-size: 11px;
-  font-weight: 700;
-  padding: 0 12px;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  white-space: nowrap;
-  letter-spacing: .5px;
-  flex-shrink: 0;
-}
-.breaking-scroll { flex: 1; overflow: hidden; }
-.breaking-inner {
-  display: inline-flex;
-  gap: 0;
-  white-space: nowrap;
-  animation: scroll 50s linear infinite;
-}
-.breaking-inner:hover { animation-play-state: paused; }
-@keyframes scroll { 0%{transform:translateX(0)} 100%{transform:translateX(-50%)} }
-.breaking-item {
-  font-size: 12px;
-  color: #E0E8FF;
-  padding: 0 28px 0 0;
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-}
-.breaking-item a { color: #FFD180; }
-.breaking-item a:hover { text-decoration: underline; }
-.breaking-sep { color: rgba(255,255,255,.3); }
-
-/* ═══════════════════════════════════════════
-   HEADER
-═══════════════════════════════════════════ */
-header {
-  background: var(--navy);
-  box-shadow: 0 2px 12px rgba(0,0,0,.25);
-  position: sticky; top: 0; z-index: 100;
-}
-.header-wrap {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 16px;
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  height: 58px;
-}
-.logo { display: flex; align-items: center; gap: 10px; flex-shrink: 0; }
-.logo-mark {
-  width: 36px; height: 36px;
-  background: var(--orange);
-  border-radius: 8px;
-  display: flex; align-items: center; justify-content: center;
-  font-family: 'Teko', sans-serif;
-  font-size: 18px; font-weight: 700; color: #fff;
-}
-.logo-text {
-  font-family: 'Teko', sans-serif;
-  font-size: 24px; font-weight: 700; color: #fff; line-height: 1;
-}
-.logo-text span { color: var(--gold); }
-.logo-sub { font-size: 9px; color: rgba(255,255,255,.45); letter-spacing: .5px; }
-
-/* SEARCH */
-.header-search {
-  flex: 1;
-  max-width: 480px;
-  display: flex;
-  align-items: center;
-  background: rgba(255,255,255,.1);
-  border: 1px solid rgba(255,255,255,.18);
-  border-radius: 7px;
-  padding: 0 12px;
-  height: 38px;
-  transition: background .2s;
-}
-.header-search:focus-within {
-  background: rgba(255,255,255,.16);
-  border-color: var(--orange);
-}
-.header-search input {
-  flex: 1; background: none; border: none; outline: none;
-  color: #fff; font-size: 13.5px; font-family: 'Noto Sans', sans-serif;
-}
-.header-search input::placeholder { color: rgba(255,255,255,.4); }
-.header-search-btn {
-  background: var(--orange); color: #fff;
-  border: none; border-radius: 5px;
-  padding: 4px 12px; font-size: 12px;
-  font-weight: 600; cursor: pointer;
-  transition: background .15s;
-}
-.header-search-btn:hover { background: var(--orange2); }
-
-/* HEADER NAV */
-.header-nav {
-  display: flex; align-items: center; gap: 2px; margin-left: auto;
-}
-.hn-link {
-  color: rgba(255,255,255,.7);
-  font-size: 12.5px; font-weight: 500;
-  padding: 6px 10px; border-radius: 6px;
-  transition: all .15s; white-space: nowrap;
-}
-.hn-link:hover { background: rgba(255,255,255,.1); color: #fff; }
-.hn-alert {
-  background: var(--orange); color: #fff;
-  padding: 6px 14px; border-radius: 6px;
-  font-size: 12.5px; font-weight: 600;
-  margin-left: 6px;
-}
-.hn-alert:hover { background: var(--orange2); }
-.hamburger {
-  display: none; flex-direction: column; gap: 4px;
-  cursor: pointer; padding: 6px; margin-left: auto;
-}
-.hamburger span { width: 20px; height: 2px; background: #fff; border-radius: 2px; }
-
-/* ═══════════════════════════════════════════
-   NAV TABS (main category navigation)
-═══════════════════════════════════════════ */
-.nav-tabs {
-  background: #fff;
-  border-bottom: 2px solid var(--border);
-  position: sticky; top: 58px; z-index: 90;
-  box-shadow: 0 2px 6px rgba(0,0,0,.05);
-}
-.nav-tabs-inner {
-  max-width: 1200px; margin: 0 auto; padding: 0 16px;
-  display: flex; align-items: center; gap: 0;
-  overflow-x: auto; scrollbar-width: none;
-}
-.nav-tabs-inner::-webkit-scrollbar { display: none; }
-.nt-link {
-  display: flex; align-items: center; gap: 5px;
-  padding: 10px 14px;
-  font-size: 13px; font-weight: 600;
-  color: var(--muted);
-  border-bottom: 2px solid transparent;
-  margin-bottom: -2px;
-  cursor: pointer;
-  transition: all .15s;
-  white-space: nowrap;
-  border: none; background: none;
-  font-family: 'Noto Sans', sans-serif;
-}
-.nt-link:hover { color: var(--orange); }
-.nt-link.active { color: var(--orange); border-bottom: 2px solid var(--orange); }
-.nt-count {
-  background: var(--orange);
-  color: #fff;
-  font-size: 10px;
-  font-weight: 700;
-  padding: 1px 5px;
-  border-radius: 99px;
-}
-
-/* ═══════════════════════════════════════════
-   STATS STRIP
-═══════════════════════════════════════════ */
-.stats-strip {
-  background: var(--navy);
-  padding: 10px 16px;
-}
-.stats-strip-inner {
-  max-width: 1200px; margin: 0 auto;
-  display: flex; align-items: center;
-  gap: 24px; flex-wrap: wrap;
-}
-.ss-item {
-  display: flex; align-items: center; gap: 8px;
-  color: rgba(255,255,255,.75);
-  font-size: 12px;
-}
-.ss-num {
-  font-family: 'Teko', sans-serif;
-  font-size: 18px; font-weight: 700;
-  color: var(--gold);
-  line-height: 1;
-}
-.ss-sep { color: rgba(255,255,255,.2); }
-
-/* ═══════════════════════════════════════════
-   MAIN LAYOUT
-═══════════════════════════════════════════ */
-.main {
-  max-width: 1200px; margin: 0 auto;
-  padding: 14px 16px 50px;
-  display: grid;
-  grid-template-columns: 1fr 290px;
-  gap: 14px;
-  align-items: start;
-}
-
-/* ═══════════════════════════════════════════
-   SECTION BLOCK (content boxes)
-═══════════════════════════════════════════ */
-.section-block {
-  background: var(--card);
-  border-radius: var(--radius);
-  border: 1px solid var(--border);
-  margin-bottom: 14px;
-  overflow: hidden;
-  box-shadow: var(--shadow);
-}
-.sb-head {
-  display: flex; align-items: center;
-  justify-content: space-between;
-  padding: 10px 14px;
-  border-bottom: 1px solid var(--border);
-}
-.sb-title {
-  display: flex; align-items: center; gap: 8px;
-  font-size: 14px; font-weight: 700; color: var(--text);
-}
-.sb-title-dot {
-  width: 3px; height: 18px; border-radius: 2px;
-}
-.sb-icon { font-size: 15px; }
-.sb-more {
-  font-size: 12px; font-weight: 600;
-  padding: 4px 10px; border-radius: 5px;
-  transition: all .15s;
-  white-space: nowrap;
-}
-
-/* ═══════════════════════════════════════════
-   LIST ITEMS (SarkariResult-style link list)
-═══════════════════════════════════════════ */
-.post-list { padding: 0; }
-.post-item {
-  display: flex;
-  align-items: flex-start;
-  gap: 8px;
-  padding: 8px 14px;
-  border-bottom: 1px dashed #EEF0F5;
-  transition: background .12s;
-  cursor: pointer;
-}
-.post-item:last-child { border-bottom: none; }
-.post-item:hover { background: var(--light); }
-.post-item-arrow {
-  flex-shrink: 0;
-  color: var(--orange);
-  font-size: 12px;
-  margin-top: 3px;
-}
-.post-item-text {
-  flex: 1; min-width: 0;
-  font-size: 13px;
-  color: var(--text);
-  line-height: 1.45;
-}
-.post-item-text a {
-  color: #1A3A6B;
-  font-weight: 500;
-}
-.post-item-text a:hover { color: var(--orange); text-decoration: underline; }
-.post-item-meta {
-  display: flex; align-items: center; gap: 5px;
-  flex-wrap: wrap; margin-top: 2px;
-}
-.pi-date { font-size: 11px; color: var(--muted); }
-.pi-sep { color: var(--border); }
-
-/* BADGE PILLS */
-.badge {
-  display: inline-block;
-  padding: 1px 6px;
-  border-radius: 3px;
-  font-size: 10px;
-  font-weight: 700;
-  letter-spacing: .3px;
-  white-space: nowrap;
-  text-transform: uppercase;
-}
-.b-new  { background: #FF3D00; color: #fff; }
-.b-hot  { background: #FF6D00; color: #fff; }
-.b-out  { background: #2E7D32; color: #fff; }
-.b-soon { background: #1565C0; color: #fff; }
-.b-imp  { background: #6A1B9A; color: #fff; }
-.b-adm  { background: #00695C; color: #fff; }
-
-/* ═══════════════════════════════════════════
-   FEATURED CARDS (big visual cards)
-═══════════════════════════════════════════ */
-.featured-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 10px;
-  padding: 12px;
-}
-.feat-card {
-  border-radius: var(--radius);
-  padding: 14px;
-  cursor: pointer;
-  transition: transform .15s, box-shadow .15s;
-  position: relative;
-  overflow: hidden;
-}
-.feat-card:hover { transform: translateY(-2px); box-shadow: 0 4px 16px rgba(0,0,0,.12); }
-.feat-card-label {
-  font-size: 10px; font-weight: 700;
-  letter-spacing: .5px; text-transform: uppercase;
-  margin-bottom: 5px; opacity: .75;
-}
-.feat-card-title {
-  font-size: 13px; font-weight: 700;
-  line-height: 1.35; margin-bottom: 6px;
-}
-.feat-card-meta {
-  font-size: 11px; opacity: .7;
-}
-.feat-card-arrow {
-  position: absolute; right: 12px; top: 50%;
-  transform: translateY(-50%);
-  font-size: 18px; opacity: .3;
-}
-
-/* ═══════════════════════════════════════════
-   QUALIFICATION QUICK LINKS
-═══════════════════════════════════════════ */
-.qual-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 8px;
-  padding: 12px;
-}
-.qual-card {
-  border-radius: var(--radius);
-  padding: 12px 10px;
-  text-align: center;
-  cursor: pointer;
-  transition: transform .15s;
-  border: 1.5px solid transparent;
-}
-.qual-card:hover { transform: translateY(-2px); }
-.qual-icon { font-size: 22px; margin-bottom: 5px; }
-.qual-label {
-  font-size: 11.5px; font-weight: 700;
-  color: var(--text); margin-bottom: 2px;
-}
-.qual-count { font-size: 10px; color: var(--muted); }
-
-/* ═══════════════════════════════════════════
-   BOARD RESULTS SECTION (special layout)
-═══════════════════════════════════════════ */
-.board-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1px;
-  background: var(--border);
-}
-.board-item {
-  background: #fff;
-  padding: 10px 14px;
-  display: flex; flex-direction: column; gap: 3px;
-  cursor: pointer; transition: background .12s;
-}
-.board-item:hover { background: var(--light); }
-.board-name {
-  font-size: 12.5px; font-weight: 600; color: #1A3A6B;
-}
-.board-name:hover { color: var(--orange); }
-.board-class { font-size: 11px; color: var(--muted); }
-.board-status {
-  font-size: 10.5px; font-weight: 700;
-  margin-top: 3px;
-}
-.board-status.out   { color: var(--c-results); }
-.board-status.soon  { color: var(--c-jobs); }
-.board-status.exp   { color: var(--c-schemes); }
-
-/* ═══════════════════════════════════════════
-   SIDEBAR WIDGETS
-═══════════════════════════════════════════ */
-.sidebar { display: flex; flex-direction: column; gap: 12px; }
-
-.widget {
-  background: var(--card);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  overflow: hidden;
-  box-shadow: var(--shadow);
-}
-.widget-head {
-  display: flex; align-items: center; justify-content: space-between;
-  padding: 9px 14px;
-  border-bottom: 1px solid var(--border);
-}
-.widget-title {
-  font-size: 13px; font-weight: 700; color: var(--text);
-  display: flex; align-items: center; gap: 6px;
-}
-.widget-more { font-size: 11px; color: var(--orange); font-weight: 600; }
-
-/* Simple sidebar list */
-.sw-list { padding: 4px 0; }
-.sw-item {
-  display: flex; align-items: flex-start; gap: 6px;
-  padding: 7px 14px;
-  border-bottom: 1px dashed #EEF0F5;
-  cursor: pointer;
-  transition: background .12s;
-}
-.sw-item:last-child { border-bottom: none; }
-.sw-item:hover { background: var(--light); }
-.sw-dot {
-  width: 6px; height: 6px; border-radius: 50%;
-  flex-shrink: 0; margin-top: 6px;
-}
-.sw-text { font-size: 12.5px; color: #1A3A6B; font-weight: 500; line-height: 1.4; flex: 1; }
-.sw-text:hover { color: var(--orange); }
-
-/* Exam Calendar */
-.exam-cal { padding: 8px 0; }
-.ec-item {
-  display: flex; gap: 10px; align-items: flex-start;
-  padding: 8px 14px; border-bottom: 1px dashed #EEF0F5;
-}
-.ec-item:last-child { border-bottom: none; }
-.ec-date {
-  width: 40px; flex-shrink: 0; text-align: center;
-  background: var(--navy); border-radius: 5px;
-  padding: 4px 2px; color: #fff;
-}
-.ec-day {
-  font-family: 'Teko', sans-serif;
-  font-size: 18px; font-weight: 700; line-height: 1; color: var(--gold);
-}
-.ec-mo { font-size: 9px; letter-spacing: .5px; text-transform: uppercase; color: rgba(255,255,255,.6); }
-.ec-info { flex: 1; }
-.ec-exam { font-size: 12px; font-weight: 600; color: var(--text); line-height: 1.35; }
-.ec-org  { font-size: 11px; color: var(--muted); margin-top: 2px; }
-
-/* Quick Links Grid in sidebar */
-.ql-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 1px;
-  background: var(--border);
-}
-.ql-item {
-  background: #fff;
-  padding: 10px 12px;
-  display: flex; align-items: center; gap: 7px;
-  cursor: pointer; transition: background .12s;
-}
-.ql-item:hover { background: var(--light); }
-.ql-icon { font-size: 14px; flex-shrink: 0; }
-.ql-label { font-size: 12px; font-weight: 600; color: var(--text); line-height: 1.3; }
-
-/* Subscribe widget */
-.sub-widget { padding: 14px; }
-.sub-widget p { font-size: 12.5px; color: var(--muted); margin-bottom: 10px; line-height: 1.55; }
-.sub-input {
-  width: 100%;
-  background: var(--light);
-  border: 1px solid var(--border);
-  border-radius: 6px;
-  padding: 9px 12px;
-  font-size: 13px;
-  font-family: 'Noto Sans', sans-serif;
-  color: var(--text);
-  outline: none;
-  margin-bottom: 8px;
-  transition: border-color .2s;
-}
-.sub-input:focus { border-color: var(--orange); }
-.sub-btn {
-  width: 100%;
-  background: var(--orange);
-  color: #fff; border: none;
-  border-radius: 6px; padding: 10px;
-  font-size: 13px; font-weight: 700;
-  cursor: pointer; font-family: 'Noto Sans', sans-serif;
-  transition: background .15s;
-}
-.sub-btn:hover { background: var(--orange2); }
-
-/* Notice Box */
-.notice-box {
-  margin: 8px 12px;
-  background: #FFFDE7;
-  border: 1px solid #F9A825;
-  border-radius: 6px;
-  padding: 9px 12px;
-  font-size: 12px;
-  color: #5D4037;
-  line-height: 1.5;
-  display: flex; gap: 7px;
-}
-.notice-icon { flex-shrink: 0; margin-top: 1px; }
-
-/* ═══════════════════════════════════════════
-   TOP SECTION PILLS (featured announcement)
-═══════════════════════════════════════════ */
-.announce-strip {
-  background: #fff;
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  padding: 10px 14px;
-  margin-bottom: 14px;
-  display: flex; align-items: center; gap: 10px;
-  flex-wrap: wrap;
-  box-shadow: var(--shadow);
-}
-.ann-label {
-  background: var(--orange);
-  color: #fff;
-  font-size: 10.5px; font-weight: 700;
-  padding: 2px 8px; border-radius: 4px;
-  letter-spacing: .3px;
-  flex-shrink: 0;
-}
-.ann-links { display: flex; flex-wrap: wrap; gap: 6px; flex: 1; }
-.ann-link {
-  font-size: 12px;
-  color: #1A3A6B;
-  font-weight: 500;
-  background: var(--light);
-  border: 1px solid var(--border);
-  padding: 3px 10px;
-  border-radius: 99px;
-  transition: all .15s;
-}
-.ann-link:hover { background: var(--orange-bg); color: var(--orange); border-color: var(--orange); }
-
-/* ═══════════════════════════════════════════
-   SECTION COLOUR HELPERS
-═══════════════════════════════════════════ */
-.c-jobs    { color: var(--c-jobs); }
-.c-results { color: var(--c-results); }
-.c-admit   { color: var(--c-admit); }
-.c-board   { color: var(--c-board); }
-.c-schemes { color: var(--c-schemes); }
-.c-univ    { color: var(--c-univ); }
-.c-answer  { color: var(--c-answer); }
-
-.dot-jobs    { background: var(--c-jobs); }
-.dot-results { background: var(--c-results); }
-.dot-admit   { background: var(--c-admit); }
-.dot-board   { background: var(--c-board); }
-.dot-schemes { background: var(--c-schemes); }
-.dot-univ    { background: var(--c-univ); }
-.dot-answer  { background: var(--c-answer); }
-.dot-syllabus{ background: var(--c-syllabus); }
-
-.bg-jobs    { background: var(--c-jobs-bg); color: var(--c-jobs); }
-.bg-results { background: var(--c-results-bg); color: var(--c-results); }
-.bg-admit   { background: var(--c-admit-bg); color: var(--c-admit); }
-.bg-board   { background: var(--c-board-bg); color: var(--c-board); }
-.bg-schemes { background: var(--c-schemes-bg); color: var(--c-schemes); }
-.bg-univ    { background: var(--c-univ-bg); color: var(--c-univ); }
-
-.more-jobs    { color: var(--c-jobs); }
-.more-results { color: var(--c-results); }
-.more-admit   { color: var(--c-admit); }
-.more-board   { color: var(--c-board); }
-.more-schemes { color: var(--c-schemes); }
-.more-univ    { color: var(--c-univ); }
-.more-answer  { color: var(--c-answer); }
-.more-syllabus{ color: var(--c-syllabus); }
-
-/* ═══════════════════════════════════════════
-   TWO-COLUMN FEED (big list sections)
-═══════════════════════════════════════════ */
-.two-col-feed {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 1px;
-  background: var(--border);
-}
-.tcf-col { background: #fff; }
-.tcf-head {
-  background: var(--light);
-  padding: 8px 14px;
-  font-size: 12px; font-weight: 700;
-  color: var(--text);
-  display: flex; align-items: center; gap: 6px;
-  border-bottom: 1px solid var(--border);
-}
-
-/* ═══════════════════════════════════════════
-   FOOTER
-═══════════════════════════════════════════ */
-.site-footer { background: var(--navy); color: rgba(255,255,255,.6); margin-top: 20px; }
-.footer-main {
-  max-width: 1200px; margin: 0 auto;
-  padding: 28px 16px 20px;
-  display: grid;
-  grid-template-columns: 2fr 1fr 1fr 1fr;
-  gap: 24px;
-}
-.footer-brand {}
-.footer-logo {
-  font-family: 'Teko', sans-serif;
-  font-size: 24px; font-weight: 700; color: #fff; margin-bottom: 7px;
-}
-.footer-logo span { color: var(--gold); }
-.footer-desc { font-size: 12.5px; line-height: 1.65; max-width: 240px; margin-bottom: 14px; }
-.footer-col h4 {
-  font-size: 13px; font-weight: 700; color: #fff;
-  margin-bottom: 12px; padding-bottom: 5px;
-  border-bottom: 1px solid rgba(255,255,255,.1);
-}
-.footer-links li { margin-bottom: 7px; }
-.footer-links a { font-size: 12px; color: rgba(255,255,255,.55); transition: color .15s; }
-.footer-links a:hover { color: var(--gold); }
-.footer-bottom {
-  border-top: 1px solid rgba(255,255,255,.08);
-  padding: 12px 16px; text-align: center;
-  font-size: 11.5px; color: rgba(255,255,255,.35);
-}
-.footer-bottom a { color: rgba(255,255,255,.5); }
-
-/* ═══════════════════════════════════════════
-   MOBILE
-═══════════════════════════════════════════ */
-.mobile-menu {
-  display: none;
-  position: fixed; inset: 0;
-  background: var(--navy); z-index: 200;
-  padding: 70px 20px 20px;
-  flex-direction: column; gap: 3px;
-  overflow-y: auto;
-}
-.mobile-menu.open { display: flex; }
-.mobile-close {
-  position: absolute; top: 14px; right: 16px;
-  color: #fff; font-size: 22px; background: none; border: none; cursor: pointer;
-}
-.mm-link {
-  color: rgba(255,255,255,.8); font-size: 15px; font-weight: 500;
-  padding: 12px 14px; border-radius: 7px; display: block;
-  border-bottom: 1px solid rgba(255,255,255,.07);
-}
-
-@media(max-width: 1024px) {
-  .main { grid-template-columns: 1fr; }
-  .sidebar { display: grid; grid-template-columns: repeat(2, 1fr); }
-  .footer-main { grid-template-columns: 1fr 1fr; }
-}
-@media(max-width: 720px) {
-  .header-search { display: none; }
-  .header-nav { display: none; }
-  .hamburger { display: flex; }
-  .featured-grid { grid-template-columns: 1fr; }
-  .qual-grid { grid-template-columns: repeat(2, 1fr); }
-  .board-grid { grid-template-columns: repeat(2, 1fr); }
-  .two-col-feed { grid-template-columns: 1fr; }
-  .sidebar { grid-template-columns: 1fr; }
-  .footer-main { grid-template-columns: 1fr; }
-  .stats-strip-inner { gap: 14px; }
-}
-@media(max-width: 480px) {
-  .qual-grid { grid-template-columns: repeat(4, 1fr); }
-  .board-grid { grid-template-columns: 1fr; }
-}
-</style>
+<meta name="description" content="SarkariAlert.in - Sarkari Result, Govt Jobs, Admit Card, Board Results, Syllabus, Schemes 2026. Latest government job notifications updated daily.">
+<meta name="keywords" content="sarkari result, government jobs, sarkari naukri, admit card, board result, UPSC, SSC, Railway, Bank jobs, CBSE result 2026">
+<title>SarkariAlert.in - Sarkari Result, Govt Jobs, Admit Card, Board Result 2026</title>
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<!-- ════ BREAKING NEWS ════ -->
-<div class="breaking">
-  <div class="breaking-label">🔴 LATEST</div>
-  <div class="breaking-scroll">
-    <div class="breaking-inner" id="ticker">
-      <span class="breaking-item"><span class="breaking-sep">▸</span><a href="section.html?s=results">Bihar Board Class 12 Result 2026 Expected This Week</a></span>
-      <span class="breaking-item"><span class="breaking-sep">▸</span><a href="section.html?s=jobs">RRB ALP 2026 — 11,127 Posts — CEN Out</a></span>
-      <span class="breaking-item"><span class="breaking-sep">▸</span><a href="section.html?s=results">UPSC CSE Final Result 2025 Declared — Anuj Agnihotri AIR 1</a></span>
-      <span class="breaking-item"><span class="breaking-sep">▸</span><a href="section.html?s=admit_cards">UP Board 12th Admit Card 2026 — Download Now</a></span>
-      <span class="breaking-item"><span class="breaking-sep">▸</span><a href="section.html?s=jobs">UPSSSC PET 2026 — 929 ASO/ARO Posts</a></span>
-      <span class="breaking-item"><span class="breaking-sep">▸</span><a href="section.html?s=results">IBPS RRB Clerk Mains Result 2026 Declared</a></span>
-      <span class="breaking-item"><span class="breaking-sep">▸</span><a href="section.html?s=schemes">PM Kisan 19th Instalment Released — Check Status</a></span>
-      <span class="breaking-item"><span class="breaking-sep">▸</span><a href="section.html?s=jobs">SSC CGL 2026 Notification Expected 31 March</a></span>
-      <!-- Duplicate for seamless loop -->
-      <span class="breaking-item"><span class="breaking-sep">▸</span><a href="section.html?s=results">Bihar Board Class 12 Result 2026 Expected This Week</a></span>
-      <span class="breaking-item"><span class="breaking-sep">▸</span><a href="section.html?s=jobs">RRB ALP 2026 — 11,127 Posts — CEN Out</a></span>
-      <span class="breaking-item"><span class="breaking-sep">▸</span><a href="section.html?s=results">UPSC CSE Final Result 2025 Declared — Anuj Agnihotri AIR 1</a></span>
-      <span class="breaking-item"><span class="breaking-sep">▸</span><a href="section.html?s=admit_cards">UP Board 12th Admit Card 2026 — Download Now</a></span>
-      <span class="breaking-item"><span class="breaking-sep">▸</span><a href="section.html?s=jobs">UPSSSC PET 2026 — 929 ASO/ARO Posts</a></span>
-      <span class="breaking-item"><span class="breaking-sep">▸</span><a href="section.html?s=results">IBPS RRB Clerk Mains Result 2026 Declared</a></span>
-      <span class="breaking-item"><span class="breaking-sep">▸</span><a href="section.html?s=schemes">PM Kisan 19th Instalment Released — Check Status</a></span>
-      <span class="breaking-item"><span class="breaking-sep">▸</span><a href="section.html?s=jobs">SSC CGL 2026 Notification Expected 31 March</a></span>
+<!-- TICKER -->
+<div class="ticker-bar">
+  <div class="ticker-inner">
+    <span class="ticker-label">LATEST</span>
+    <div class="ticker-scroll">
+      <div class="ticker-text" id="tickerText">
+        <a href="jobs.html">RRB ALP 2026 — 11,127 Posts — Apply 15 May</a> &nbsp;||&nbsp;
+        <a href="results.html">UPSC CSE Final Result 2025 Declared — AIR 1: Anuj Agnihotri</a> &nbsp;||&nbsp;
+        <a href="board.html">Bihar Board Class 12 Result 2026 — Expected Soon</a> &nbsp;||&nbsp;
+        <a href="admit.html">UP Board Admit Card 2026 — Download Now</a> &nbsp;||&nbsp;
+        <a href="jobs.html">SSC CGL 2026 Notification Expected 31 March</a> &nbsp;||&nbsp;
+        <a href="results.html">IBPS RRB Clerk Mains Result 2026 Declared</a> &nbsp;||&nbsp;
+        <a href="schemes.html">PM Kisan 19th Instalment Released — Check Status</a> &nbsp;||&nbsp;
+        <a href="jobs.html">India Post GDS 2026 — 28,636 Posts — Merit List Out</a> &nbsp;||&nbsp;
+      </div>
     </div>
   </div>
 </div>
 
-<!-- ════ HEADER ════ -->
-<header>
-  <div class="header-wrap">
-    <a href="index.html" class="logo">
-      <div class="logo-mark">SA</div>
+<!-- HEADER -->
+<header class="site-header">
+  <div class="header-inner">
+    <a href="index.html" class="logo-box">
+      <div class="logo-img">SA</div>
       <div>
-        <div class="logo-text">Sarkari<span>Alert</span>.in</div>
-        <div class="logo-sub">INDIA'S FASTEST GOVT UPDATE PORTAL</div>
+        <div class="logo-text">SarkariAlert<span>.in</span></div>
+        <span class="logo-sub">SARKARI RESULT · JOBS · ADMIT CARD · BOARD RESULT</span>
       </div>
     </a>
-
     <div class="header-search">
-      <input type="text" id="globalSearch" placeholder="Search jobs, results, admit cards, boards…" onkeydown="if(event.key==='Enter')doSearch()">
-      <button class="header-search-btn" onclick="doSearch()">Search</button>
+      <input type="text" id="searchBox" placeholder="Search jobs, results, admit card...">
+      <button onclick="doSearch()">Search</button>
     </div>
-
-    <nav class="header-nav">
-      <a href="section.html?s=jobs"        class="hn-link">Jobs</a>
-      <a href="section.html?s=results"     class="hn-link">Results</a>
-      <a href="section.html?s=admit_cards" class="hn-link">Admit Card</a>
-      <a href="section.html?s=board"       class="hn-link">Board</a>
-      <a href="section.html?s=schemes"     class="hn-link">Schemes</a>
-      <a href="about.html"                 class="hn-link">About</a>
-      <a href="#subscribe" class="hn-alert">🔔 Free Alert</a>
-    </nav>
-    <div class="hamburger" onclick="openMenu()"><span></span><span></span><span></span></div>
+    <button class="hamburger" onclick="toggleMenu()">
+      <span></span><span></span><span></span>
+    </button>
   </div>
 </header>
 
-<!-- Mobile Menu -->
-<div class="mobile-menu" id="mobileMenu">
-  <button class="mobile-close" onclick="closeMenu()">✕</button>
-  <div style="padding:10px 14px;margin-bottom:10px">
-    <input type="text" placeholder="Search…" style="width:100%;padding:10px 14px;border-radius:7px;border:1px solid rgba(255,255,255,.2);background:rgba(255,255,255,.08);color:#fff;font-size:14px;outline:none">
+<!-- MAIN NAV -->
+<nav class="main-nav">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-item active">Home</a>
+    <a href="jobs.html" class="nav-item">Sarkari Jobs</a>
+    <a href="results.html" class="nav-item">Results</a>
+    <a href="admit.html" class="nav-item">Admit Card</a>
+    <a href="board.html" class="nav-item">Board Results</a>
+    <a href="syllabus.html" class="nav-item">Syllabus</a>
+    <a href="schemes.html" class="nav-item">Schemes</a>
+    <a href="about.html" class="nav-item">About</a>
   </div>
-  <a href="section.html?s=jobs"        class="mm-link">💼 Latest Government Jobs</a>
-  <a href="section.html?s=results"     class="mm-link">📋 Exam Results</a>
-  <a href="section.html?s=admit_cards" class="mm-link">🎫 Admit Cards</a>
-  <a href="section.html?s=board"       class="mm-link">🏫 Board Exam Results</a>
-  <a href="section.html?s=univ"        class="mm-link">🎓 University Results & Admission</a>
-  <a href="section.html?s=schemes"     class="mm-link">🏛️ Govt Schemes / Yojana</a>
-  <a href="section.html?s=answer_keys" class="mm-link">📝 Answer Keys</a>
-  <a href="section.html?s=syllabus"    class="mm-link">📚 Syllabus</a>
-  <a href="about.html"                 class="mm-link">ℹ️ About Us</a>
-  <a href="admin/login.html"           class="mm-link">🔐 Admin Panel</a>
+</nav>
+
+<!-- MOBILE NAV -->
+<div class="mobile-nav" id="mobileNav">
+  <a href="index.html">Home</a>
+  <a href="jobs.html">Sarkari Jobs</a>
+  <a href="results.html">Results</a>
+  <a href="admit.html">Admit Card</a>
+  <a href="board.html">Board Results</a>
+  <a href="syllabus.html">Syllabus</a>
+  <a href="schemes.html">Schemes</a>
+  <a href="about.html">About</a>
 </div>
 
-<!-- ════ NAV TABS ════ -->
-<div class="nav-tabs">
-  <div class="nav-tabs-inner">
-    <button class="nt-link active" onclick="filterSection('all',this)">All Updates</button>
-    <button class="nt-link" onclick="filterSection('jobs',this)">💼 Govt Jobs <span class="nt-count" id="cnt-jobs">0</span></button>
-    <button class="nt-link" onclick="filterSection('results',this)">📋 Results <span class="nt-count" id="cnt-results">0</span></button>
-    <button class="nt-link" onclick="filterSection('admit',this)">🎫 Admit Cards <span class="nt-count" id="cnt-admit">0</span></button>
-    <button class="nt-link" onclick="filterSection('board',this)">🏫 Board Exams</button>
-    <button class="nt-link" onclick="filterSection('univ',this)">🎓 University</button>
-    <button class="nt-link" onclick="filterSection('schemes',this)">🏛️ Schemes</button>
-    <button class="nt-link" onclick="filterSection('answer',this)">📝 Answer Keys</button>
-    <button class="nt-link" onclick="filterSection('syllabus',this)">📚 Syllabus</button>
-  </div>
-</div>
-
-<!-- ════ STATS STRIP ════ -->
-<div class="stats-strip">
-  <div class="stats-strip-inner">
-    <div class="ss-item"><div class="ss-num" id="stat-vac">1.2L+</div><div>Active Vacancies</div></div>
-    <div class="ss-sep">|</div>
-    <div class="ss-item"><div class="ss-num" id="stat-posts">50+</div><div>Posts Today</div></div>
-    <div class="ss-sep">|</div>
-    <div class="ss-item"><div class="ss-num">8</div><div>Results This Week</div></div>
-    <div class="ss-sep">|</div>
-    <div class="ss-item"><div class="ss-num">12</div><div>Admit Cards Active</div></div>
-    <div class="ss-sep">|</div>
-    <div class="ss-item"><div class="ss-num">4</div><div>Board Results Soon</div></div>
-    <div class="ss-sep">|</div>
-    <div class="ss-item"><div class="ss-num">50K+</div><div>Subscribers</div></div>
-    <div style="margin-left:auto;font-size:11px;color:rgba(255,255,255,.4)">Updated: <span id="updateTime"></span></div>
+<!-- NOTICE BAR -->
+<div class="notice-bar">
+  <div class="notice-inner">
+    <span class="notice-tag">NOTICE</span>
+    <div class="notice-scroll">
+      <div class="notice-text">
+        <a href="jobs.html">SCR Apprentice Last Date: 11 April 2026</a> &nbsp;||&nbsp;
+        <a href="results.html">UPSC CSE 2025 Final Result Declared</a> &nbsp;||&nbsp;
+        <a href="jobs.html">SSC CGL 2026 Notification: 31 March 2026</a> &nbsp;||&nbsp;
+        <a href="admit.html">DRDO CEPTAM 11 City Slip Released</a> &nbsp;||&nbsp;
+        <a href="board.html">Bihar Board 12th Result Expected Very Soon</a> &nbsp;||&nbsp;
+        <a href="jobs.html">RBI Assistant 2026 — 650 Posts — Apply Now</a> &nbsp;||&nbsp;
+      </div>
+    </div>
   </div>
 </div>
 
-<!-- ════ MAIN ════ -->
-<div class="main">
+<!-- PAGE WRAP -->
+<div class="page-wrap">
 
   <!-- LEFT COLUMN -->
   <div class="left-col">
 
-    <!-- ANNOUNCE STRIP -->
-    <div class="announce-strip">
-      <span class="ann-label">🔥 TRENDING</span>
-      <div class="ann-links">
-        <a href="section.html?s=jobs" class="ann-link">RRB ALP 2026</a>
-        <a href="section.html?s=results" class="ann-link">UPSC Result 2025</a>
-        <a href="section.html?s=jobs" class="ann-link">SSC CGL 2026</a>
-        <a href="section.html?s=board" class="ann-link">Bihar Board Result</a>
-        <a href="section.html?s=jobs" class="ann-link">UPSSSC ASO 2026</a>
-        <a href="section.html?s=admit_cards" class="ann-link">UP Board Admit Card</a>
-        <a href="section.html?s=results" class="ann-link">IBPS RRB Result</a>
-        <a href="section.html?s=schemes" class="ann-link">PM Kisan 19th</a>
+    <!-- LATEST JOBS -->
+    <div class="sec-box" id="sec-jobs">
+      <div class="sec-head">
+        <div class="sec-title">Latest Government Jobs 2026</div>
+        <a href="jobs.html" class="sec-more">All Jobs &raquo;</a>
+      </div>
+      <div class="post-list" id="jobs-list">
+        <!-- NEW JOBS GO HERE — PASTE AT TOP -->
+        <div class="post-row"><span class="post-arrow">&raquo;</span><span class="post-link"><a href="jobs.html">RRB ALP Recruitment 2026 — 11,127 Assistant Loco Pilot Posts (CEN 01/2026)</a></span><span class="post-meta"><span class="badge b-new">NEW</span><span class="badge b-hot">HOT</span><span class="post-date">23 Mar</span></span></div>
+        <div class="post-row"><span class="post-arrow">&raquo;</span><span class="post-link"><a href="jobs.html">Rail Wheel Factory (RWF) Apprentice 2026 — 192 Posts — Last Date 01 Apr</a></span><span class="post-meta"><span class="badge b-new">NEW</span><span class="post-date">23 Mar</span></span></div>
+        <div class="post-row"><span class="post-arrow">&raquo;</span><span class="post-link"><a href="jobs.html">UPSSSC ASO/ARO Recruitment 2026 — 929 Posts — Apply 21 Apr</a></span><span class="post-meta"><span class="badge b-new">NEW</span><span class="post-date">23 Mar</span></span></div>
+        <div class="post-row"><span class="post-arrow">&raquo;</span><span class="post-link"><a href="jobs.html">Indian Navy Agniveer SSR &amp; MR 2026 — Last Date 06 April</a></span><span class="post-meta"><span class="badge b-new">NEW</span><span class="post-date">23 Mar</span></span></div>
+        <div class="post-row"><span class="post-arrow">&raquo;</span><span class="post-link"><a href="jobs.html">MPESB Forest Guard &amp; Jail Prahari 2026 — 1,679 Posts</a></span><span class="post-meta"><span class="badge b-new">NEW</span><span class="post-date">23 Mar</span></span></div>
+        <div class="post-row"><span class="post-arrow">&raquo;</span><span class="post-link"><a href="jobs.html">RRB Group D Recruitment 2026 — 22,195 Level-1 Posts (CEN 09/2025)</a></span><span class="post-meta"><span class="badge b-hot">HOT</span><span class="post-date">22 Mar</span></span></div>
+        <div class="post-row"><span class="post-arrow">&raquo;</span><span class="post-link"><a href="jobs.html">UPSC Civil Services (IAS/IPS/IFS) 2026 — 933 Posts — Prelims 24 May</a></span><span class="post-meta"><span class="badge b-imp">IMP</span><span class="post-date">22 Mar</span></span></div>
+        <div class="post-row"><span class="post-arrow">&raquo;</span><span class="post-link"><a href="jobs.html">RBI Assistant Recruitment 2026 — 650 Posts — Apply Now</a></span><span class="post-meta"><span class="badge b-hot">OPEN</span><span class="post-date">22 Mar</span></span></div>
+        <div class="post-row"><span class="post-arrow">&raquo;</span><span class="post-link"><a href="jobs.html">SSC CGL 2026 — 14,582 Posts — Notification 31 March</a></span><span class="post-meta"><span class="badge b-soon">SOON</span><span class="post-date">22 Mar</span></span></div>
+        <div class="post-row"><span class="post-arrow">&raquo;</span><span class="post-link"><a href="jobs.html">SCR Apprentice Recruitment 2026 — 2,801 Posts — Last Date 11 Apr</a></span><span class="post-meta"><span class="badge b-hot">OPEN</span><span class="post-date">21 Mar</span></span></div>
+        <div class="post-row"><span class="post-arrow">&raquo;</span><span class="post-link"><a href="jobs.html">India Post GDS 2026 — 28,636 Posts — 2nd Merit List Out</a></span><span class="post-meta"><span class="badge b-out">MERIT</span><span class="post-date">21 Mar</span></span></div>
+        <div class="post-row"><span class="post-arrow">&raquo;</span><span class="post-link"><a href="jobs.html">Punjab Police Constable Recruitment 2026 — 3,298 Posts</a></span><span class="post-meta"><span class="badge b-hot">OPEN</span><span class="post-date">20 Mar</span></span></div>
+        <div class="post-row"><span class="post-arrow">&raquo;</span><span class="post-link"><a href="jobs.html">UPSC CMS 2026 — 1,358 Medical Officer Posts — MBBS Required</a></span><span class="post-meta"><span class="badge b-hot">OPEN</span><span class="post-date">20 Mar</span></span></div>
+        <div class="post-row"><span class="post-arrow">&raquo;</span><span class="post-link"><a href="jobs.html">SECL Apprentice Recruitment 2026 — 1,600 Posts — No Fee</a></span><span class="post-meta"><span class="badge b-new">NEW</span><span class="post-date">19 Mar</span></span></div>
+        <div class="post-row"><span class="post-arrow">&raquo;</span><span class="post-link"><a href="jobs.html">SSB Constable Tradesman &amp; Driver 2026 — 827 Posts</a></span><span class="post-meta"><span class="badge b-hot">OPEN</span><span class="post-date">19 Mar</span></span></div>
       </div>
     </div>
 
-    <!-- ── LATEST GOVERNMENT JOBS ── -->
-    <div class="section-block" id="sec-jobs">
-      <div class="sb-head">
-        <div class="sb-title">
-          <div class="sb-title-dot" style="background:var(--c-jobs)"></div>
-          <span class="sb-icon">💼</span>
-          <span>Latest Government Jobs</span>
-        </div>
-        <a href="section.html?s=jobs" class="sb-more more-jobs">View All Jobs →</a>
-      </div>
-
-      <!-- Featured Cards -->
-      <div class="featured-grid">
-        <div class="feat-card bg-jobs" onclick="location.href='section.html?s=jobs'">
-          <div class="feat-card-label c-jobs">Railway · CEN 01/2026</div>
-          <div class="feat-card-title">RRB ALP 2026 — Assistant Loco Pilot</div>
-          <div class="feat-card-meta">11,127 Posts | 10th+ITI | Apply: 15 May 2026</div>
-          <span class="feat-card-arrow">→</span>
-        </div>
-        <div class="feat-card bg-results" onclick="location.href='section.html?s=jobs'">
-          <div class="feat-card-label c-results">SSC | Notification Soon</div>
-          <div class="feat-card-title">SSC CGL 2026 — Combined Graduate Level</div>
-          <div class="feat-card-meta">14,582 Posts | Graduation | Notif: 31 Mar 2026</div>
-          <span class="feat-card-arrow">→</span>
-        </div>
-      </div>
-
-      <!-- Job List -->
-      <ul class="post-list" id="jobs-list">
-        <li class="post-item"><span class="post-item-arrow">▶</span><div class="post-item-text"><a href="section.html?s=jobs">RRB Group D Recruitment 2026 — 22,195 Level-1 Posts (CEN 09/2025)</a><div class="post-item-meta"><span class="badge b-out">Exam Soon</span><span class="pi-sep">·</span><span class="pi-date">Railway | Age: 18–33 | 10th/ITI</span></div></div></li>
-        <li class="post-item"><span class="post-item-arrow">▶</span><div class="post-item-text"><a href="section.html?s=jobs">UPSSSC ASO/ARO Online Form 2026 — 929 Posts</a><div class="post-item-meta"><span class="badge b-new">NEW</span><span class="pi-sep">·</span><span class="pi-date">UP Govt | Graduation | Apply Now</span></div></div></li>
-        <li class="post-item"><span class="post-item-arrow">▶</span><div class="post-item-text"><a href="section.html?s=jobs">RBI Assistant Recruitment 2026 — 650 Posts</a><div class="post-item-meta"><span class="badge b-hot">OPEN</span><span class="pi-sep">·</span><span class="pi-date">RBI | Graduate (50%) | Age: 20–28</span></div></div></li>
-        <li class="post-item"><span class="post-item-arrow">▶</span><div class="post-item-text"><a href="section.html?s=jobs">SCR Apprentice Recruitment 2026 — 2,801 Posts</a><div class="post-item-meta"><span class="badge b-hot">OPEN</span><span class="pi-sep">·</span><span class="pi-date">Railway | 10th+ITI | Last Date: 11 Apr 2026</span></div></div></li>
-        <li class="post-item"><span class="post-item-arrow">▶</span><div class="post-item-text"><a href="section.html?s=jobs">UPSC Civil Services 2026 — IAS/IPS/IFS Prelims: 24 May</a><div class="post-item-meta"><span class="badge b-imp">PRELIMS MAY</span><span class="pi-sep">·</span><span class="pi-date">UPSC | Any Graduate | 933 Posts</span></div></div></li>
-        <li class="post-item"><span class="post-item-arrow">▶</span><div class="post-item-text"><a href="section.html?s=jobs">SSB Constable Tradesman & Driver 2026 — 827 Posts</a><div class="post-item-meta"><span class="badge b-new">NEW</span><span class="pi-sep">·</span><span class="pi-date">SSB | 10th+ITI | Age: 18–25</span></div></div></li>
-        <li class="post-item"><span class="post-item-arrow">▶</span><div class="post-item-text"><a href="section.html?s=jobs">India Post GDS 2026 — 28,636 Posts (Merit List Out)</a><div class="post-item-meta"><span class="badge b-out">MERIT LIST</span><span class="pi-sep">·</span><span class="pi-date">Dept of Posts | 10th Pass | All States</span></div></div></li>
-        <li class="post-item"><span class="post-item-arrow">▶</span><div class="post-item-text"><a href="section.html?s=jobs">SECL Apprentice 2026 — 1,600 Posts (Coal India)</a><div class="post-item-meta"><span class="badge b-new">NEW</span><span class="pi-sep">·</span><span class="pi-date">SECL | 10th+ITI | No Fee</span></div></div></li>
-        <li class="post-item"><span class="post-item-arrow">▶</span><div class="post-item-text"><a href="section.html?s=jobs">Punjab Police Constable Recruitment 2026 — 3,298 Posts</a><div class="post-item-meta"><span class="badge b-hot">OPEN</span><span class="pi-sep">·</span><span class="pi-date">Punjab Police | 12th Pass | Age: 18–28</span></div></div></li>
-        <li class="post-item"><span class="post-item-arrow">▶</span><div class="post-item-text"><a href="section.html?s=jobs">APPSC Group I/II/III 2026 — 10,060 Posts Calendar</a><div class="post-item-meta"><span class="badge b-soon">CALENDAR</span><span class="pi-sep">·</span><span class="pi-date">Andhra Pradesh PSC | Multiple Exams</span></div></div></li>
-      </ul>
-    </div>
-
-    <!-- ── QUALIFICATION FILTER ── -->
-    <div class="section-block">
-      <div class="sb-head">
-        <div class="sb-title">
-          <div class="sb-title-dot" style="background:#455A64"></div>
-          <span class="sb-icon">🎓</span>
-          <span>Jobs by Qualification</span>
-        </div>
+    <!-- JOBS BY QUALIFICATION -->
+    <div class="sec-box">
+      <div class="sec-head">
+        <div class="sec-title">Sarkari Jobs by Qualification</div>
       </div>
       <div class="qual-grid">
-        <div class="qual-card" style="background:#FFF3E0;border-color:#FFB74D" onclick="location.href='section.html?s=jobs'">
-          <div class="qual-icon">📖</div>
-          <div class="qual-label">8th Pass</div>
-          <div class="qual-count">12+ jobs</div>
+        <a href="jobs.html" class="qual-item"><span class="qual-icon">&#128214;</span><span class="qual-name">8th Pass</span><span class="qual-count">12+ Jobs</span></a>
+        <a href="jobs.html" class="qual-item"><span class="qual-icon">&#128215;</span><span class="qual-name">10th Pass</span><span class="qual-count">38+ Jobs</span></a>
+        <a href="jobs.html" class="qual-item"><span class="qual-icon">&#128216;</span><span class="qual-name">12th / ITI</span><span class="qual-count">45+ Jobs</span></a>
+        <a href="jobs.html" class="qual-item"><span class="qual-icon">&#128217;</span><span class="qual-name">Diploma</span><span class="qual-count">20+ Jobs</span></a>
+        <a href="jobs.html" class="qual-item"><span class="qual-icon">&#127891;</span><span class="qual-name">Graduate</span><span class="qual-count">60+ Jobs</span></a>
+        <a href="jobs.html" class="qual-item"><span class="qual-icon">&#127973;</span><span class="qual-name">Medical</span><span class="qual-count">15+ Jobs</span></a>
+        <a href="jobs.html" class="qual-item"><span class="qual-icon">&#9881;</span><span class="qual-name">Engineering</span><span class="qual-count">25+ Jobs</span></a>
+        <a href="jobs.html" class="qual-item"><span class="qual-icon">&#128210;</span><span class="qual-name">Post Grad</span><span class="qual-count">18+ Jobs</span></a>
+      </div>
+    </div>
+
+    <!-- RESULTS + ADMIT CARDS -->
+    <div class="sec-box">
+      <div class="sec-head">
+        <div class="sec-title">Latest Results &amp; Admit Cards</div>
+      </div>
+      <div class="two-col">
+        <div>
+          <div class="col-head left">Latest Results</div>
+          <div class="col-posts post-list" id="results-list">
+            <!-- NEW RESULTS GO HERE — PASTE AT TOP -->
+            <div class="post-row"><span class="post-arrow">&raquo;</span><span class="post-link"><a href="results.html">UPSC Civil Services Final Result 2025 Declared</a></span><span class="post-meta"><span class="badge b-out">OUT</span></span></div>
+            <div class="post-row"><span class="post-arrow">&raquo;</span><span class="post-link"><a href="results.html">IBPS RRB Clerk Mains Result 2026 Declared</a></span><span class="post-meta"><span class="badge b-out">OUT</span></span></div>
+            <div class="post-row"><span class="post-arrow">&raquo;</span><span class="post-link"><a href="results.html">SSC CHSL Tier 1 Score Card 2026 Released</a></span><span class="post-meta"><span class="badge b-out">OUT</span></span></div>
+            <div class="post-row"><span class="post-arrow">&raquo;</span><span class="post-link"><a href="results.html">RRB NTPC 12th Level CBT-2 Result 2026</a></span><span class="post-meta"><span class="badge b-out">OUT</span></span></div>
+            <div class="post-row"><span class="post-arrow">&raquo;</span><span class="post-link"><a href="results.html">AFCAT 01/2026 Result Declared</a></span><span class="post-meta"><span class="badge b-out">OUT</span></span></div>
+            <div class="post-row"><span class="post-arrow">&raquo;</span><span class="post-link"><a href="results.html">SSC CGL Tier 2 Result 2025-26</a></span><span class="post-meta"><span class="badge b-soon">SOON</span></span></div>
+            <div class="post-row"><span class="post-arrow">&raquo;</span><span class="post-link"><a href="results.html">MP Police Constable Result 2026</a></span><span class="post-meta"><span class="badge b-out">OUT</span></span></div>
+            <div class="post-row"><span class="post-arrow">&raquo;</span><span class="post-link"><a href="results.html">UP Police Computer Operator Result 2026</a></span><span class="post-meta"><span class="badge b-out">OUT</span></span></div>
+          </div>
         </div>
-        <div class="qual-card" style="background:#E3F2FD;border-color:#64B5F6" onclick="location.href='section.html?s=jobs'">
-          <div class="qual-icon">📗</div>
-          <div class="qual-label">10th Pass</div>
-          <div class="qual-count">38+ jobs</div>
-        </div>
-        <div class="qual-card" style="background:#E8F5E9;border-color:#81C784" onclick="location.href='section.html?s=jobs'">
-          <div class="qual-icon">📘</div>
-          <div class="qual-label">12th / ITI</div>
-          <div class="qual-count">45+ jobs</div>
-        </div>
-        <div class="qual-card" style="background:#F3E5F5;border-color:#CE93D8" onclick="location.href='section.html?s=jobs'">
-          <div class="qual-icon">📙</div>
-          <div class="qual-label">Diploma</div>
-          <div class="qual-count">20+ jobs</div>
-        </div>
-        <div class="qual-card" style="background:#E8EAF6;border-color:#9FA8DA" onclick="location.href='section.html?s=jobs'">
-          <div class="qual-icon">🎓</div>
-          <div class="qual-label">Graduate</div>
-          <div class="qual-count">60+ jobs</div>
-        </div>
-        <div class="qual-card" style="background:#FCE4EC;border-color:#F48FB1" onclick="location.href='section.html?s=jobs'">
-          <div class="qual-icon">🏥</div>
-          <div class="qual-label">Medical / MBBS</div>
-          <div class="qual-count">15+ jobs</div>
-        </div>
-        <div class="qual-card" style="background:#E0F7FA;border-color:#80DEEA" onclick="location.href='section.html?s=jobs'">
-          <div class="qual-icon">⚙️</div>
-          <div class="qual-label">Engineering</div>
-          <div class="qual-count">25+ jobs</div>
-        </div>
-        <div class="qual-card" style="background:#F1F8E9;border-color:#AED581" onclick="location.href='section.html?s=jobs'">
-          <div class="qual-icon">📐</div>
-          <div class="qual-label">Post Graduate</div>
-          <div class="qual-count">18+ jobs</div>
+        <div>
+          <div class="col-head">Admit Cards</div>
+          <div class="post-list" id="admit-list">
+            <!-- NEW ADMIT CARDS GO HERE — PASTE AT TOP -->
+            <div class="post-row"><span class="post-arrow">&raquo;</span><span class="post-link"><a href="admit.html">UP Board Class 10 &amp; 12 Admit Card 2026</a></span><span class="post-meta"><span class="badge b-out">OUT</span></span></div>
+            <div class="post-row"><span class="post-arrow">&raquo;</span><span class="post-link"><a href="admit.html">Bihar Board 10th Admit Card 2026</a></span><span class="post-meta"><span class="badge b-out">OUT</span></span></div>
+            <div class="post-row"><span class="post-arrow">&raquo;</span><span class="post-link"><a href="admit.html">DRDO CEPTAM 11 City Slip 2026</a></span><span class="post-meta"><span class="badge b-out">OUT</span></span></div>
+            <div class="post-row"><span class="post-arrow">&raquo;</span><span class="post-link"><a href="admit.html">RRB NTPC Graduate Exam City Slip 2026</a></span><span class="post-meta"><span class="badge b-out">OUT</span></span></div>
+            <div class="post-row"><span class="post-arrow">&raquo;</span><span class="post-link"><a href="admit.html">UPSC CSE Prelims 2026 Admit Card</a></span><span class="post-meta"><span class="badge b-soon">MAY</span></span></div>
+            <div class="post-row"><span class="post-arrow">&raquo;</span><span class="post-link"><a href="admit.html">SSC CGL 2026 Tier 1 Admit Card</a></span><span class="post-meta"><span class="badge b-soon">SOON</span></span></div>
+            <div class="post-row"><span class="post-arrow">&raquo;</span><span class="post-link"><a href="admit.html">JEE Main 2026 Session 1 Admit Card</a></span><span class="post-meta"><span class="badge b-soon">SOON</span></span></div>
+            <div class="post-row"><span class="post-arrow">&raquo;</span><span class="post-link"><a href="admit.html">NDA 2026 Written Exam Admit Card</a></span><span class="post-meta"><span class="badge b-soon">SOON</span></span></div>
+          </div>
         </div>
       </div>
     </div>
 
-    <!-- ── RESULTS + ADMIT CARDS TWO-COL ── -->
-    <div class="section-block" id="sec-results">
-      <div class="sb-head">
-        <div class="sb-title">
-          <div class="sb-title-dot" style="background:var(--c-results)"></div>
-          <span class="sb-icon">📋</span>
-          <span>Latest Exam Results</span>
-        </div>
-        <a href="section.html?s=results" class="sb-more more-results">All Results →</a>
+    <!-- BOARD RESULTS -->
+    <div class="sec-box" id="sec-board">
+      <div class="sec-head">
+        <div class="sec-title">Board Exam Results 2026 — Class 10th &amp; 12th</div>
+        <a href="board.html" class="sec-more">All Boards &raquo;</a>
       </div>
-      <div class="two-col-feed">
-        <div class="tcf-col">
-          <div class="tcf-head">
-            <span style="width:8px;height:8px;border-radius:50%;background:var(--c-results);display:inline-block"></span>
-            Central Govt Results
-          </div>
-          <ul class="post-list">
-            <li class="post-item"><span class="post-item-arrow">▶</span><div class="post-item-text"><a href="section.html?s=results">UPSC Civil Services Final Result 2025 — Declared</a><div class="post-item-meta"><span class="badge b-out">OUT</span><span class="pi-date">958 Selected | AIR 1: Anuj Agnihotri</span></div></div></li>
-            <li class="post-item"><span class="post-item-arrow">▶</span><div class="post-item-text"><a href="section.html?s=results">IBPS RRB Clerk Mains Result 2026 — Declared</a><div class="post-item-meta"><span class="badge b-out">OUT</span><span class="pi-date">8,002 Posts | 15 Mar 2026</span></div></div></li>
-            <li class="post-item"><span class="post-item-arrow">▶</span><div class="post-item-text"><a href="section.html?s=results">RRB NTPC 12th Level CBT-2 Result 2026</a><div class="post-item-meta"><span class="badge b-out">OUT</span><span class="pi-date">Zone-wise | Scorecard Download</span></div></div></li>
-            <li class="post-item"><span class="post-item-arrow">▶</span><div class="post-item-text"><a href="section.html?s=results">SSC CGL Tier 2 Result 2025–26</a><div class="post-item-meta"><span class="badge b-soon">EXPECTED</span><span class="pi-date">March 2026 | Cut Off Awaited</span></div></div></li>
-            <li class="post-item"><span class="post-item-arrow">▶</span><div class="post-item-text"><a href="section.html?s=results">UPSC IFS Final Result 2025</a><div class="post-item-meta"><span class="badge b-out">OUT</span><span class="pi-date">Indian Forest Service | Scorecard</span></div></div></li>
-            <li class="post-item"><span class="post-item-arrow">▶</span><div class="post-item-text"><a href="section.html?s=results">Delhi DDA Various Posts Final Result 2026</a><div class="post-item-meta"><span class="badge b-out">OUT</span><span class="pi-date">Roll No Wise PDF | Download</span></div></div></li>
-            <li class="post-item"><span class="post-item-arrow">▶</span><div class="post-item-text"><a href="section.html?s=results">CTET February 2026 Result</a><div class="post-item-meta"><span class="badge b-soon">SOON</span><span class="pi-date">Teaching | CBSE | All India</span></div></div></li>
-          </ul>
-        </div>
-        <div class="tcf-col">
-          <div class="tcf-head">
-            <span style="width:8px;height:8px;border-radius:50%;background:var(--c-results);display:inline-block"></span>
-            State Govt Results
-          </div>
-          <ul class="post-list">
-            <li class="post-item"><span class="post-item-arrow">▶</span><div class="post-item-text"><a href="section.html?s=results">MP Police Constable Result 2026</a><div class="post-item-meta"><span class="badge b-out">OUT</span><span class="pi-date">Scorecard | Download Link</span></div></div></li>
-            <li class="post-item"><span class="post-item-arrow">▶</span><div class="post-item-text"><a href="section.html?s=results">UP Police Computer Operator Final Result 2026</a><div class="post-item-meta"><span class="badge b-out">OUT</span><span class="pi-date">Scorecard PDF | UPPRPB</span></div></div></li>
-            <li class="post-item"><span class="post-item-arrow">▶</span><div class="post-item-text"><a href="section.html?s=results">RRVUNL Technician Mains Result 2026</a><div class="post-item-meta"><span class="badge b-out">OUT</span><span class="pi-date">Rajasthan | Download</span></div></div></li>
-            <li class="post-item"><span class="post-item-arrow">▶</span><div class="post-item-text"><a href="section.html?s=results">MPESB Excise Constable Result 2026</a><div class="post-item-meta"><span class="badge b-out">OUT</span><span class="pi-date">Madhya Pradesh | Scorecard</span></div></div></li>
-            <li class="post-item"><span class="post-item-arrow">▶</span><div class="post-item-text"><a href="section.html?s=results">UPPSC LT Grade Teacher Result 2026</a><div class="post-item-meta"><span class="badge b-out">OUT</span><span class="pi-date">Roll No Wise | Subject-wise</span></div></div></li>
-            <li class="post-item"><span class="post-item-arrow">▶</span><div class="post-item-text"><a href="section.html?s=results">ISRO Scientist/Engineer Result 2026</a><div class="post-item-meta"><span class="badge b-out">OUT</span><span class="pi-date">Roll No Wise PDF</span></div></div></li>
-            <li class="post-item"><span class="post-item-arrow">▶</span><div class="post-item-text"><a href="section.html?s=results">SSC Selection Post Phase 13 Result 2026</a><div class="post-item-meta"><span class="badge b-out">OUT</span><span class="pi-date">SSC | Scorecard Download</span></div></div></li>
-          </ul>
-        </div>
-      </div>
+      <table class="board-table" id="board-list">
+        <!-- NEW BOARD RESULTS GO HERE — PASTE AT TOP -->
+        <tr><td><a href="board.html" class="board-name">Bihar Board Class 12 (Intermediate) Result 2026</a><div class="board-class">biharboardonline.bihar.gov.in</div></td><td><span class="board-status bs-exp">Expected Very Soon</span></td></tr>
+        <tr><td><a href="board.html" class="board-name">Bihar Board Class 10 (Matric) Result 2026</a><div class="board-class">biharboardonline.bihar.gov.in</div></td><td><span class="board-status bs-exp">March-April 2026</span></td></tr>
+        <tr><td><a href="board.html" class="board-name">UP Board Class 10th Result 2026</a><div class="board-class">upmsp.edu.in</div></td><td><span class="board-status bs-soon">April 2026</span></td></tr>
+        <tr><td><a href="board.html" class="board-name">UP Board Class 12th Result 2026</a><div class="board-class">upmsp.edu.in</div></td><td><span class="board-status bs-soon">April 2026</span></td></tr>
+        <tr><td><a href="board.html" class="board-name">CBSE Class 10th Result 2026</a><div class="board-class">cbse.gov.in / digilocker.gov.in</div></td><td><span class="board-status bs-soon">May 2026</span></td></tr>
+        <tr><td><a href="board.html" class="board-name">CBSE Class 12th Result 2026</a><div class="board-class">cbse.gov.in / digilocker.gov.in</div></td><td><span class="board-status bs-soon">May 2026</span></td></tr>
+        <tr><td><a href="board.html" class="board-name">MP Board Class 10th &amp; 12th Result 2026</a><div class="board-class">mpbse.nic.in</div></td><td><span class="board-status bs-soon">May 2026</span></td></tr>
+        <tr><td><a href="board.html" class="board-name">Rajasthan Board 10th &amp; 12th Result 2026</a><div class="board-class">rajeduboard.rajasthan.gov.in</div></td><td><span class="board-status bs-soon">May 2026</span></td></tr>
+        <tr><td><a href="board.html" class="board-name">ICSE Class 10th Result 2026</a><div class="board-class">cisce.org</div></td><td><span class="board-status bs-soon">May 2026</span></td></tr>
+        <tr><td><a href="board.html" class="board-name">ISC Class 12th Result 2026</a><div class="board-class">cisce.org</div></td><td><span class="board-status bs-soon">May 2026</span></td></tr>
+      </table>
     </div>
 
-    <!-- ── ADMIT CARDS ── -->
-    <div class="section-block" id="sec-admit">
-      <div class="sb-head">
-        <div class="sb-title">
-          <div class="sb-title-dot" style="background:var(--c-admit)"></div>
-          <span class="sb-icon">🎫</span>
-          <span>Admit Cards / Hall Tickets</span>
-        </div>
-        <a href="section.html?s=admit_cards" class="sb-more more-admit">All Admit Cards →</a>
+    <!-- SYLLABUS + SCHEMES -->
+    <div class="sec-box">
+      <div class="sec-head">
+        <div class="sec-title">Syllabus &amp; Govt Schemes</div>
       </div>
-      <div class="two-col-feed">
-        <div class="tcf-col">
-          <div class="tcf-head">
-            <span style="width:8px;height:8px;border-radius:50%;background:var(--c-admit);display:inline-block"></span>
-            Central Exams
+      <div class="two-col">
+        <div>
+          <div class="col-head left">Syllabus / Exam Pattern</div>
+          <div class="col-posts post-list" id="syllabus-list">
+            <!-- NEW SYLLABUS POSTS GO HERE — PASTE AT TOP -->
+            <div class="post-row"><span class="post-arrow">&raquo;</span><span class="post-link"><a href="syllabus.html">SSC CGL 2026 Complete Syllabus PDF</a></span><span class="post-meta"><span class="badge b-new">NEW</span></span></div>
+            <div class="post-row"><span class="post-arrow">&raquo;</span><span class="post-link"><a href="syllabus.html">UPSC CSE 2026 Prelims &amp; Mains Syllabus</a></span><span class="post-meta"><span class="badge b-imp">IMP</span></span></div>
+            <div class="post-row"><span class="post-arrow">&raquo;</span><span class="post-link"><a href="syllabus.html">RRB ALP 2026 Syllabus &amp; Exam Pattern</a></span><span class="post-meta"><span class="badge b-new">NEW</span></span></div>
+            <div class="post-row"><span class="post-arrow">&raquo;</span><span class="post-link"><a href="syllabus.html">IBPS PO/Clerk 2026 Syllabus PDF</a></span><span class="post-meta"></span></div>
+            <div class="post-row"><span class="post-arrow">&raquo;</span><span class="post-link"><a href="syllabus.html">CBSE Class 10 Syllabus 2025-26 PDF</a></span><span class="post-meta"></span></div>
+            <div class="post-row"><span class="post-arrow">&raquo;</span><span class="post-link"><a href="syllabus.html">CBSE Class 12 Syllabus 2025-26 PDF</a></span><span class="post-meta"></span></div>
           </div>
-          <ul class="post-list">
-            <li class="post-item"><span class="post-item-arrow">▶</span><div class="post-item-text"><a href="section.html?s=admit_cards">UPSC CSE Prelims 2026 Admit Card</a><div class="post-item-meta"><span class="badge b-soon">MAY 2026</span><span class="pi-date">Exam: 24 May | upsconline.nic.in</span></div></div></li>
-            <li class="post-item"><span class="post-item-arrow">▶</span><div class="post-item-text"><a href="section.html?s=admit_cards">RRB ALP 2026 Admit Card / Exam City</a><div class="post-item-meta"><span class="badge b-soon">JUNE 2026</span><span class="pi-date">rrbapply.gov.in</span></div></div></li>
-            <li class="post-item"><span class="post-item-arrow">▶</span><div class="post-item-text"><a href="section.html?s=admit_cards">SSC CGL 2026 Tier 1 Admit Card</a><div class="post-item-meta"><span class="badge b-soon">SOON</span><span class="pi-date">ssc.gov.in</span></div></div></li>
-            <li class="post-item"><span class="post-item-arrow">▶</span><div class="post-item-text"><a href="section.html?s=admit_cards">IBPS PO/Clerk 2026 Admit Card</a><div class="post-item-meta"><span class="badge b-soon">SOON</span><span class="pi-date">ibps.in</span></div></div></li>
-            <li class="post-item"><span class="post-item-arrow">▶</span><div class="post-item-text"><a href="section.html?s=admit_cards">NDA 2026 Written Exam Admit Card</a><div class="post-item-meta"><span class="badge b-soon">SOON</span><span class="pi-date">upsc.gov.in</span></div></div></li>
-          </ul>
         </div>
-        <div class="tcf-col">
-          <div class="tcf-head">
-            <span style="width:8px;height:8px;border-radius:50%;background:var(--c-admit);display:inline-block"></span>
-            State & Board Exams
+        <div>
+          <div class="col-head">Govt Schemes / Yojana</div>
+          <div class="post-list" id="schemes-list">
+            <!-- NEW SCHEME POSTS GO HERE — PASTE AT TOP -->
+            <div class="post-row"><span class="post-arrow">&raquo;</span><span class="post-link"><a href="schemes.html">PM Kisan 19th Instalment 2026 — Check Status</a></span><span class="post-meta"><span class="badge b-out">OUT</span></span></div>
+            <div class="post-row"><span class="post-arrow">&raquo;</span><span class="post-link"><a href="schemes.html">PM Awas Yojana Gramin 2026 — New List</a></span><span class="post-meta"><span class="badge b-out">LIST</span></span></div>
+            <div class="post-row"><span class="post-arrow">&raquo;</span><span class="post-link"><a href="schemes.html">Ayushman Bharat — New Registration Open</a></span><span class="post-meta"><span class="badge b-hot">OPEN</span></span></div>
+            <div class="post-row"><span class="post-arrow">&raquo;</span><span class="post-link"><a href="schemes.html">NSP Scholarship 2025-26 Renewal Last Date</a></span><span class="post-meta"><span class="badge b-imp">DL</span></span></div>
+            <div class="post-row"><span class="post-arrow">&raquo;</span><span class="post-link"><a href="schemes.html">UP Scholarship 2025-26 Status Check</a></span><span class="post-meta"><span class="badge b-out">STATUS</span></span></div>
+            <div class="post-row"><span class="post-arrow">&raquo;</span><span class="post-link"><a href="schemes.html">PM Mudra Yojana — Loan Apply Online</a></span><span class="post-meta"><span class="badge b-hot">OPEN</span></span></div>
           </div>
-          <ul class="post-list">
-            <li class="post-item"><span class="post-item-arrow">▶</span><div class="post-item-text"><a href="section.html?s=admit_cards">UP Board Class 10 & 12 Admit Card 2026</a><div class="post-item-meta"><span class="badge b-out">OUT</span><span class="pi-date">upmsp.edu.in | Download Now</span></div></div></li>
-            <li class="post-item"><span class="post-item-arrow">▶</span><div class="post-item-text"><a href="section.html?s=admit_cards">Bihar Board 10th Admit Card 2026</a><div class="post-item-meta"><span class="badge b-out">OUT</span><span class="pi-date">biharboardonline.bihar.gov.in</span></div></div></li>
-            <li class="post-item"><span class="post-item-arrow">▶</span><div class="post-item-text"><a href="section.html?s=admit_cards">CGPSC SSE Admit Card 2026</a><div class="post-item-meta"><span class="badge b-out">OUT</span><span class="pi-date">psc.cg.gov.in | Download</span></div></div></li>
-            <li class="post-item"><span class="post-item-arrow">▶</span><div class="post-item-text"><a href="section.html?s=admit_cards">UPPSC LT Grade Teacher Admit Card 2025</a><div class="post-item-meta"><span class="badge b-out">OUT</span><span class="pi-date">uppsc.up.nic.in</span></div></div></li>
-            <li class="post-item"><span class="post-item-arrow">▶</span><div class="post-item-text"><a href="section.html?s=admit_cards">JEE Main 2026 Session 1 Admit Card</a><div class="post-item-meta"><span class="badge b-soon">SOON</span><span class="pi-date">jeemain.nta.nic.in</span></div></div></li>
-          </ul>
         </div>
       </div>
-    </div>
-
-    <!-- ── BOARD EXAM RESULTS ── -->
-    <div class="section-block" id="sec-board">
-      <div class="sb-head">
-        <div class="sb-title">
-          <div class="sb-title-dot" style="background:var(--c-board)"></div>
-          <span class="sb-icon">🏫</span>
-          <span>Board Exam Results 2026 — Class 10th & 12th</span>
-        </div>
-        <a href="section.html?s=board" class="sb-more more-board">All Board Results →</a>
-      </div>
-      <div class="notice-box">
-        <span class="notice-icon">ℹ️</span>
-        <span>Board results are typically announced April–June. All results below are updated directly from official board websites. <strong>Bookmark this page</strong> to check your result the moment it's declared!</span>
-      </div>
-      <div class="board-grid">
-        <div class="board-item"><div class="board-name"><a href="section.html?s=board">CBSE Class 10th Result 2026</a></div><div class="board-class">cbse.gov.in / digilocker.gov.in</div><div class="board-status soon">Expected: May 2026</div></div>
-        <div class="board-item"><div class="board-name"><a href="section.html?s=board">CBSE Class 12th Result 2026</a></div><div class="board-class">cbse.gov.in / digilocker.gov.in</div><div class="board-status soon">Expected: May 2026</div></div>
-        <div class="board-item"><div class="board-name"><a href="section.html?s=board">Bihar Board Class 12 Result 2026</a></div><div class="board-class">biharboardonline.bihar.gov.in</div><div class="board-status exp">Expected: This Week</div></div>
-        <div class="board-item"><div class="board-name"><a href="section.html?s=board">Bihar Board Class 10 Result 2026</a></div><div class="board-class">biharboardonline.bihar.gov.in</div><div class="board-status exp">Expected: March–April</div></div>
-        <div class="board-item"><div class="board-name"><a href="section.html?s=board">UP Board Class 10 Result 2026</a></div><div class="board-class">upmsp.edu.in / upresults.nic.in</div><div class="board-status soon">Expected: April 2026</div></div>
-        <div class="board-item"><div class="board-name"><a href="section.html?s=board">UP Board Class 12 Result 2026</a></div><div class="board-class">upmsp.edu.in / upresults.nic.in</div><div class="board-status soon">Expected: April 2026</div></div>
-        <div class="board-item"><div class="board-name"><a href="section.html?s=board">MP Board Class 10 Result 2026</a></div><div class="board-class">mpbse.nic.in / mpresults.nic.in</div><div class="board-status soon">Expected: May 2026</div></div>
-        <div class="board-item"><div class="board-name"><a href="section.html?s=board">MP Board Class 12 Result 2026</a></div><div class="board-class">mpbse.nic.in / mpresults.nic.in</div><div class="board-status soon">Expected: May 2026</div></div>
-        <div class="board-item"><div class="board-name"><a href="section.html?s=board">Rajasthan Board 10th Result 2026</a></div><div class="board-class">rajeduboard.rajasthan.gov.in</div><div class="board-status soon">Expected: May 2026</div></div>
-        <div class="board-item"><div class="board-name"><a href="section.html?s=board">Rajasthan Board 12th Result 2026</a></div><div class="board-class">rajeduboard.rajasthan.gov.in</div><div class="board-status soon">Expected: May 2026</div></div>
-        <div class="board-item"><div class="board-name"><a href="section.html?s=board">ICSE (10th) Result 2026</a></div><div class="board-class">cisce.org / results.cisce.org</div><div class="board-status soon">Expected: May 2026</div></div>
-        <div class="board-item"><div class="board-name"><a href="section.html?s=board">ISC (12th) Result 2026</a></div><div class="board-class">cisce.org / results.cisce.org</div><div class="board-status soon">Expected: May 2026</div></div>
-      </div>
-    </div>
-
-    <!-- ── UNIVERSITY RESULTS & ADMISSIONS ── -->
-    <div class="section-block" id="sec-univ">
-      <div class="sb-head">
-        <div class="sb-title">
-          <div class="sb-title-dot" style="background:var(--c-univ)"></div>
-          <span class="sb-icon">🎓</span>
-          <span>University Results & Admissions 2026</span>
-        </div>
-        <a href="section.html?s=univ" class="sb-more more-univ">View All →</a>
-      </div>
-      <div class="two-col-feed">
-        <div class="tcf-col">
-          <div class="tcf-head">
-            <span style="width:8px;height:8px;border-radius:50%;background:var(--c-univ);display:inline-block"></span>
-            University Results
-          </div>
-          <ul class="post-list">
-            <li class="post-item"><span class="post-item-arrow">▶</span><div class="post-item-text"><a href="section.html?s=univ">JEE Main 2026 Session 1 Result</a><div class="post-item-meta"><span class="badge b-out">OUT</span><span class="pi-date">NTA | Scorecard Download</span></div></div></li>
-            <li class="post-item"><span class="post-item-arrow">▶</span><div class="post-item-text"><a href="section.html?s=univ">NEET UG 2026 Result</a><div class="post-item-meta"><span class="badge b-soon">JUNE 2026</span><span class="pi-date">NTA | Medical Entrance</span></div></div></li>
-            <li class="post-item"><span class="post-item-arrow">▶</span><div class="post-item-text"><a href="section.html?s=univ">NTA UGC NET December Result 2026</a><div class="post-item-meta"><span class="badge b-soon">SOON</span><span class="pi-date">ugcnet.nta.nic.in</span></div></div></li>
-            <li class="post-item"><span class="post-item-arrow">▶</span><div class="post-item-text"><a href="section.html?s=univ">CUET UG 2026 Result</a><div class="post-item-meta"><span class="badge b-soon">SOON</span><span class="pi-date">NTA | Central Universities</span></div></div></li>
-            <li class="post-item"><span class="post-item-arrow">▶</span><div class="post-item-text"><a href="section.html?s=univ">DU Entrance Result 2026 (CUET)</a><div class="post-item-meta"><span class="badge b-soon">SOON</span><span class="pi-date">Delhi University</span></div></div></li>
-          </ul>
-        </div>
-        <div class="tcf-col">
-          <div class="tcf-head">
-            <span style="width:8px;height:8px;border-radius:50%;background:var(--c-univ);display:inline-block"></span>
-            Admissions Open
-          </div>
-          <ul class="post-list">
-            <li class="post-item"><span class="post-item-arrow">▶</span><div class="post-item-text"><a href="section.html?s=univ">UP BEd JEE 2026 — Entrance Exam Form</a><div class="post-item-meta"><span class="badge b-new">NEW</span><span class="pi-date">Apply: lkouniv.ac.in</span></div></div></li>
-            <li class="post-item"><span class="post-item-arrow">▶</span><div class="post-item-text"><a href="section.html?s=univ">Bihar ITI CAT Admission Form 2026</a><div class="post-item-meta"><span class="badge b-new">NEW</span><span class="pi-date">bceceboard.bihar.gov.in</span></div></div></li>
-            <li class="post-item"><span class="post-item-arrow">▶</span><div class="post-item-text"><a href="section.html?s=univ">KVS Class 1 Admission 2026 — Apply Online</a><div class="post-item-meta"><span class="badge b-out">OPEN</span><span class="pi-date">Kendriya Vidyalaya | kvsonlineadmission.kvs.gov.in</span></div></div></li>
-            <li class="post-item"><span class="post-item-arrow">▶</span><div class="post-item-text"><a href="section.html?s=univ">IGNOU Admission 2026 (January Session)</a><div class="post-item-meta"><span class="badge b-out">OPEN</span><span class="pi-date">ignouadmission.samarth.edu.in</span></div></div></li>
-            <li class="post-item"><span class="post-item-arrow">▶</span><div class="post-item-text"><a href="section.html?s=univ">Navodaya Vidyalaya Class 6 Admission 2026</a><div class="post-item-meta"><span class="badge b-out">OPEN</span><span class="pi-date">navodaya.gov.in</span></div></div></li>
-          </ul>
-        </div>
-      </div>
-    </div>
-
-    <!-- ── SCHEMES + ANSWER KEYS ROW ── -->
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px">
-
-      <div class="section-block" id="sec-schemes">
-        <div class="sb-head">
-          <div class="sb-title">
-            <div class="sb-title-dot" style="background:var(--c-schemes)"></div>
-            <span class="sb-icon">🏛️</span>
-            <span>Govt Schemes / Yojana</span>
-          </div>
-          <a href="section.html?s=schemes" class="sb-more more-schemes">More →</a>
-        </div>
-        <ul class="post-list">
-          <li class="post-item"><span class="post-item-arrow">▶</span><div class="post-item-text"><a href="section.html?s=schemes">PM Kisan 19th Instalment 2026 — Check Status</a><div class="post-item-meta"><span class="badge b-out">RELEASED</span></div></div></li>
-          <li class="post-item"><span class="post-item-arrow">▶</span><div class="post-item-text"><a href="section.html?s=schemes">PM Awas Yojana Gramin 2026 — New List</a><div class="post-item-meta"><span class="badge b-out">LIST OUT</span></div></div></li>
-          <li class="post-item"><span class="post-item-arrow">▶</span><div class="post-item-text"><a href="section.html?s=schemes">Ayushman Bharat — New Beneficiary Registration</a><div class="post-item-meta"><span class="badge b-hot">OPEN</span></div></div></li>
-          <li class="post-item"><span class="post-item-arrow">▶</span><div class="post-item-text"><a href="section.html?s=schemes">NSP Scholarship 2025–26 — Renewal Last Date</a><div class="post-item-meta"><span class="badge b-imp">DEADLINE</span></div></div></li>
-          <li class="post-item"><span class="post-item-arrow">▶</span><div class="post-item-text"><a href="section.html?s=schemes">UP Scholarship 2025–26 — Status Check</a><div class="post-item-meta"><span class="badge b-out">STATUS</span></div></div></li>
-          <li class="post-item"><span class="post-item-arrow">▶</span><div class="post-item-text"><a href="section.html?s=schemes">Pradhan Mantri Mudra Yojana — Loan Apply</a><div class="post-item-meta"><span class="badge b-hot">OPEN</span></div></div></li>
-        </ul>
-      </div>
-
-      <div class="section-block" id="sec-answer">
-        <div class="sb-head">
-          <div class="sb-title">
-            <div class="sb-title-dot" style="background:var(--c-answer)"></div>
-            <span class="sb-icon">📝</span>
-            <span>Answer Keys 2026</span>
-          </div>
-          <a href="section.html?s=answer_keys" class="sb-more more-answer">More →</a>
-        </div>
-        <ul class="post-list">
-          <li class="post-item"><span class="post-item-arrow">▶</span><div class="post-item-text"><a href="section.html?s=answer_keys">RRB Technician Grade-I Answer Key 2026</a><div class="post-item-meta"><span class="badge b-out">OUT</span></div></div></li>
-          <li class="post-item"><span class="post-item-arrow">▶</span><div class="post-item-text"><a href="section.html?s=answer_keys">RRB ALP Answer Key 2026 — Provisional</a><div class="post-item-meta"><span class="badge b-out">OUT</span></div></div></li>
-          <li class="post-item"><span class="post-item-arrow">▶</span><div class="post-item-text"><a href="section.html?s=answer_keys">SSC CGL Tier 2 Final Answer Key 2025</a><div class="post-item-meta"><span class="badge b-out">OUT</span></div></div></li>
-          <li class="post-item"><span class="post-item-arrow">▶</span><div class="post-item-text"><a href="section.html?s=answer_keys">UPSC CDS I 2026 Answer Key</a><div class="post-item-meta"><span class="badge b-soon">SOON</span></div></div></li>
-          <li class="post-item"><span class="post-item-arrow">▶</span><div class="post-item-text"><a href="section.html?s=answer_keys">Bihar JEEViKA Response Sheet 2026</a><div class="post-item-meta"><span class="badge b-out">OUT</span></div></div></li>
-          <li class="post-item"><span class="post-item-arrow">▶</span><div class="post-item-text"><a href="section.html?s=answer_keys">RRB Paramedical Staff Answer Key 2026</a><div class="post-item-meta"><span class="badge b-out">OUT</span></div></div></li>
-        </ul>
-      </div>
-
     </div>
 
   </div><!-- /left-col -->
 
-  <!-- RIGHT SIDEBAR -->
+  <!-- SIDEBAR -->
   <div class="sidebar">
 
-    <!-- Exam Calendar -->
-    <div class="widget">
-      <div class="widget-head">
-        <div class="widget-title">📅 Upcoming Exams</div>
-        <a href="section.html?s=admit_cards" class="widget-more">All →</a>
-      </div>
-      <div class="exam-cal">
-        <div class="ec-item">
-          <div class="ec-date"><div class="ec-day">24</div><div class="ec-mo">MAY</div></div>
-          <div class="ec-info"><div class="ec-exam">UPSC CSE Prelims 2026</div><div class="ec-org">Union Public Service Commission</div></div>
-        </div>
-        <div class="ec-item">
-          <div class="ec-date"><div class="ec-day">15</div><div class="ec-mo">MAY</div></div>
-          <div class="ec-info"><div class="ec-exam">RRB ALP 2026 — Apply Opens</div><div class="ec-org">Railway Recruitment Board</div></div>
-        </div>
-        <div class="ec-item">
-          <div class="ec-date"><div class="ec-day">11</div><div class="ec-mo">APR</div></div>
-          <div class="ec-info"><div class="ec-exam">SCR Apprentice 2026 Last Date</div><div class="ec-org">South Central Railway</div></div>
-        </div>
-        <div class="ec-item">
-          <div class="ec-date"><div class="ec-day">31</div><div class="ec-mo">MAR</div></div>
-          <div class="ec-info"><div class="ec-exam">SSC CGL 2026 Notification</div><div class="ec-org">Staff Selection Commission</div></div>
-        </div>
-        <div class="ec-item">
-          <div class="ec-date"><div class="ec-day">21</div><div class="ec-mo">AUG</div></div>
-          <div class="ec-info"><div class="ec-exam">UPSC CSE Mains 2026</div><div class="ec-org">Union Public Service Commission</div></div>
-        </div>
+    <div class="side-box">
+      <div class="side-head">Upcoming Exam Dates</div>
+      <div class="cal-item"><div class="cal-date"><span class="cal-day">26</span><span class="cal-mo">MAR</span></div><div><div class="cal-exam">Gauhati HC Steno Last Date</div><div class="cal-org">Gauhati High Court</div></div></div>
+      <div class="cal-item"><div class="cal-date"><span class="cal-day">01</span><span class="cal-mo">APR</span></div><div><div class="cal-exam">RWF Apprentice Last Date</div><div class="cal-org">Rail Wheel Factory</div></div></div>
+      <div class="cal-item"><div class="cal-date"><span class="cal-day">06</span><span class="cal-mo">APR</span></div><div><div class="cal-exam">Navy Agniveer Last Date</div><div class="cal-org">Indian Navy</div></div></div>
+      <div class="cal-item"><div class="cal-date"><span class="cal-day">11</span><span class="cal-mo">APR</span></div><div><div class="cal-exam">SCR Apprentice Last Date</div><div class="cal-org">South Central Railway</div></div></div>
+      <div class="cal-item"><div class="cal-date"><span class="cal-day">24</span><span class="cal-mo">MAY</span></div><div><div class="cal-exam">UPSC CSE Prelims 2026</div><div class="cal-org">Union Public Service Commission</div></div></div>
+      <div class="cal-item"><div class="cal-date"><span class="cal-day">14</span><span class="cal-mo">JUN</span></div><div><div class="cal-exam">RRB ALP Apply Closes</div><div class="cal-org">Railway Recruitment Board</div></div></div>
+    </div>
+
+    <div class="side-box">
+      <div class="side-head orange">Hot Topics</div>
+      <div class="side-list">
+        <div class="side-item"><div class="side-dot" style="background:#d63600"></div><a href="jobs.html" class="side-link">RRB ALP 11,127 Posts 2026</a></div>
+        <div class="side-item"><div class="side-dot" style="background:#2e7d32"></div><a href="results.html" class="side-link">UPSC CSE Final Result 2025</a></div>
+        <div class="side-item"><div class="side-dot" style="background:#d63600"></div><a href="board.html" class="side-link">Bihar Board 12th Result 2026</a></div>
+        <div class="side-item"><div class="side-dot" style="background:#1565c0"></div><a href="admit.html" class="side-link">UP Board Admit Card 2026</a></div>
+        <div class="side-item"><div class="side-dot" style="background:#d63600"></div><a href="jobs.html" class="side-link">SSC CGL 2026 Notification</a></div>
+        <div class="side-item"><div class="side-dot" style="background:#2e7d32"></div><a href="results.html" class="side-link">IBPS RRB Clerk Result 2026</a></div>
+        <div class="side-item"><div class="side-dot" style="background:#ff6d00"></div><a href="schemes.html" class="side-link">PM Kisan 19th Instalment</a></div>
+        <div class="side-item"><div class="side-dot" style="background:#2e7d32"></div><a href="jobs.html" class="side-link">India Post GDS Merit List</a></div>
+        <div class="side-item"><div class="side-dot" style="background:#6a1b9a"></div><a href="syllabus.html" class="side-link">RRB ALP Syllabus 2026</a></div>
+        <div class="side-item"><div class="side-dot" style="background:#00695c"></div><a href="schemes.html" class="side-link">NSP Scholarship 2025-26</a></div>
       </div>
     </div>
 
-    <!-- Quick Links -->
-    <div class="widget">
-      <div class="widget-head">
-        <div class="widget-title">🔗 Official Portals</div>
-      </div>
+    <div class="side-box">
+      <div class="side-head">Official Websites</div>
       <div class="ql-grid">
-        <a href="https://upsc.gov.in" target="_blank" rel="noopener" class="ql-item"><span class="ql-icon">🏛️</span><span class="ql-label">UPSC Official</span></a>
-        <a href="https://ssc.gov.in" target="_blank" rel="noopener" class="ql-item"><span class="ql-icon">📝</span><span class="ql-label">SSC Official</span></a>
-        <a href="https://www.rrbapply.gov.in" target="_blank" rel="noopener" class="ql-item"><span class="ql-icon">🚂</span><span class="ql-label">RRB Apply</span></a>
-        <a href="https://ibps.in" target="_blank" rel="noopener" class="ql-item"><span class="ql-icon">🏦</span><span class="ql-label">IBPS Official</span></a>
-        <a href="https://cbse.gov.in" target="_blank" rel="noopener" class="ql-item"><span class="ql-icon">🏫</span><span class="ql-label">CBSE Board</span></a>
-        <a href="https://jeemain.nta.nic.in" target="_blank" rel="noopener" class="ql-item"><span class="ql-icon">🎯</span><span class="ql-label">JEE Main</span></a>
-        <a href="https://neet.nta.nic.in" target="_blank" rel="noopener" class="ql-item"><span class="ql-icon">🏥</span><span class="ql-label">NEET UG</span></a>
-        <a href="https://employmentnews.gov.in" target="_blank" rel="noopener" class="ql-item"><span class="ql-icon">📰</span><span class="ql-label">Employment News</span></a>
-        <a href="https://digilocker.gov.in" target="_blank" rel="noopener" class="ql-item"><span class="ql-icon">📲</span><span class="ql-label">DigiLocker</span></a>
-        <a href="https://www.pmkisan.gov.in" target="_blank" rel="noopener" class="ql-item"><span class="ql-icon">🌾</span><span class="ql-label">PM Kisan</span></a>
+        <a href="https://upsc.gov.in" target="_blank" class="ql-item">UPSC</a>
+        <a href="https://ssc.gov.in" target="_blank" class="ql-item">SSC</a>
+        <a href="https://www.rrbapply.gov.in" target="_blank" class="ql-item">RRB Apply</a>
+        <a href="https://ibps.in" target="_blank" class="ql-item">IBPS</a>
+        <a href="https://cbse.gov.in" target="_blank" class="ql-item">CBSE</a>
+        <a href="https://jeemain.nta.nic.in" target="_blank" class="ql-item">JEE Main</a>
+        <a href="https://neet.nta.nic.in" target="_blank" class="ql-item">NEET UG</a>
+        <a href="https://digilocker.gov.in" target="_blank" class="ql-item">DigiLocker</a>
+        <a href="https://employmentnews.gov.in" target="_blank" class="ql-item">Emp. News</a>
+        <a href="https://www.pmkisan.gov.in" target="_blank" class="ql-item">PM Kisan</a>
       </div>
     </div>
 
-    <!-- Hot Topics -->
-    <div class="widget">
-      <div class="widget-head">
-        <div class="widget-title">🔥 Hot Topics</div>
-        <a href="section.html?s=jobs" class="widget-more">View All →</a>
-      </div>
-      <div class="sw-list">
-        <div class="sw-item"><div class="sw-dot dot-jobs"></div><a class="sw-text" href="section.html?s=jobs">RRB ALP 11,127 Posts 2026</a></div>
-        <div class="sw-item"><div class="sw-dot dot-results"></div><a class="sw-text" href="section.html?s=results">UPSC CSE Final Result 2025</a></div>
-        <div class="sw-item"><div class="sw-dot dot-board"></div><a class="sw-text" href="section.html?s=board">Bihar Board 12th Result 2026</a></div>
-        <div class="sw-item"><div class="sw-dot dot-admit"></div><a class="sw-text" href="section.html?s=admit_cards">UP Board Admit Card 2026</a></div>
-        <div class="sw-item"><div class="sw-dot dot-jobs"></div><a class="sw-text" href="section.html?s=jobs">SSC CGL 2026 Notification</a></div>
-        <div class="sw-item"><div class="sw-dot dot-results"></div><a class="sw-text" href="section.html?s=results">IBPS RRB Clerk Result 2026</a></div>
-        <div class="sw-item"><div class="sw-dot dot-schemes"></div><a class="sw-text" href="section.html?s=schemes">PM Kisan 19th Instalment</a></div>
-        <div class="sw-item"><div class="sw-dot dot-jobs"></div><a class="sw-text" href="section.html?s=jobs">India Post GDS Merit List</a></div>
-        <div class="sw-item"><div class="sw-dot dot-answer"></div><a class="sw-text" href="section.html?s=answer_keys">RRB ALP Answer Key 2026</a></div>
-        <div class="sw-item"><div class="sw-dot dot-syllabus"></div><a class="sw-text" href="section.html?s=syllabus">SSC CGL 2026 Syllabus PDF</a></div>
+    <div class="side-box">
+      <div class="side-head">State-wise Jobs</div>
+      <div class="state-grid">
+        <a href="jobs.html" class="state-item">Uttar Pradesh</a>
+        <a href="jobs.html" class="state-item">Bihar</a>
+        <a href="jobs.html" class="state-item">Rajasthan</a>
+        <a href="jobs.html" class="state-item">Madhya Pradesh</a>
+        <a href="jobs.html" class="state-item">Maharashtra</a>
+        <a href="jobs.html" class="state-item">Delhi</a>
+        <a href="jobs.html" class="state-item">Haryana</a>
+        <a href="jobs.html" class="state-item">Punjab</a>
+        <a href="jobs.html" class="state-item">Jharkhand</a>
+        <a href="jobs.html" class="state-item">Uttarakhand</a>
+        <a href="jobs.html" class="state-item">Chhattisgarh</a>
+        <a href="jobs.html" class="state-item">Gujarat</a>
       </div>
     </div>
 
-    <!-- State-wise Jobs -->
-    <div class="widget">
-      <div class="widget-head">
-        <div class="widget-title">🗺️ State-wise Jobs</div>
-        <a href="section.html?s=jobs" class="widget-more">All →</a>
-      </div>
-      <div class="sw-list">
-        <div class="sw-item"><div class="sw-dot" style="background:#E53935"></div><a class="sw-text" href="section.html?s=jobs">Uttar Pradesh (UP) Govt Jobs</a></div>
-        <div class="sw-item"><div class="sw-dot" style="background:#8E24AA"></div><a class="sw-text" href="section.html?s=jobs">Bihar Govt Jobs</a></div>
-        <div class="sw-item"><div class="sw-dot" style="background:#1E88E5"></div><a class="sw-text" href="section.html?s=jobs">Rajasthan Govt Jobs</a></div>
-        <div class="sw-item"><div class="sw-dot" style="background:#43A047"></div><a class="sw-text" href="section.html?s=jobs">Madhya Pradesh (MP) Jobs</a></div>
-        <div class="sw-item"><div class="sw-dot" style="background:#FB8C00"></div><a class="sw-text" href="section.html?s=jobs">Maharashtra Govt Jobs</a></div>
-        <div class="sw-item"><div class="sw-dot" style="background:#00897B"></div><a class="sw-text" href="section.html?s=jobs">Delhi Govt Jobs</a></div>
-        <div class="sw-item"><div class="sw-dot" style="background:#F4511E"></div><a class="sw-text" href="section.html?s=jobs">Haryana Govt Jobs</a></div>
-        <div class="sw-item"><div class="sw-dot" style="background:#3949AB"></div><a class="sw-text" href="section.html?s=jobs">Punjab Govt Jobs</a></div>
-        <div class="sw-item"><div class="sw-dot" style="background:#5D4037"></div><a class="sw-text" href="section.html?s=jobs">Jharkhand Govt Jobs</a></div>
-        <div class="sw-item"><div class="sw-dot" style="background:#00ACC1"></div><a class="sw-text" href="section.html?s=jobs">Uttarakhand Govt Jobs</a></div>
-      </div>
-    </div>
-
-    <!-- Free Alert Subscribe -->
-    <div class="widget" id="subscribe">
-      <div class="widget-head" style="background:var(--navy)">
-        <div class="widget-title" style="color:#fff">🔔 Get Free Job Alerts</div>
-      </div>
-      <div class="sub-widget">
-        <p>Get latest government jobs, results & admit cards directly in your inbox. 100% Free. 50,000+ subscribers.</p>
-        <input class="sub-input" type="text" placeholder="Your full name">
+    <div class="side-box" id="subscribe">
+      <div class="side-head orange">Free Job Alerts</div>
+      <div class="sub-box">
+        <p>Get latest Sarkari Jobs, Results &amp; Admit Cards in your inbox. 100% Free!</p>
+        <input class="sub-input" type="text" placeholder="Your name">
         <input class="sub-input" type="email" placeholder="Email address">
-        <select class="sub-input" style="cursor:pointer">
-          <option>All Govt Updates (Recommended)</option>
+        <select class="sub-input">
+          <option>All Govt Updates</option>
           <option>Railway Jobs Only</option>
           <option>UPSC/SSC Only</option>
           <option>Banking Jobs Only</option>
           <option>Board Results Only</option>
           <option>State Govt Jobs</option>
         </select>
-        <button class="sub-btn" onclick="subscribeAlert()">🔔 Subscribe Free — 0 Spam</button>
-      </div>
-    </div>
-
-    <!-- Syllabus Quick Access -->
-    <div class="widget">
-      <div class="widget-head">
-        <div class="widget-title">📚 Popular Syllabus</div>
-        <a href="section.html?s=syllabus" class="widget-more">All →</a>
-      </div>
-      <div class="sw-list">
-        <div class="sw-item"><div class="sw-dot dot-syllabus"></div><a class="sw-text" href="section.html?s=syllabus">SSC CGL 2026 Complete Syllabus PDF</a></div>
-        <div class="sw-item"><div class="sw-dot dot-syllabus"></div><a class="sw-text" href="section.html?s=syllabus">UPSC CSE 2026 Prelims + Mains Syllabus</a></div>
-        <div class="sw-item"><div class="sw-dot dot-syllabus"></div><a class="sw-text" href="section.html?s=syllabus">RRB ALP 2026 Syllabus & Exam Pattern</a></div>
-        <div class="sw-item"><div class="sw-dot dot-syllabus"></div><a class="sw-text" href="section.html?s=syllabus">IBPS PO/Clerk 2026 Syllabus PDF</a></div>
-        <div class="sw-item"><div class="sw-dot dot-syllabus"></div><a class="sw-text" href="section.html?s=syllabus">CBSE Class 10 Syllabus 2025–26 PDF</a></div>
-        <div class="sw-item"><div class="sw-dot dot-syllabus"></div><a class="sw-text" href="section.html?s=syllabus">CBSE Class 12 Syllabus 2025–26 PDF</a></div>
+        <button class="sub-btn">Subscribe Free</button>
       </div>
     </div>
 
   </div><!-- /sidebar -->
 
-</div><!-- /main -->
+</div><!-- /page-wrap -->
 
 <!-- FOOTER -->
 <footer class="site-footer">
-  <div class="footer-main">
-    <div class="footer-brand">
-      <div class="footer-logo">Sarkari<span>Alert</span>.in</div>
-      <p class="footer-desc">India's most comprehensive government portal for Jobs, Results, Admit Cards, Board Exams, University Updates, Schemes and more. Updated daily from official sources.</p>
-      <div style="display:flex;gap:6px;flex-wrap:wrap">
-        <a href="section.html?s=jobs" style="font-size:11px;background:rgba(255,255,255,.08);color:rgba(255,255,255,.6);padding:4px 10px;border-radius:4px">Jobs</a>
-        <a href="section.html?s=results" style="font-size:11px;background:rgba(255,255,255,.08);color:rgba(255,255,255,.6);padding:4px 10px;border-radius:4px">Results</a>
-        <a href="section.html?s=admit_cards" style="font-size:11px;background:rgba(255,255,255,.08);color:rgba(255,255,255,.6);padding:4px 10px;border-radius:4px">Admit Cards</a>
-        <a href="section.html?s=board" style="font-size:11px;background:rgba(255,255,255,.08);color:rgba(255,255,255,.6);padding:4px 10px;border-radius:4px">Board</a>
-      </div>
+  <div class="footer-inner">
+    <div>
+      <div class="footer-logo-text">SarkariAlert<span>.in</span></div>
+      <p class="footer-desc">India's trusted portal for Sarkari Jobs, Results, Admit Cards, Board Results, Syllabus and Govt Schemes. Updated daily from official sources.</p>
     </div>
-    <div class="footer-col">
-      <h4>Government Jobs</h4>
+    <div>
+      <h4>Sarkari Jobs</h4>
       <ul class="footer-links">
-        <li><a href="section.html?s=jobs">Railway Jobs</a></li>
-        <li><a href="section.html?s=jobs">UPSC Jobs</a></li>
-        <li><a href="section.html?s=jobs">SSC Jobs</a></li>
-        <li><a href="section.html?s=jobs">Banking Jobs</a></li>
-        <li><a href="section.html?s=jobs">Defence Jobs</a></li>
-        <li><a href="section.html?s=jobs">Police Jobs</a></li>
-        <li><a href="section.html?s=jobs">Teaching Jobs</a></li>
-        <li><a href="section.html?s=jobs">10th Pass Jobs</a></li>
+        <li><a href="jobs.html">Railway Jobs</a></li>
+        <li><a href="jobs.html">UPSC Jobs</a></li>
+        <li><a href="jobs.html">SSC Jobs</a></li>
+        <li><a href="jobs.html">Bank Jobs</a></li>
+        <li><a href="jobs.html">Defence Jobs</a></li>
+        <li><a href="jobs.html">Police Jobs</a></li>
+        <li><a href="jobs.html">10th Pass Jobs</a></li>
       </ul>
     </div>
-    <div class="footer-col">
-      <h4>Results & Boards</h4>
+    <div>
+      <h4>Results &amp; Boards</h4>
       <ul class="footer-links">
-        <li><a href="section.html?s=results">Exam Results</a></li>
-        <li><a href="section.html?s=board">CBSE Results</a></li>
-        <li><a href="section.html?s=board">UP Board Result</a></li>
-        <li><a href="section.html?s=board">Bihar Board Result</a></li>
-        <li><a href="section.html?s=board">MP Board Result</a></li>
-        <li><a href="section.html?s=univ">JEE Main Result</a></li>
-        <li><a href="section.html?s=univ">NEET Result</a></li>
-        <li><a href="section.html?s=univ">University Admissions</a></li>
+        <li><a href="results.html">Sarkari Results</a></li>
+        <li><a href="board.html">CBSE Result</a></li>
+        <li><a href="board.html">UP Board Result</a></li>
+        <li><a href="board.html">Bihar Board Result</a></li>
+        <li><a href="board.html">MP Board Result</a></li>
+        <li><a href="admit.html">Admit Cards</a></li>
+        <li><a href="syllabus.html">Syllabus</a></li>
       </ul>
     </div>
-    <div class="footer-col">
-      <h4>More</h4>
+    <div>
+      <h4>Important Links</h4>
       <ul class="footer-links">
-        <li><a href="section.html?s=admit_cards">Admit Cards</a></li>
-        <li><a href="section.html?s=answer_keys">Answer Keys</a></li>
-        <li><a href="section.html?s=syllabus">Syllabus</a></li>
-        <li><a href="section.html?s=schemes">Govt Schemes</a></li>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="schemes.html">Govt Schemes</a></li>
         <li><a href="about.html">About Us</a></li>
-        <li><a href="about.html#contact">Contact</a></li>
+        <li><a href="about.html#contact">Contact Us</a></li>
         <li><a href="about.html#disclaimer">Disclaimer</a></li>
-        <li><a href="admin/login.html">Admin Login</a></li>
       </ul>
     </div>
   </div>
   <div class="footer-bottom">
-    © 2026 SarkariAlert.in · Not affiliated with any government body · Always verify at official websites before applying ·
-    <a href="about.html">About</a> · <a href="about.html#disclaimer">Disclaimer</a> · <a href="about.html#contact">Contact</a>
+    &copy; 2026 SarkariAlert.in &middot; Not affiliated with any government body &middot;
+    Always verify on official websites before applying &middot;
+    <a href="about.html">About</a> &middot; <a href="about.html#disclaimer">Disclaimer</a>
   </div>
 </footer>
 
 <script>
-// ── Update time ──────────────────────────────────────
-var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-var now = new Date();
-document.getElementById('updateTime').textContent =
-  now.getDate()+' '+months[now.getMonth()]+' '+now.getFullYear()+' '+
-  now.getHours().toString().padStart(2,'0')+':'+now.getMinutes().toString().padStart(2,'0');
-
-// ── Mobile menu ──────────────────────────────────────
-function openMenu()  { document.getElementById('mobileMenu').classList.add('open'); }
-function closeMenu() { document.getElementById('mobileMenu').classList.remove('open'); }
-
-// ── Search ───────────────────────────────────────────
-function doSearch() {
-  var q = document.getElementById('globalSearch').value.trim();
-  if (q) window.location.href = 'section.html?s=all&q=' + encodeURIComponent(q);
+function toggleMenu(){ document.getElementById('mobileNav').classList.toggle('open'); }
+function doSearch(){
+  var q=document.getElementById('searchBox').value.trim();
+  if(q) window.location.href='jobs.html';
 }
-
-// ── Section filter (tab switching) ──────────────────
-function filterSection(sec, btn) {
-  document.querySelectorAll('.nt-link').forEach(b => b.classList.remove('active'));
-  btn.classList.add('active');
-  // Scroll to section
-  var map = {
-    jobs:'sec-jobs', results:'sec-results', admit:'sec-admit',
-    board:'sec-board', univ:'sec-univ', schemes:'sec-schemes',
-    answer:'sec-answer', syllabus:'sec-answer'
-  };
-  if(sec !== 'all' && map[sec]) {
-    var el = document.getElementById(map[sec]);
-    if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-  } else {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  }
-}
-
-// ── Subscribe ────────────────────────────────────────
-function subscribeAlert() {
-  alert('✅ Thank you! You will receive free government job alerts.\n\nConnect EmailJS or Formspree to make this actually send emails.');
-}
-
-// ── Dynamic counts from Supabase (if configured) ────
-async function loadCounts() {
-  try {
-    if (typeof SUPABASE_URL === 'undefined' || SUPABASE_URL.includes('YOUR_PROJECT')) return;
-    var res = await fetch(SUPABASE_URL+'/rest/v1/posts?select=section',{
-      headers:{apikey:SUPABASE_KEY,Authorization:'Bearer '+SUPABASE_KEY}
-    });
-    if (!res.ok) return;
-    var data = await res.json();
-    var counts = {};
-    data.forEach(function(p){ counts[p.section] = (counts[p.section]||0)+1; });
-    ['jobs','results','admit_cards'].forEach(function(sec){
-      var el = document.getElementById('cnt-'+sec.replace('_cards',''));
-      if(el && counts[sec]) el.textContent = counts[sec];
-    });
-    var total = data.length;
-    document.getElementById('stat-posts').textContent = total+'+';
-  } catch(e) {}
-}
-loadCounts();
+document.getElementById('searchBox').addEventListener('keydown',function(e){ if(e.key==='Enter') doSearch(); });
 </script>
 </body>
 </html>

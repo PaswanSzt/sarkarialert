@@ -1,276 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Admin Login | SarkariAlert.in</title>
-<link href="https://fonts.googleapis.com/css2?family=Teko:wght@500;600;700&family=Hind:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
-:root {
-  --navy:   #0B1D3A;
-  --navy2:  #122649;
-  --orange: #E8460A;
-  --gold:   #F5A623;
-  --border: rgba(255,255,255,.1);
-  --input-bg: rgba(255,255,255,.06);
-}
-* { box-sizing: border-box; margin: 0; padding: 0; }
-body {
-  font-family: 'Hind', sans-serif;
-  background: var(--navy);
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-  overflow: hidden;
-}
-/* Animated background grid */
-body::before {
-  content: '';
-  position: fixed;
-  inset: 0;
-  background-image:
-    linear-gradient(rgba(255,255,255,.025) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255,255,255,.025) 1px, transparent 1px);
-  background-size: 48px 48px;
-  animation: gridpan 20s linear infinite;
-}
-@keyframes gridpan { 0%{background-position:0 0} 100%{background-position:48px 48px} }
-
-/* Glow blobs */
-.blob {
-  position: fixed;
-  border-radius: 50%;
-  filter: blur(80px);
-  pointer-events: none;
-  opacity: .18;
-}
-.blob-1 { width:500px;height:500px;background:var(--orange);top:-100px;right:-100px; }
-.blob-2 { width:400px;height:400px;background:#1565C0;bottom:-80px;left:-80px; }
-
-.login-wrap {
-  position: relative;
-  z-index:10;
-  width: 100%;
-  max-width: 420px;
-  padding: 20px;
-}
-
-.login-brand {
-  text-align: center;
-  margin-bottom: 32px;
-}
-.brand-logo {
-  display: inline-flex;
-  align-items: center;
-  gap: 12px;
-  margin-bottom: 8px;
-}
-.brand-icon {
-  width: 48px; height: 48px;
-  background: var(--orange);
-  border-radius: 12px;
-  display: flex; align-items: center; justify-content: center;
-  font-family: 'Teko', sans-serif;
-  font-size: 24px; font-weight: 700; color: #fff;
-}
-.brand-name {
-  font-family: 'Teko', sans-serif;
-  font-size: 30px; font-weight: 700; color: #fff;
-}
-.brand-name span { color: var(--gold); }
-.brand-sub {
-  font-size: 13px;
-  color: rgba(255,255,255,.4);
-  letter-spacing: .5px;
-}
-
-.login-card {
-  background: rgba(255,255,255,.04);
-  border: 1px solid var(--border);
-  border-radius: 18px;
-  padding: 36px 32px;
-  backdrop-filter: blur(12px);
-}
-.login-card h2 {
-  font-family: 'Teko', sans-serif;
-  font-size: 26px; font-weight: 600;
-  color: #fff;
-  margin-bottom: 4px;
-}
-.login-card p {
-  font-size: 13.5px;
-  color: rgba(255,255,255,.45);
-  margin-bottom: 28px;
-}
-
-.field { margin-bottom: 18px; }
-.field label {
-  display: block;
-  font-size: 12px;
-  font-weight: 600;
-  color: rgba(255,255,255,.5);
-  letter-spacing: .8px;
-  text-transform: uppercase;
-  margin-bottom: 8px;
-}
-.field input {
-  width: 100%;
-  background: var(--input-bg);
-  border: 1px solid var(--border);
-  border-radius: 10px;
-  padding: 13px 16px;
-  font-size: 15px;
-  font-family: 'Hind', sans-serif;
-  color: #fff;
-  outline: none;
-  transition: border-color .2s, background .2s;
-}
-.field input:focus {
-  border-color: var(--orange);
-  background: rgba(255,255,255,.09);
-}
-.field input::placeholder { color: rgba(255,255,255,.25); }
-
-.show-pw {
-  position: relative;
-}
-.show-pw input { padding-right: 46px; }
-.show-pw-btn {
-  position: absolute;
-  right: 14px; top: 50%;
-  transform: translateY(-50%);
-  background: none; border: none;
-  color: rgba(255,255,255,.35);
-  font-size: 18px; cursor: pointer;
-  line-height: 1;
-}
-.show-pw-btn:hover { color: rgba(255,255,255,.7); }
-
-.login-btn {
-  width: 100%;
-  background: var(--orange);
-  color: #fff;
-  border: none;
-  border-radius: 10px;
-  padding: 14px;
-  font-size: 16px;
-  font-weight: 600;
-  font-family: 'Hind', sans-serif;
-  cursor: pointer;
-  transition: background .18s, transform .12s;
-  margin-top: 6px;
-  letter-spacing: .3px;
-}
-.login-btn:hover { background: #c93c08; }
-.login-btn:active { transform: scale(.98); }
-.login-btn.loading { opacity: .7; pointer-events: none; }
-
-.error-msg {
-  display: none;
-  background: rgba(192,57,43,.15);
-  border: 1px solid rgba(192,57,43,.35);
-  color: #FF8A80;
-  font-size: 13px;
-  padding: 10px 14px;
-  border-radius: 8px;
-  margin-bottom: 16px;
-  text-align: center;
-}
-.error-msg.show { display: block; }
-
-.back-link {
-  text-align: center;
-  margin-top: 20px;
-  font-size: 13px;
-  color: rgba(255,255,255,.3);
-}
-.back-link a { color: rgba(255,255,255,.55); }
-.back-link a:hover { color: var(--gold); }
-
-.security-note {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  justify-content: center;
-  margin-top: 24px;
-  font-size: 12px;
-  color: rgba(255,255,255,.25);
-}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Arial,sans-serif;background:#1a1a2e;display:flex;align-items:center;justify-content:center;min-height:100vh}
+.login-box{background:#fff;border-radius:10px;padding:36px 32px;width:340px;text-align:center;box-shadow:0 8px 32px rgba(0,0,0,.4)}
+.login-logo{font-size:22px;font-weight:900;color:#1a1a2e;margin-bottom:4px;font-family:Georgia,serif}
+.login-logo span{color:#d63600}
+.login-sub{font-size:12px;color:#888;margin-bottom:24px}
+.login-label{display:block;text-align:left;font-size:12px;font-weight:700;color:#555;margin-bottom:5px}
+.login-input{width:100%;padding:10px 14px;border:1.5px solid #ddd;border-radius:5px;font-size:14px;outline:none;margin-bottom:16px;font-family:Arial,sans-serif}
+.login-input:focus{border-color:#d63600}
+.login-btn{width:100%;background:#d63600;color:#fff;border:none;padding:12px;border-radius:5px;font-size:15px;font-weight:700;cursor:pointer;font-family:Arial,sans-serif}
+.login-btn:hover{background:#b52d00}
+.login-err{color:#d63600;font-size:13px;margin-top:10px;display:none}
+.login-back{margin-top:14px;font-size:12px;color:#888}
+.login-back a{color:#d63600}
 </style>
 </head>
 <body>
-<div class="blob blob-1"></div>
-<div class="blob blob-2"></div>
-
-<div class="login-wrap">
-  <div class="login-brand">
-    <div class="brand-logo">
-      <div class="brand-icon">SA</div>
-      <div class="brand-name">Sarkari<span>Alert</span>.in</div>
-    </div>
-    <div class="brand-sub">ADMIN CONTROL PANEL</div>
-  </div>
-
-  <div class="login-card">
-    <h2>Welcome Back 👋</h2>
-    <p>Sign in to manage your job portal</p>
-
-    <div class="error-msg" id="errMsg">❌ Incorrect password. Please try again.</div>
-
-    <div class="field">
-      <label>Username</label>
-      <input type="text" id="username" value="admin" placeholder="admin" readonly>
-    </div>
-
-    <div class="field">
-      <label>Password</label>
-      <div class="show-pw">
-        <input type="password" id="password" placeholder="Enter your admin password" onkeydown="if(event.key==='Enter')doLogin()">
-        <button class="show-pw-btn" onclick="togglePw()" type="button" id="eyeBtn">👁</button>
-      </div>
-    </div>
-
-    <button class="login-btn" id="loginBtn" onclick="doLogin()">
-      🔐 Sign In to Admin Panel
-    </button>
-  </div>
-
-  <div class="back-link">← <a href="../index.html">Back to Website</a></div>
-  <div class="security-note">🔒 Secure admin area — keep your password private</div>
+<div class="login-box">
+  <div class="login-logo">SarkariAlert<span>.in</span></div>
+  <div class="login-sub">Admin Panel Login</div>
+  <label class="login-label">Password</label>
+  <input type="password" class="login-input" id="pwd" placeholder="Enter admin password" onkeydown="if(event.key==='Enter')doLogin()">
+  <button class="login-btn" onclick="doLogin()">Login to Admin Panel</button>
+  <div class="login-err" id="err">Wrong password. Please try again.</div>
+  <div class="login-back"><a href="../index.html">Back to Website</a></div>
 </div>
-
-<script src="../config.js"></script>
 <script>
-function togglePw() {
-  var inp = document.getElementById('password');
-  var btn = document.getElementById('eyeBtn');
-  if (inp.type === 'password') { inp.type = 'text'; btn.textContent = '🙈'; }
-  else { inp.type = 'password'; btn.textContent = '👁'; }
-}
-
-function doLogin() {
-  var pw  = document.getElementById('password').value;
-  var btn = document.getElementById('loginBtn');
-  var err = document.getElementById('errMsg');
-
-  err.classList.remove('show');
-  btn.classList.add('loading');
-  btn.textContent = 'Signing in…';
-
-  setTimeout(function() {
-    if (pw === ADMIN_PASSWORD) {
-      sessionStorage.setItem('sa_admin_auth', 'true');
-      window.location.href = 'dashboard.html';
-    } else {
-      err.classList.add('show');
-      btn.classList.remove('loading');
-      btn.textContent = '🔐 Sign In to Admin Panel';
-      document.getElementById('password').value = '';
-    }
-  }, 700);
+var PASS = "sarkari@admin2026";
+function doLogin(){
+  var p = document.getElementById('pwd').value;
+  if(p === PASS){
+    sessionStorage.setItem('sa_admin','true');
+    window.location.href = 'dashboard.html';
+  } else {
+    document.getElementById('err').style.display='block';
+    document.getElementById('pwd').value='';
+    document.getElementById('pwd').focus();
+  }
 }
 </script>
-</body>
-</html>
+</body></html>
